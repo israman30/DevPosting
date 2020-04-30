@@ -50,8 +50,8 @@ class PostController: UIViewController {
     
     let dismissButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Dismiss", for: .normal)
-        btn.setTitleColor(.red, for: .normal)
+        btn.setTitle("Cancel", for: .normal)
+        btn.setTitleColor(UIColor(hex: "#d61122"), for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 18)
         btn.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
         return btn
@@ -59,7 +59,7 @@ class PostController: UIViewController {
     
     @objc func handleSubmit() {
         if titleTextField.text!.isEmpty || detailPostTextView.text.isEmpty {
-            ProgressHUD.showError("Please enter valid info")
+            ProgressHUD.showError("Please enter valid information to create a post")
             return
         }
         ProgressHUD.showError("Posting...")

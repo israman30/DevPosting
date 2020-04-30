@@ -28,7 +28,7 @@ extension PostController {
         stackView.spacing = 5
 
         view.addSubview(stackView)
-        stackView.anchor(top: detailPostTextView.bottomAnchor, left: detailPostTextView.leftAnchor, bottom: nil, right: detailPostTextView.rightAnchor, padding: .init(top: 20, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 100))
+        stackView.anchor(top: detailPostTextView.bottomAnchor, left: detailPostTextView.leftAnchor, bottom: nil, right: detailPostTextView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 100))
         
         detailPostTextView.layer.borderColor = UIColor.black.cgColor
         detailPostTextView.layer.borderWidth = 0.5
