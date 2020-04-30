@@ -55,7 +55,7 @@ class MainCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = UIColor(hex: "#fcfbf0")
+        backgroundColor = UIColor.mainColor()
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, usernameLabel, dateLabel])
         stackView.axis = .vertical

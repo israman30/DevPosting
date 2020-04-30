@@ -11,7 +11,7 @@ import UIKit
 extension LoginController {
     
     func setLoginView() {
-        view.backgroundColor = UIColor(hex: "#fcfbf0")
+        view.backgroundColor = UIColor.mainColor()
                
        let containerView = UIView()
        

@@ -11,7 +11,7 @@ import UIKit
 extension PostController {
     
     func setPostView() {
-        view.backgroundColor = UIColor(hex: "#fcfbf0")
+        view.backgroundColor = UIColor.mainColor()
         
         view.addSubview(titleTextField)
         titleTextField.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 40, left: 20, bottom: 0, right: 20), size: .init(width: 0, height: 0))

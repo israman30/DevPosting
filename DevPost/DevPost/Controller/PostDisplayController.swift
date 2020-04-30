@@ -61,14 +61,13 @@ class PostDisplayController: UIViewController {
             }
         }
     }
-    
-    
+
 }
 
 extension PostDisplayController {
     
     func setpostDisplayView() {
-        view.backgroundColor = UIColor(hex: "#fcfbf0")
+        view.backgroundColor = UIColor.mainColor()
         
         view.addSubview(titleDisplayLabel)
         titleDisplayLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 0, left: 10, bottom: 0, right: 10), size: .init(width: 0, height: 45))

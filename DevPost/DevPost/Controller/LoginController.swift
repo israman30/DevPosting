@@ -106,5 +106,14 @@ class LoginController: UIViewController {
 }
 
 
-
+extension LoginController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    // MARK: - Keyboard dismiss when user touches any where out of the input textField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+}
 

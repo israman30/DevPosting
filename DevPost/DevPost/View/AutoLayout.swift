@@ -42,6 +42,9 @@ extension UIColor {
         
         self.init(red: r, green: g, blue: b, alpha: a)
     }
+    static func  mainColor() -> UIColor? {
+        return UIColor(hex: "fcfbf0")
+    }
 }
 
 struct AnchoredConstraints {
