@@ -64,7 +64,10 @@ class LoginController: UIViewController {
             return
         }
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            self.handleError(error)
+            guard let user = user?.user.uid else { return }
+            if user.isEmpty {
+                self.handleError(error)
+            }
             // Login user
             self.dismiss(animated: true, completion: nil)
         }
@@ -102,6 +105,7 @@ class LoginController: UIViewController {
     func handleError(_ error: Error?) {
         if let error = error {
             print(error.localizedDescription)
+            ProgressHUD.showError("Wrong user information..!")
             return
         }
     }
