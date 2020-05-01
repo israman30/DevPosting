@@ -32,8 +32,8 @@ class MainController: UITableViewController {
             // TODO: Set user info
         }
     
-        observeUser()
         fetchUsername()
+        observeUser()
     }
     
     // MARK: - Observe posts from Firebase
@@ -74,8 +74,10 @@ class MainController: UITableViewController {
     }
     var usernameLabel:String?
     
-    func fetchUsername() -> String? {
-        guard let uid = Auth.auth().currentUser?.uid else { return nil }
+    // TODO: FETCH USER WEHN USER SIGNUP/LOGIN
+    // TODO: CHECK CORRECT USERNAME WHEN LOGIN
+    func fetchUsername() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
 //            print(snapshot)
             if let dict = snapshot.value as? [String:Any] {
@@ -86,7 +88,6 @@ class MainController: UITableViewController {
                 }
             }
         }
-        return usernameLabel
     }
 }
 
@@ -116,7 +117,7 @@ extension MainController {
         let label = UILabel()
         label.text = usernameLabel
         headerView.addSubview(label)
-        label.fillSuperview(padding: .init(top: 0, left: 5, bottom: 0, right: 0))
+        label.fillSuperview(padding: .init(top: 0, left: 10, bottom: 0, right: 0))
         return headerView
     }
     
