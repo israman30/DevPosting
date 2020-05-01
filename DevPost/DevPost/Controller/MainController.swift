@@ -25,6 +25,7 @@ class MainController: UITableViewController {
         tableView.separatorInset = .init(top: 0, left: 10, bottom: 0, right: 10)
         tableView.showsVerticalScrollIndicator = false
         
+        // MARK: - IS USER LOGGED IN?
         if Auth.auth().currentUser?.uid == nil {
             perform(#selector(isUserLoggedIn), with: nil, afterDelay: 0)
         } else {
@@ -34,6 +35,7 @@ class MainController: UITableViewController {
         observeUser()
     }
     
+    // MARK: - Observe posts from Firebase
     func observeUser() {
         Database.database().reference().child("posts").observe(.childAdded) { (snapshot) in
             if let postObject = snapshot.value as? [String:Any] {
@@ -47,6 +49,7 @@ class MainController: UITableViewController {
         }
     }
     
+    // MARK: - LOGOUT
     @objc func handleLogout() {
         do {
             try Auth.auth().signOut()
@@ -56,12 +59,14 @@ class MainController: UITableViewController {
         }
     }
     
+    // MARK: - Go to LoginController if user == nil
     @objc func isUserLoggedIn() {
         let loginController = LoginController()
         loginController.modalPresentationStyle = .fullScreen
         present(loginController, animated: true, completion: nil)
     }
     
+    // MARK: - Present PostController
     @objc func handleAdd() {
         let postController = PostController()
         present(postController, animated: true, completion: nil)
@@ -81,7 +86,6 @@ extension MainController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO
         let postDisplayController = PostDisplayController()
         postDisplayController.posts = posts[indexPath.row]
         navigationController?.pushViewController(postDisplayController, animated: true)

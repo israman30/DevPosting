@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+extension UIView {
+    func setShadow() {
+        layer.masksToBounds = false
+        layer.shadowOffset = CGSize(width: 1, height: 1)
+        layer.shadowRadius = 1
+        layer.shadowOpacity = 0.2
+        layer.cornerRadius = 2
+    }
+}
 
 extension UIView {
     func customBorder() {

@@ -57,6 +57,7 @@ class PostController: UIViewController {
         return btn
     }()
     
+    // MARK: - Handle submit post
     @objc func handleSubmit() {
         if titleTextField.text!.isEmpty || detailPostTextView.text.isEmpty {
             ProgressHUD.showError("Please enter valid information to create a post")
@@ -68,17 +69,17 @@ class PostController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - Cancel post with dismiss controller
     @objc func handleDismiss() {
         dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setPostView()
-        print(TimeString.setDate())
     }
     
+    // MARK: - Upload post object to Fireabase
     func uploadPost() {
         guard let title = titleTextField.text, let detailPost = detailPostTextView.text else { return }
 //        guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -96,6 +97,7 @@ class PostController: UIViewController {
     
 }
 
+// MARK: - UITextField Delegate handler extension
 extension PostController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

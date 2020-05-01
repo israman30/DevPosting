@@ -51,11 +51,12 @@ class LoginController: UIViewController {
         return btn
     }()
     
+    // MARK: - Handle signup a new user
     @objc func handleSignup() {
-        print("Login user")
         creatingUser()
     }
     
+    // MARK: - LOGIN USER with EMAIL & PASSWORD
     @objc func handleLogin() {
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
         if email.isEmpty || password.isEmpty {
@@ -74,6 +75,7 @@ class LoginController: UIViewController {
         setLoginView()
     }
     
+    // MARK: - CREATE NEW USER with USERNAME + EMAIL + PASSWORD
     func creatingUser() {
         guard let email = emailTextField.text,
               let password = passwordTextField.text,
@@ -84,8 +86,7 @@ class LoginController: UIViewController {
         }
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             self.handleError(error)
-            // Create user
-            print("User has been created in firebase")
+            // Create user object
             guard let uid = user?.user.uid else { return }
             let values = [
                 "username": username,
@@ -97,7 +98,7 @@ class LoginController: UIViewController {
         }
     }
     
-    // MARK: - ERROR HANDLING
+    // MARK: - ERROR HANDLING CREATING/LOGIN A USER
     func handleError(_ error: Error?) {
         if let error = error {
             print(error.localizedDescription)
