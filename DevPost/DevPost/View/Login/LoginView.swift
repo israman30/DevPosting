@@ -34,8 +34,7 @@ extension LoginController {
        containerView.addSubview(stackView)
        stackView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, padding: .init(top: 10, left: 10, bottom: 10, right: 10))
         
-        containerView.layer.borderColor = UIColor.black.cgColor
-        containerView.layer.borderWidth = 0.5
+        containerView.customBorder()
         containerView.layer.cornerRadius = 3
        
         setbutton(containerView)
@@ -47,11 +46,9 @@ extension LoginController {
         buttonsStackView.distribution = .fillEqually
         buttonsStackView.spacing = 5
         
-        signupButton.layer.borderWidth = 0.5
-        signupButton.layer.borderColor = UIColor.black.cgColor
+        signupButton.customBorder()
         
-        loginButton.layer.borderWidth = 0.5
-        loginButton.layer.borderColor = UIColor.black.cgColor
+        loginButton.customBorder()
         
         view.addSubview(buttonsStackView)
         buttonsStackView.anchor(top: containerView.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 90))

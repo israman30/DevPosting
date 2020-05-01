@@ -16,8 +16,7 @@ extension PostController {
         view.addSubview(titleTextField)
         titleTextField.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 40, left: 20, bottom: 0, right: 20), size: .init(width: 0, height: 0))
         
-        titleTextField.layer.borderColor = UIColor.black.cgColor
-        titleTextField.layer.borderWidth = 0.5
+        titleTextField.customBorder()
         
         view.addSubview(detailPostTextView)
         detailPostTextView.anchor(top: titleTextField.bottomAnchor, left: titleTextField.leftAnchor, bottom: nil, right: titleTextField.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 300))
@@ -27,15 +26,11 @@ extension PostController {
         stackView.distribution = .fillEqually
         stackView.spacing = 5
         
-        submitButton.layer.borderColor = UIColor.black.cgColor
-        submitButton.layer.borderWidth = 0.5
+        submitButton.customBorder()
 
         view.addSubview(stackView)
         stackView.anchor(top: detailPostTextView.bottomAnchor, left: detailPostTextView.leftAnchor, bottom: nil, right: detailPostTextView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 100))
         
-        detailPostTextView.layer.borderColor = UIColor.black.cgColor
-        detailPostTextView.layer.borderWidth = 0.5
+        detailPostTextView.customBorder()
     }
 }
-
-

@@ -76,9 +76,9 @@ extension PostDisplayController {
         textViewPostDisplay.anchor(top: titleDisplayLabel.bottomAnchor, left: titleDisplayLabel.leftAnchor, bottom: nil, right: titleDisplayLabel.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 350))
         
         view.addSubview(editButton)
-//        editButton.anchor(top: textViewPostDisplay.bottomAnchor, left: textViewPostDisplay.leftAnchor, bottom: nil, right: textViewPostDisplay.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 45))
-
         editButton.anchor(top: textViewPostDisplay.bottomAnchor, left: nil, bottom: nil, right: textViewPostDisplay.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 100, height: 20))
+        
+        editButton.customBorder()
         
         titleDisplayLabel.setShadow()
         textViewPostDisplay.setShadow()

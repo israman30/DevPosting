@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+
+extension UIView {
+    func customBorder() {
+        layer.borderColor = UIColor.black.cgColor
+        layer.borderWidth = 0.5
+    }
+}
+
+
 // UIColor extension
 extension UIColor {
     convenience init?(hex: String) {
