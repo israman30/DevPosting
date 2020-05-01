@@ -38,6 +38,7 @@ extension LoginController {
         containerView.layer.cornerRadius = 3
        
         setbutton(containerView)
+        
     }
     
     func setbutton(_ containerView: UIView) {
@@ -53,4 +54,5 @@ extension LoginController {
         view.addSubview(buttonsStackView)
         buttonsStackView.anchor(top: containerView.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 90))
     }
+    
 }
