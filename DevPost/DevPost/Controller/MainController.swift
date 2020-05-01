@@ -21,7 +21,9 @@ class MainController: UITableViewController {
         
         tableView.register(MainCell.self, forCellReuseIdentifier: "cell")
         tableView.rowHeight = 75
-        tableView.separatorColor = .clear
+        tableView.separatorColor = .opaqueSeparator
+        tableView.separatorInset = .init(top: 0, left: 10, bottom: 0, right: 10)
+        tableView.showsVerticalScrollIndicator = false
         
         if Auth.auth().currentUser?.uid == nil {
             perform(#selector(isUserLoggedIn), with: nil, afterDelay: 0)
