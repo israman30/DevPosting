@@ -33,6 +33,7 @@ class MainController: UITableViewController {
         }
     
         observeUser()
+        fetchUsername()
     }
     
     // MARK: - Observe posts from Firebase
@@ -71,7 +72,22 @@ class MainController: UITableViewController {
         let postController = PostController()
         present(postController, animated: true, completion: nil)
     }
+    var usernameLabel:String?
     
+    func fetchUsername() -> String? {
+        guard let uid = Auth.auth().currentUser?.uid else { return nil }
+        Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
+//            print(snapshot)
+            if let dict = snapshot.value as? [String:Any] {
+//                print(dict["username"])
+                if let username = dict["username"] as? String {
+                    print(username)
+                    self.usernameLabel = username
+                }
+            }
+        }
+        return usernameLabel
+    }
 }
 
 extension MainController {
@@ -90,4 +106,19 @@ extension MainController {
         postDisplayController.posts = posts[indexPath.row]
         navigationController?.pushViewController(postDisplayController, animated: true)
     }
+    
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor(hex: "#fcf5d2")
+        view.addSubview(headerView)
+        headerView.frame = .init(x: 0, y: 0, width: view.frame.width, height: 30)
+        let label = UILabel()
+        label.text = usernameLabel
+        headerView.addSubview(label)
+        label.fillSuperview(padding: .init(top: 0, left: 5, bottom: 0, right: 0))
+        return headerView
+    }
+    
+    
 }

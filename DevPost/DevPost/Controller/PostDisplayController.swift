@@ -48,19 +48,9 @@ class PostDisplayController: UIViewController {
         guard let title = posts?.title, let detailPost = posts?.detailPost else { return }
         titleDisplayLabel.text = title
         textViewPostDisplay.text = detailPost
-        fetUsername()
     }
     
-    func fetUsername() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
-            if let dict = snapshot.value as? [String:Any]{
-                if let username = dict["username"] as? String {
-                    self.navigationItem.title = username
-                }
-            }
-        }
-    }
+    
 
 }
 
