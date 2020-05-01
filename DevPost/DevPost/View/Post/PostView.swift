@@ -26,6 +26,9 @@ extension PostController {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 5
+        
+        submitButton.layer.borderColor = UIColor.black.cgColor
+        submitButton.layer.borderWidth = 0.5
 
         view.addSubview(stackView)
         stackView.anchor(top: detailPostTextView.bottomAnchor, left: detailPostTextView.leftAnchor, bottom: nil, right: detailPostTextView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 100))

@@ -36,7 +36,7 @@ class PostDisplayController: UIViewController {
         btn.setTitle("Edit post", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = UIColor(hex: "#4f8c50")
-        btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        btn.titleLabel?.font = .boldSystemFont(ofSize: 13)
         btn.layer.cornerRadius = 2
         return btn
     }()
@@ -76,8 +76,10 @@ extension PostDisplayController {
         textViewPostDisplay.anchor(top: titleDisplayLabel.bottomAnchor, left: titleDisplayLabel.leftAnchor, bottom: nil, right: titleDisplayLabel.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 350))
         
         view.addSubview(editButton)
-        editButton.anchor(top: textViewPostDisplay.bottomAnchor, left: textViewPostDisplay.leftAnchor, bottom: nil, right: textViewPostDisplay.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 45))
+//        editButton.anchor(top: textViewPostDisplay.bottomAnchor, left: textViewPostDisplay.leftAnchor, bottom: nil, right: textViewPostDisplay.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 45))
 
+        editButton.anchor(top: textViewPostDisplay.bottomAnchor, left: nil, bottom: nil, right: textViewPostDisplay.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 100, height: 20))
+        
         titleDisplayLabel.setShadow()
         textViewPostDisplay.setShadow()
         
