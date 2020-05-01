@@ -59,7 +59,7 @@ class LoginController: UIViewController {
     @objc func handleLogin() {
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
         if email.isEmpty || password.isEmpty {
-            ProgressHUD.showError("Please enter valid info")
+            ProgressHUD.showError("Please enter valid email & password")
             return
         }
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
@@ -75,9 +75,11 @@ class LoginController: UIViewController {
     }
     
     func creatingUser() {
-        guard let email = emailTextField.text, let password = passwordTextField.text, let username = usernameTextField.text else { return }
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text,
+              let username = usernameTextField.text else { return }
         if email.isEmpty || password.isEmpty {
-            ProgressHUD.showError("To sign up, you must enter a valid info please!")
+            ProgressHUD.showError("To sign up, you must enter all fields please!")
             return
         }
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in

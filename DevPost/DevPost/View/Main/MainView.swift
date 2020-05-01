@@ -11,7 +11,7 @@ import UIKit
 extension MainController {
     
     func setNavigationItems() {
-        view.backgroundColor = UIColor(hex: "#fcfbf0")
+        view.backgroundColor = UIColor.mainColor()
         navigationItem.title = "Dev Post"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAdd))
