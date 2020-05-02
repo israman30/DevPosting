@@ -11,6 +11,10 @@ import FirebaseAuth
 import FirebaseDatabase
 import ProgressHUD
 
+protocol SetUsetDelegate {
+    func getUser(with user: String)
+}
+
 class LoginController: UIViewController {
     
     let usernameTextField: UITextField = {
@@ -56,6 +60,7 @@ class LoginController: UIViewController {
         creatingUser()
     }
     
+    var setUserDelegate: SetUsetDelegate?
     // MARK: - LOGIN USER with EMAIL & PASSWORD
     @objc func handleLogin() {
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
@@ -70,6 +75,7 @@ class LoginController: UIViewController {
             }
             // Login user
             self.dismiss(animated: true, completion: nil)
+            self.setUserDelegate?.getUser(with: user)
         }
     }
     
@@ -98,8 +104,11 @@ class LoginController: UIViewController {
             let ref = Database.database().reference().child("users")
             ref.child(uid).setValue(values)
             self.dismiss(animated: true, completion: nil)
+            
         }
     }
+    
+    
     
     // MARK: - ERROR HANDLING CREATING/LOGIN A USER
     func handleError(_ error: Error?) {

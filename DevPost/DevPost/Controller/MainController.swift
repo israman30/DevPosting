@@ -31,7 +31,7 @@ class MainController: UITableViewController {
         } else {
             // TODO: Set user info
         }
-    
+        
         fetchUsername()
         observeUser()
     }
@@ -78,20 +78,23 @@ class MainController: UITableViewController {
     // TODO: CHECK CORRECT USERNAME WHEN LOGIN
     func fetchUsername() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
-//            print(snapshot)
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of:.value) { (snapshot) in
             if let dict = snapshot.value as? [String:Any] {
-//                print(dict["username"])
                 if let username = dict["username"] as? String {
-                    print(username)
-                    self.usernameLabel = username
+//                    self.usernameLabel = username
                 }
             }
         }
     }
+    var delegate: SetUsetDelegate?
 }
 
-extension MainController {
+extension MainController: SetUsetDelegate {
+    
+    func getUser(with user: String) {
+        
+        print(user)
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
