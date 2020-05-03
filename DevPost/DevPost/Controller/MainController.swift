@@ -86,15 +86,10 @@ class MainController: UITableViewController {
             }
         }
     }
-    var delegate: SetUsetDelegate?
+
 }
 
-extension MainController: SetUsetDelegate {
-    
-    func getUser(with user: String) {
-        
-        print(user)
-    }
+extension MainController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
@@ -118,9 +113,11 @@ extension MainController: SetUsetDelegate {
         view.addSubview(headerView)
         headerView.frame = .init(x: 0, y: 0, width: view.frame.width, height: 30)
         let label = UILabel()
-        label.text = usernameLabel
+        label.text = "What's new in technology!"
+        label.textColor = UIColor(hex: "#363535")
+        label.font = .systemFont(ofSize: 12)
         headerView.addSubview(label)
-        label.fillSuperview(padding: .init(top: 0, left: 10, bottom: 0, right: 0))
+        label.fillSuperview(padding: .init(top: 5, left: 10, bottom: 5, right: 0))
         return headerView
     }
     
