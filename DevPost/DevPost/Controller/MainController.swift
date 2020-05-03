@@ -20,7 +20,7 @@ class MainController: UITableViewController {
         setNavigationItems()
         
         tableView.register(MainCell.self, forCellReuseIdentifier: "cell")
-        tableView.rowHeight = 75
+        tableView.rowHeight = 85
         tableView.separatorColor = .opaqueSeparator
         tableView.separatorInset = .init(top: 0, left: 10, bottom: 0, right: 10)
         tableView.showsVerticalScrollIndicator = false

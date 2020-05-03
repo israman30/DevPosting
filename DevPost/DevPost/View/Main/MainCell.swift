@@ -39,6 +39,14 @@ class MainCell: UITableViewCell {
         let label = UILabel()
         label.text = "by John Doe"
         label.font = .systemFont(ofSize: 14)
+//        label.textColor = UIColor(hex: "#363535")
+        return label
+    }()
+    
+    let usernameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "by John Doe"
+        label.font = .systemFont(ofSize: 13)
         label.textColor = UIColor(hex: "#363535")
         return label
     }()
@@ -57,10 +65,14 @@ class MainCell: UITableViewCell {
         
         backgroundColor = UIColor.mainColor()
         
-        let stackView = UIStackView(arrangedSubviews: [titlePostLabel, descriptionPostLabel, dateLabel])
+        let horizontalStackView = UIStackView(arrangedSubviews: [usernameLabel, dateLabel])
+        horizontalStackView.axis = .horizontal
+        
+        let stackView = UIStackView(arrangedSubviews: [titlePostLabel, descriptionPostLabel, horizontalStackView])
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 5
+        
         
         addSubview(stackView)
         stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, padding: .init(top: 10, left: 10, bottom: 10, right: 10))
