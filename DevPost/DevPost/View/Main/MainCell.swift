@@ -12,11 +12,11 @@ class MainCell: UITableViewCell {
     
     var post: Posts? {
         didSet {
-            guard let username = post?.title else { return }
-            titleLabel.text = username
+            guard let titlePost = post?.title else { return }
+            titlePostLabel.text = titlePost
             
             guard let detail = post?.detailPost else { return }
-            usernameLabel.text = detail
+            descriptionPostLabel.text = detail
             
             guard let date = post?.date else { return }
             
@@ -28,14 +28,14 @@ class MainCell: UITableViewCell {
         }
     }
     
-    let titleLabel: UILabel = {
+    let titlePostLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
         label.textColor = UIColor(hex: "#578dde")
         return label
     }()
     
-    let usernameLabel: UILabel = {
+    let descriptionPostLabel: UILabel = {
         let label = UILabel()
         label.text = "by John Doe"
         label.font = .systemFont(ofSize: 14)
@@ -57,7 +57,7 @@ class MainCell: UITableViewCell {
         
         backgroundColor = UIColor.mainColor()
         
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, usernameLabel, dateLabel])
+        let stackView = UIStackView(arrangedSubviews: [titlePostLabel, descriptionPostLabel, dateLabel])
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 5
