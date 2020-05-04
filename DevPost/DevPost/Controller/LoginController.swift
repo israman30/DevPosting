@@ -63,12 +63,14 @@ class LoginController: UIViewController {
             ProgressHUD.showError("Please enter valid email & password")
             return
         }
+        ProgressHUD.show("Loggin up")
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             guard let user = user?.user.uid else { return }
             if user.isEmpty {
                 self.handleError(error)
             }
             // Login user
+            ProgressHUD.dismiss()
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -87,6 +89,7 @@ class LoginController: UIViewController {
             ProgressHUD.showError("To sign up, you must enter all fields please!")
             return
         }
+        ProgressHUD.show("Signing up")
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             self.handleError(error)
             // Create user object
@@ -97,6 +100,7 @@ class LoginController: UIViewController {
             ]
             let ref = Database.database().reference().child("users")
             ref.child(uid).setValue(values)
+            ProgressHUD.dismiss()
             self.dismiss(animated: true, completion: nil)
             
         }
