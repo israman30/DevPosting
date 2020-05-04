@@ -16,7 +16,7 @@ extension LoginController {
        let containerView = UIView()
        
        let width = view.frame.width - 80
-       containerView.backgroundColor = UIColor(hex: "#f0f1f2")
+//       containerView.backgroundColor = UIColor(hex: "#f0f1f2")
         
        view.addSubview(containerView)
 
@@ -24,7 +24,7 @@ extension LoginController {
         containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -120).isActive = true
         containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         containerView.widthAnchor.constraint(equalToConstant: width).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant: 140).isActive = true
+        containerView.heightAnchor.constraint(equalToConstant: 185).isActive = true
        
        let stackView = UIStackView(arrangedSubviews: [usernameTextField, emailTextField, passwordTextField])
        stackView.axis = .vertical

@@ -11,25 +11,61 @@ import FirebaseAuth
 import FirebaseDatabase
 import ProgressHUD
 
+import MaterialComponents.MaterialTextControls_FilledTextAreas
+import MaterialComponents.MaterialTextControls_FilledTextFields
+import MaterialComponents.MaterialTextControls_OutlinedTextAreas
+import MaterialComponents.MaterialTextControls_OutlinedTextFields
+
 class LoginController: UIViewController {
     
-    let usernameTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "USERNAME"
+    let emailTextField: MDCBaseTextField = {
+        let tf = MDCBaseTextField()
+        tf.label.text = "Email"
+        tf.sizeToFit()
+        tf.placeholder = "email@mail.com"
+        tf.textColor = .green
+        tf.font = .systemFont(ofSize: 16)
+        tf.backgroundColor = UIColor(hex: "#f0f1f2")
         return tf
     }()
     
-    let emailTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "EMAIL"
+    let passwordTextField: MDCBaseTextField = {
+        let tf = MDCBaseTextField()
+        tf.label.text = "Password"
+        tf.sizeToFit()
+        tf.placeholder = "********"
+        tf.font = .systemFont(ofSize: 16)
+        tf.backgroundColor = UIColor(hex: "#f0f1f2")
         return tf
     }()
     
-    let passwordTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "PASSWORD"
+    let usernameTextField: MDCBaseTextField = {
+        let tf = MDCBaseTextField()
+        tf.label.text = "Username"
+        tf.sizeToFit()
+        tf.placeholder = "Mr/Mrs"
+        tf.font = .systemFont(ofSize: 16)
+        tf.backgroundColor = UIColor(hex: "#f0f1f2")
         return tf
     }()
+    
+//    let usernameTextField: UITextField = {
+//        let tf = UITextField()
+//        tf.placeholder = "USERNAME"
+//        return tf
+//    }()
+    
+//    let emailTextField: UITextField = {
+//        let tf = UITextField()
+//        tf.placeholder = "EMAIL"
+//        return tf
+//    }()
+    
+//    let passwordTextField: UITextField = {
+//        let tf = UITextField()
+//        tf.placeholder = "PASSWORD"
+//        return tf
+//    }()
     
     let signupButton: UIButton = {
         let btn = UIButton(type: .system)
