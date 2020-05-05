@@ -41,24 +41,33 @@ class ResetPasswordController: UIViewController {
     
     @objc func handleResetPassword() {
         guard let email = emailTextField.text else { return }
-//        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
-//            if error != nil {
-//                ProgressHUD.showError("Wrong email")
-//                return
-//            }
-//            ProgressHUD.showSuccess("An email is on the way with instructions to reset your password")
-//        }
-        print(email)
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            if error != nil {
+                ProgressHUD.showError("Wrong email")
+                return
+            }
+            ProgressHUD.showSuccess("An email is on the way with instructions to reset your password")
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.mainColor()
         
+        let lineView = UIView()
+        lineView.backgroundColor = UIColor(hex: "#484848")
+        lineView.layer.cornerRadius = 5
+        
+        view.addSubview(lineView)
+        lineView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 15, left: 100, bottom: 0, right: 100), size: .init(width: 0, height: 6))
+        
         view.addSubview(emailTextField)
-        emailTextField.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 40, left: 20, bottom: 0, right: 20), size: .init(width: 0, height: 60))
+        emailTextField.anchor(top: lineView.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 40, left: 20, bottom: 0, right: 20), size: .init(width: 0, height: 60))
+        emailTextField.customBorder()
         
         view.addSubview(resetButton)
         resetButton.anchor(top: emailTextField.bottomAnchor, left: emailTextField.leftAnchor, bottom: nil, right: emailTextField.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 45))
+        resetButton.layer.cornerRadius = 2
     }
 }
