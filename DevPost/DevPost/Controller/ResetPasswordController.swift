@@ -39,6 +39,20 @@ class ResetPasswordController: UIViewController {
         return btn
     }()
     
+    lazy var cancelResetPasswordLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Cancel"
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCancelResetPassword)))
+        return label
+    }()
+    
+    @objc func handleCancelResetPassword() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @objc func handleResetPassword() {
         guard let email = emailTextField.text else { return }
         Auth.auth().sendPasswordReset(withEmail: email) { (error) in
@@ -69,5 +83,18 @@ class ResetPasswordController: UIViewController {
         view.addSubview(resetButton)
         resetButton.anchor(top: emailTextField.bottomAnchor, left: emailTextField.leftAnchor, bottom: nil, right: emailTextField.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 45))
         resetButton.layer.cornerRadius = 2
+        
+        view.addSubview(cancelResetPasswordLabel)
+        cancelResetPasswordLabel.anchor(top: resetButton.bottomAnchor, left: resetButton.leftAnchor, bottom: nil, right: resetButton.rightAnchor, padding: .init(top: 20, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 30))
+    }
+}
+extension ResetPasswordController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    // MARK: - Keyboard dismiss when user touches any where out of the input textField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
