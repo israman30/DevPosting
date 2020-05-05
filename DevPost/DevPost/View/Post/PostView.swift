@@ -13,8 +13,15 @@ extension PostController {
     func setPostView() {
         view.backgroundColor = UIColor.mainColor()
         
+        let lineView = UIView()
+        lineView.backgroundColor = UIColor(hex: "#484848")
+        lineView.layer.cornerRadius = 5
+        
+        view.addSubview(lineView)
+        lineView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 15, left: 100, bottom: 0, right: 100), size: .init(width: 0, height: 6))
+        
         view.addSubview(titleTextField)
-        titleTextField.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 40, left: 20, bottom: 0, right: 20), size: .init(width: 0, height: 0))
+        titleTextField.anchor(top: lineView.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 40, left: 20, bottom: 0, right: 20), size: .init(width: 0, height: 0))
         
         titleTextField.customBorder()
         
