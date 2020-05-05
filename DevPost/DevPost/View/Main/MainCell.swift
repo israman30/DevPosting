@@ -63,6 +63,13 @@ class MainCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        let containerCell = UIView()
+        containerCell.backgroundColor = UIColor.secondaryColor()
+        containerCell.layer.cornerRadius = 5
+        
+        addSubview(containerCell)
+        containerCell.fillSuperview(padding: .init(top: 5, left: 10, bottom: 5, right: 10))
+        
         backgroundColor = UIColor.mainColor()
         
         let horizontalStackView = UIStackView(arrangedSubviews: [usernameLabel, dateLabel])
@@ -74,8 +81,8 @@ class MainCell: UITableViewCell {
         stackView.spacing = 5
         
         
-        addSubview(stackView)
-        stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, padding: .init(top: 10, left: 10, bottom: 10, right: 10))
+        containerCell.addSubview(stackView)
+        stackView.anchor(top: containerCell.topAnchor, left: containerCell.leftAnchor, bottom: containerCell.bottomAnchor, right: containerCell.rightAnchor, padding: .init(top: 10, left: 10, bottom: 10, right: 10))
      
         selectionStyle = .none
         

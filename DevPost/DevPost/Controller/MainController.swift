@@ -20,8 +20,8 @@ class MainController: UITableViewController {
         setNavigationItems()
         
         tableView.register(MainCell.self, forCellReuseIdentifier: "cell")
-        tableView.rowHeight = 85
-        tableView.separatorColor = .opaqueSeparator
+        tableView.rowHeight = 90
+        tableView.separatorColor = .clear
         tableView.separatorInset = .init(top: 0, left: 10, bottom: 0, right: 10)
         tableView.showsVerticalScrollIndicator = false
         
@@ -109,7 +109,7 @@ extension MainController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = UIColor(hex: "#fcf5d2")
+        headerView.backgroundColor = UIColor.secondaryColor()
         view.addSubview(headerView)
         headerView.frame = .init(x: 0, y: 0, width: view.frame.width, height: 30)
         let label = UILabel()
