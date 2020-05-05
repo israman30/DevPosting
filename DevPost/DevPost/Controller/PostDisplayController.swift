@@ -70,8 +70,8 @@ extension PostDisplayController {
         
         editButton.customBorder()
         
-        titleDisplayLabel.setShadow()
-        textViewPostDisplay.setShadow()
+        titleDisplayLabel.customBorder()
+        textViewPostDisplay.customBorder()
         
 
     }

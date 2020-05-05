@@ -66,9 +66,10 @@ class MainCell: UITableViewCell {
         let containerCell = UIView()
         containerCell.backgroundColor = UIColor.secondaryColor()
         containerCell.layer.cornerRadius = 5
+        containerCell.customBorder()
         
         addSubview(containerCell)
-        containerCell.fillSuperview(padding: .init(top: 5, left: 10, bottom: 5, right: 10))
+        containerCell.fillSuperview(padding: .init(top: 5, left: 5, bottom: 5, right: 5))
         
         backgroundColor = UIColor.mainColor()
         
