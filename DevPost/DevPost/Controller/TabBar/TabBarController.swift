@@ -13,7 +13,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.tintColor = UIColor.secondaryColor()
+        tabBar.tintColor = UIColor(hex: "#e5c869")
         
         let nav = UINavigationController(rootViewController: MainController())
         nav.title = "Posts"
