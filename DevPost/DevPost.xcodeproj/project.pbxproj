@@ -11,6 +11,7 @@
 		4D299C0D2461153F005B1CE0 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C0C2461153F005B1CE0 /* ResetPasswordController.swift */; };
 		4D299C102461DFE7005B1CE0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C0F2461DFE7005B1CE0 /* TabBarController.swift */; };
 		4D299C122461E4AA005B1CE0 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C112461E4AA005B1CE0 /* ProfileController.swift */; };
+		4D299C142461E5BD005B1CE0 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C132461E5BD005B1CE0 /* SettingsController.swift */; };
 		4D37298F24537BB60022F814 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37298E24537BB60022F814 /* AppDelegate.swift */; };
 		4D37299124537BB60022F814 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37299024537BB60022F814 /* SceneDelegate.swift */; };
 		4D37299324537BB60022F814 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37299224537BB60022F814 /* MainController.swift */; };
@@ -35,6 +36,7 @@
 		4D299C0C2461153F005B1CE0 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		4D299C0F2461DFE7005B1CE0 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4D299C112461E4AA005B1CE0 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		4D299C132461E5BD005B1CE0 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		4D37298B24537BB60022F814 /* DevPost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevPost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D37298E24537BB60022F814 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D37299024537BB60022F814 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				4D3D8DB62458AE5600B75D72 /* PostDisplayController.swift */,
 				4D299C0C2461153F005B1CE0 /* ResetPasswordController.swift */,
 				4D299C112461E4AA005B1CE0 /* ProfileController.swift */,
+				4D299C132461E5BD005B1CE0 /* SettingsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				4D3729A5245389740022F814 /* PostController.swift in Sources */,
 				4D3D8DBB24592B1200B75D72 /* MainView.swift in Sources */,
 				4D37299324537BB60022F814 /* MainController.swift in Sources */,
+				4D299C142461E5BD005B1CE0 /* SettingsController.swift in Sources */,
 				4D299C102461DFE7005B1CE0 /* TabBarController.swift in Sources */,
 				4D3729AC2453E1F40022F814 /* MainCell.swift in Sources */,
 				4D3729B52454C5660022F814 /* LoginView.swift in Sources */,

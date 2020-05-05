@@ -13,15 +13,17 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.tintColor = .black
+        tabBar.tintColor = UIColor.secondaryColor()
         
         let nav = UINavigationController(rootViewController: MainController())
         nav.title = "Posts"
         nav.tabBarItem.image = UIImage(named: "post")
         
-//        let profileController = setTabBarController(viewController: <#T##UIViewController#>, title: <#T##String#>)
-//        
-        viewControllers = [nav]
+        let profileController = setTabBarController(viewController: ProfileController(), itemImage: "profile", title: "Profile")
+        
+        let settingController = setTabBarController(viewController: SettingsController(), itemImage: "setting", title: "Settings")
+        
+        viewControllers = [nav, profileController, settingController]
         
         tabBar.isTranslucent = false
         
