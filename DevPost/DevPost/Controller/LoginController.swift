@@ -49,24 +49,6 @@ class LoginController: UIViewController {
         return tf
     }()
     
-//    let usernameTextField: UITextField = {
-//        let tf = UITextField()
-//        tf.placeholder = "USERNAME"
-//        return tf
-//    }()
-    
-//    let emailTextField: UITextField = {
-//        let tf = UITextField()
-//        tf.placeholder = "EMAIL"
-//        return tf
-//    }()
-    
-//    let passwordTextField: UITextField = {
-//        let tf = UITextField()
-//        tf.placeholder = "PASSWORD"
-//        return tf
-//    }()
-    
     let signupButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Signup", for: .normal)
@@ -99,7 +81,7 @@ class LoginController: UIViewController {
             ProgressHUD.showError("Please enter valid email & password")
             return
         }
-        ProgressHUD.show("Loggin up")
+        ProgressHUD.show("Login up")
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             guard let user = user?.user.uid else { return }
             if user.isEmpty {
@@ -125,7 +107,7 @@ class LoginController: UIViewController {
             ProgressHUD.showError("To sign up, you must enter all fields please!")
             return
         }
-        ProgressHUD.show("Signing up")
+        ProgressHUD.show("Sign up")
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             self.handleError(error)
             // Create user object
