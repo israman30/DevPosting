@@ -15,7 +15,7 @@ extension LoginController {
                
        let containerView = UIView()
        
-       let width = view.frame.width - 60
+       let width = view.frame.width - 50
 //       containerView.backgroundColor = UIColor(hex: "#f0f1f2")
         
        view.addSubview(containerView)
