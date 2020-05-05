@@ -55,6 +55,10 @@ class ResetPasswordController: UIViewController {
     
     @objc func handleResetPassword() {
         guard let email = emailTextField.text else { return }
+        if email.isEmpty {
+            ProgressHUD.showError("Please enter a valid email address")
+            return
+        }
         Auth.auth().sendPasswordReset(withEmail: email) { (error) in
             if error != nil {
                 ProgressHUD.showError("Wrong email")
