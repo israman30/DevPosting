@@ -100,12 +100,12 @@ extension MainController {
         cell.post = posts[indexPath.row]
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let postDisplayController = PostDisplayController()
         postDisplayController.posts = posts[indexPath.row]
         navigationController?.pushViewController(postDisplayController, animated: true)
     }
-    
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()

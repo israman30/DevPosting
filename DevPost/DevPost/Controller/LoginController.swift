@@ -69,6 +69,22 @@ class LoginController: UIViewController {
         return btn
     }()
     
+    lazy var resetPassword: UILabel = {
+        let label = UILabel()
+        label.text = "Forgot password"
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleResetPassword)))
+        return label
+    }()
+    
+    @objc func handleResetPassword() {
+        let resetPasswordController = ResetPasswordController()
+        resetPasswordController.modalPresentationStyle = .automatic
+        present(resetPasswordController, animated: true, completion: nil)
+    }
+    
     // MARK: - Handle signup a new user
     @objc func handleSignup() {
         creatingUser()
