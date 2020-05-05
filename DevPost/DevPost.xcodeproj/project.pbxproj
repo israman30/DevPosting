@@ -10,6 +10,7 @@
 		1421CDE4A9C2D26CDB86E92A /* Pods_DevPost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 780609F5208ED5282117FD5E /* Pods_DevPost.framework */; };
 		4D299C0D2461153F005B1CE0 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C0C2461153F005B1CE0 /* ResetPasswordController.swift */; };
 		4D299C102461DFE7005B1CE0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C0F2461DFE7005B1CE0 /* TabBarController.swift */; };
+		4D299C122461E4AA005B1CE0 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C112461E4AA005B1CE0 /* ProfileController.swift */; };
 		4D37298F24537BB60022F814 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37298E24537BB60022F814 /* AppDelegate.swift */; };
 		4D37299124537BB60022F814 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37299024537BB60022F814 /* SceneDelegate.swift */; };
 		4D37299324537BB60022F814 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37299224537BB60022F814 /* MainController.swift */; };
@@ -33,6 +34,7 @@
 		31D33D0F178127AD209AFD1A /* Pods-DevPost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevPost.release.xcconfig"; path = "Target Support Files/Pods-DevPost/Pods-DevPost.release.xcconfig"; sourceTree = "<group>"; };
 		4D299C0C2461153F005B1CE0 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		4D299C0F2461DFE7005B1CE0 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		4D299C112461E4AA005B1CE0 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		4D37298B24537BB60022F814 /* DevPost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevPost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D37298E24537BB60022F814 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D37299024537BB60022F814 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				4D3729AD2453E4870022F814 /* LoginController.swift */,
 				4D3D8DB62458AE5600B75D72 /* PostDisplayController.swift */,
 				4D299C0C2461153F005B1CE0 /* ResetPasswordController.swift */,
+				4D299C112461E4AA005B1CE0 /* ProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				4D3729AC2453E1F40022F814 /* MainCell.swift in Sources */,
 				4D3729B52454C5660022F814 /* LoginView.swift in Sources */,
 				4D37298F24537BB60022F814 /* AppDelegate.swift in Sources */,
+				4D299C122461E4AA005B1CE0 /* ProfileController.swift in Sources */,
 				4D3729B22454C05D0022F814 /* AlertController.swift in Sources */,
 				4D3729A324537FE10022F814 /* AutoLayout.swift in Sources */,
 				4D299C0D2461153F005B1CE0 /* ResetPasswordController.swift in Sources */,

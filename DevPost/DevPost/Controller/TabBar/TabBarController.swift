@@ -12,5 +12,35 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tabBar.tintColor = .black
+        
+        let nav = UINavigationController(rootViewController: MainController())
+        nav.title = "Posts"
+        nav.tabBarItem.image = UIImage(named: "post")
+        
+//        let profileController = setTabBarController(viewController: <#T##UIViewController#>, title: <#T##String#>)
+//        
+        viewControllers = [nav]
+        
+        tabBar.isTranslucent = false
+        
+        // MARK: - Custom border view on top of tab bar
+        let border = CALayer()
+        border.frame = CGRect(x: 0, y: 0, width: 1000, height: 0.5)
+        border.backgroundColor = UIColor.black.cgColor
+        tabBar.layer.addSublayer(border)
+        tabBar.clipsToBounds = true
+    }
+}
+extension UITabBarController {
+    
+    func setTabBarController(viewController: UIViewController, itemImage: String = "", title: String)-> UINavigationController {
+        let viewController = viewController
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.tabBarItem.image = UIImage(named: itemImage)
+        navController.title = title
+        
+        return navController
     }
 }
