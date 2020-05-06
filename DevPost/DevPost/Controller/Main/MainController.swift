@@ -38,6 +38,7 @@ class MainController: UITableViewController {
     
     // MARK: - Observe posts from Firebase
     func observeUser() {
+        ProgressHUD.show()
         Database.database().reference().child("posts").observe(.childAdded) { (snapshot) in
             if let postObject = snapshot.value as? [String:Any] {
                 let post = Posts(dict: postObject)
@@ -47,6 +48,7 @@ class MainController: UITableViewController {
                     self.tableView.reloadData()
                 }
             }
+            ProgressHUD.dismiss()
         }
     }
     
