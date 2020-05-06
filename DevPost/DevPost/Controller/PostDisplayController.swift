@@ -35,7 +35,7 @@ class PostDisplayController: UIViewController {
         let btn = UIButton(type: .system)
         btn.setTitle("Edit post", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.backgroundColor = UIColor(hex: "#4f8c50")
+        btn.backgroundColor = UIColor.blueColor()
         btn.titleLabel?.font = .boldSystemFont(ofSize: 13)
         btn.layer.cornerRadius = 2
         return btn

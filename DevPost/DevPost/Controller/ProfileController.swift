@@ -22,7 +22,7 @@ class ProfileController: UIViewController {
     let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "johndoe@mail.com"
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 16)
         label.textAlignment = .center
         return label
     }()
@@ -33,6 +33,7 @@ class ProfileController: UIViewController {
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
         btn.backgroundColor = UIColor.darkColor()
+        btn.customBorder()
         return btn
     }()
     
@@ -41,7 +42,8 @@ class ProfileController: UIViewController {
         btn.setTitle("Update Password", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        btn.backgroundColor = UIColor.darkColor()
+        btn.backgroundColor = UIColor.blueColor()
+        btn.customBorder()
         return btn
     }()
     
@@ -79,11 +81,16 @@ class ProfileController: UIViewController {
         
         containerView.addSubview(emailLabel)
         emailLabel.anchor(top: usernameBottonLineView.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 250, height: 30))
-        // TODO: Create a stakcView for buttons
-        containerView.addSubview(updatePasswordButton)
-        updatePasswordButton.anchor(top: nil, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, padding: .init(top: 0, left: 10, bottom: 10, right: 10), size: .init(width: 0, height: 45))
         
-        containerView.addSubview(editProfileButton)
-        editProfileButton.anchor(top: nil, left: containerView.leftAnchor, bottom: updatePasswordButton.topAnchor, right: containerView.rightAnchor, padding: .init(top: 0, left: 10, bottom: 10, right: 10), size: .init(width: 0, height: 45))
+        let stackView = UIStackView(arrangedSubviews: [editProfileButton, updatePasswordButton])
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 5
+        
+        containerView.addSubview(stackView)
+        stackView.anchor(top: nil, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, padding: .init(top: 0, left: 10, bottom: 10, right: 10), size: .init(width: 0, height: 100))
+        editProfileButton.layer.cornerRadius = 2
+        updatePasswordButton.layer.cornerRadius = 2
+
     }
 }
