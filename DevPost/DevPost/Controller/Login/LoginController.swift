@@ -85,9 +85,17 @@ class LoginController: UIViewController {
         present(resetPasswordController, animated: true, completion: nil)
     }
     
-    // MARK: - Handle signup a new user
+    // MARK: - CREATE NEW USER with USERNAME + EMAIL + PASSWORD
     @objc func handleSignup() {
-        creatingUser()
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text,
+              let username = usernameTextField.text else { return }
+        if email.isEmpty || password.isEmpty {
+            ProgressHUD.showError("To sign up, you must enter all fields please!")
+            return
+        }
+        FirebaseServices.createUser(with: email, password: password, username: username)
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - LOGIN USER with EMAIL & PASSWORD
@@ -97,16 +105,8 @@ class LoginController: UIViewController {
             ProgressHUD.showError("Please enter valid email & password")
             return
         }
-        ProgressHUD.show("Login up")
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            guard let user = user?.user.uid else { return }
-            if user.isEmpty {
-                self.handleError(error)
-            }
-            // Login user
-            ProgressHUD.dismiss()
-            self.dismiss(animated: true, completion: nil)
-        }
+        FirebaseServices.loginUser(with: email, password: password)
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -114,42 +114,6 @@ class LoginController: UIViewController {
         setLoginView()
     }
     
-    // MARK: - CREATE NEW USER with USERNAME + EMAIL + PASSWORD
-    func creatingUser() {
-        guard let email = emailTextField.text,
-              let password = passwordTextField.text,
-              let username = usernameTextField.text else { return }
-        if email.isEmpty || password.isEmpty {
-            ProgressHUD.showError("To sign up, you must enter all fields please!")
-            return
-        }
-        ProgressHUD.show("Sign up")
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            self.handleError(error)
-            // Create user object
-            guard let uid = user?.user.uid else { return }
-            let values = [
-                "username": username,
-                "email":email
-            ]
-            let ref = Database.database().reference().child("users")
-            ref.child(uid).setValue(values)
-            ProgressHUD.dismiss()
-            self.dismiss(animated: true, completion: nil)
-            
-        }
-    }
-    
-    
-    
-    // MARK: - ERROR HANDLING CREATING/LOGIN A USER
-    func handleError(_ error: Error?) {
-        if let error = error {
-            print(error.localizedDescription)
-            ProgressHUD.showError("Wrong user information..!")
-            return
-        }
-    }
     
 }
 
