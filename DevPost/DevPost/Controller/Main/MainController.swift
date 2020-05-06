@@ -31,8 +31,6 @@ class MainController: UITableViewController {
         } else {
             // TODO: Set user info
         }
-        
-        fetchUsername()
         observeUser()
     }
     
@@ -73,20 +71,6 @@ class MainController: UITableViewController {
     @objc func handleAdd() {
         let postController = PostController()
         present(postController, animated: true, completion: nil)
-    }
-    var usernameLabel:String?
-    
-    // TODO: FETCH USER WEHN USER SIGNUP/LOGIN
-    // TODO: CHECK CORRECT USERNAME WHEN LOGIN
-    func fetchUsername() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of:.value) { (snapshot) in
-            if let dict = snapshot.value as? [String:Any] {
-                if let username = dict["username"] as? String {
-//                    self.usernameLabel = username
-                }
-            }
-        }
     }
 
 }

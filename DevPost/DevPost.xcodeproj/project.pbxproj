@@ -13,6 +13,7 @@
 		4D299C122461E4AA005B1CE0 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C112461E4AA005B1CE0 /* ProfileController.swift */; };
 		4D299C142461E5BD005B1CE0 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C132461E5BD005B1CE0 /* SettingsController.swift */; };
 		4D299C1B246348BC005B1CE0 /* UpdatePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C1A246348BC005B1CE0 /* UpdatePasswordController.swift */; };
+		4D299C1E2463548B005B1CE0 /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C1D2463548B005B1CE0 /* FirebaseServices.swift */; };
 		4D37298F24537BB60022F814 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37298E24537BB60022F814 /* AppDelegate.swift */; };
 		4D37299124537BB60022F814 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37299024537BB60022F814 /* SceneDelegate.swift */; };
 		4D37299324537BB60022F814 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37299224537BB60022F814 /* MainController.swift */; };
@@ -39,6 +40,7 @@
 		4D299C112461E4AA005B1CE0 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		4D299C132461E5BD005B1CE0 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		4D299C1A246348BC005B1CE0 /* UpdatePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordController.swift; sourceTree = "<group>"; };
+		4D299C1D2463548B005B1CE0 /* FirebaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseServices.swift; sourceTree = "<group>"; };
 		4D37298B24537BB60022F814 /* DevPost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevPost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D37298E24537BB60022F814 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D37299024537BB60022F814 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,18 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		4D299C1C24635393005B1CE0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				4D3729A224537FE10022F814 /* AutoLayout.swift */,
+				4D3729B12454C05D0022F814 /* AlertController.swift */,
+				4D37299424537BB60022F814 /* Main.storyboard */,
+				4D37299724537BBB0022F814 /* Assets.xcassets */,
+				4D37299924537BBB0022F814 /* LaunchScreen.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		4D37298224537BB60022F814 = {
 			isa = PBXGroup;
 			children = (
@@ -169,11 +183,11 @@
 		4D3729A62453E1680022F814 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4D299C19246348A0005B1CE0 /* Setting */,
 				4D299C182463488F005B1CE0 /* Login */,
+				4D299C152463137B005B1CE0 /* Main */,
+				4D299C19246348A0005B1CE0 /* Setting */,
 				4D299C17246313C3005B1CE0 /* Post */,
 				4D299C1624631387005B1CE0 /* Profile */,
-				4D299C152463137B005B1CE0 /* Main */,
 				4D299C0E2461DFC7005B1CE0 /* TabBar */,
 			);
 			path = Controller;
@@ -183,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				4D3D8DB824592A1E00B75D72 /* Posts.swift */,
+				4D299C1D2463548B005B1CE0 /* FirebaseServices.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,14 +205,10 @@
 		4D3729A82453E1740022F814 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4D299C1C24635393005B1CE0 /* UI */,
 				4D3729B32454C5570022F814 /* Login */,
 				4D3729AA2453E1B50022F814 /* Post */,
 				4D3729A92453E1AE0022F814 /* Main */,
-				4D3729A224537FE10022F814 /* AutoLayout.swift */,
-				4D3729B12454C05D0022F814 /* AlertController.swift */,
-				4D37299424537BB60022F814 /* Main.storyboard */,
-				4D37299724537BBB0022F814 /* Assets.xcassets */,
-				4D37299924537BBB0022F814 /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -356,6 +367,7 @@
 				4D37299324537BB60022F814 /* MainController.swift in Sources */,
 				4D299C142461E5BD005B1CE0 /* SettingsController.swift in Sources */,
 				4D299C102461DFE7005B1CE0 /* TabBarController.swift in Sources */,
+				4D299C1E2463548B005B1CE0 /* FirebaseServices.swift in Sources */,
 				4D3729AC2453E1F40022F814 /* MainCell.swift in Sources */,
 				4D3729B52454C5660022F814 /* LoginView.swift in Sources */,
 				4D37298F24537BB60022F814 /* AppDelegate.swift in Sources */,
