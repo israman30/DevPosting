@@ -18,9 +18,9 @@ import MaterialComponents.MaterialTextControls_OutlinedTextFields
 
 class UpdatePasswordController: UIViewController {
     
-    let emailTextField: MDCBaseTextField = {
+    let newPasswordTextField: MDCBaseTextField = {
         let tf = MDCBaseTextField()
-        tf.label.text = "Email"
+        tf.label.text = "New Password"
         tf.sizeToFit()
         tf.placeholder = "email@mail.com"
         tf.textColor = .green
@@ -50,7 +50,18 @@ class UpdatePasswordController: UIViewController {
     }()
     
     @objc func handleUpdatePassword() {
-        
+        guard let newPassword = newPasswordTextField.text else { return }
+        if newPassword.isEmpty {
+            ProgressHUD.showError("Please enter valid password info")
+            return
+        }
+        Auth.auth().currentUser?.updatePassword(to: newPassword, completion: { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            ProgressHUD.showSuccess("Password has been updated")
+        })
     }
     
     @objc func handleCancelUpdatePassword() {
@@ -73,12 +84,12 @@ class UpdatePasswordController: UIViewController {
         view.addSubview(lineView)
         lineView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 15, left: 100, bottom: 0, right: 100), size: .init(width: 0, height: 6))
         
-        view.addSubview(emailTextField)
-        emailTextField.anchor(top: lineView.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 40, left: 20, bottom: 0, right: 20), size: .init(width: 0, height: 60))
-        emailTextField.customBorder()
+        view.addSubview(newPasswordTextField)
+        newPasswordTextField.anchor(top: lineView.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 40, left: 20, bottom: 0, right: 20), size: .init(width: 0, height: 60))
+        newPasswordTextField.customBorder()
         
         view.addSubview(updateButton)
-        updateButton.anchor(top: emailTextField.bottomAnchor, left: emailTextField.leftAnchor, bottom: nil, right: emailTextField.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 45))
+        updateButton.anchor(top: newPasswordTextField.bottomAnchor, left: newPasswordTextField.leftAnchor, bottom: nil, right: newPasswordTextField.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 45))
         updateButton.layer.cornerRadius = 2
         
         view.addSubview(cancelUpdatePasswordLabel)
