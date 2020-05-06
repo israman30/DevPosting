@@ -14,6 +14,7 @@ class ProfileController: UIViewController {
         let label = UILabel()
         label.text = "Username"
         label.font = .systemFont(ofSize: 30)
+        label.textAlignment = .center
         label.isEnabled = true
         return label
     }()
@@ -21,15 +22,27 @@ class ProfileController: UIViewController {
     let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "johndoe@mail.com"
-        label.font = .systemFont(ofSize: 30)
+        label.font = .systemFont(ofSize: 20)
+        label.textAlignment = .center
         return label
     }()
     
-    let passwordLabel: UILabel = {
-        let label = UILabel()
-        label.text = "********"
-        label.font = .systemFont(ofSize: 30)
-        return label
+    let editProfileButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("Edit Profile", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        btn.backgroundColor = UIColor.darkColor()
+        return btn
+    }()
+    
+    let updatePasswordButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("Update Password", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        btn.backgroundColor = UIColor.darkColor()
+        return btn
     }()
     
     override func viewDidLoad() {
@@ -55,10 +68,9 @@ class ProfileController: UIViewController {
     
     func setUserInfo(_ containerView: UIView) {
         let usernameBottonLineView = UIView()
-        usernameBottonLineView.backgroundColor = .black
+        usernameBottonLineView.backgroundColor = UIColor.darkColor()
         
-        let emailBottonLineView = UIView()
-        emailBottonLineView.backgroundColor = .black
+        usernameBottonLineView.layer.cornerRadius = 5
         
         containerView.addSubview(usernameLabel)
         usernameLabel.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, padding: .init(top: 30, left: 10, bottom: 0, right: 10), size: .init(width: 0, height: 30))
@@ -66,8 +78,9 @@ class ProfileController: UIViewController {
         usernameBottonLineView.anchor(top: usernameLabel.bottomAnchor, left: usernameLabel.leftAnchor, bottom: nil, right: usernameLabel.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 5))
         
         containerView.addSubview(emailLabel)
-        emailLabel.anchor(top: usernameBottonLineView.bottomAnchor, left: usernameBottonLineView.leftAnchor, bottom: nil, right: nil, padding: .init(top: 20, left: 0, bottom: 0, right: 0), size: .init(width: 250, height: 30))
-        containerView.addSubview(emailBottonLineView)
-        emailBottonLineView.anchor(top: emailLabel.bottomAnchor, left: emailLabel.leftAnchor, bottom: nil, right: emailLabel.rightAnchor, padding: .init(top: 20, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 5))
+        emailLabel.anchor(top: usernameBottonLineView.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 250, height: 30))
+        
+        containerView.addSubview(editProfileButton)
+        editProfileButton.anchor(top: nil, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, padding: .init(top: 0, left: 10, bottom: 10, right: 10), size: .init(width: 0, height: 45))
     }
 }

@@ -66,6 +66,9 @@ extension UIColor {
     static func secondaryColor() -> UIColor? {
         return UIColor(hex: "#fcf5d2")
     }
+    static func darkColor() -> UIColor? {
+        return UIColor(hex: "#484848")
+    }
 }
 
 struct AnchoredConstraints {
