@@ -79,8 +79,11 @@ class ProfileController: UIViewController {
         
         containerView.addSubview(emailLabel)
         emailLabel.anchor(top: usernameBottonLineView.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 250, height: 30))
+        // TODO: Create a stakcView for buttons
+        containerView.addSubview(updatePasswordButton)
+        updatePasswordButton.anchor(top: nil, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, padding: .init(top: 0, left: 10, bottom: 10, right: 10), size: .init(width: 0, height: 45))
         
         containerView.addSubview(editProfileButton)
-        editProfileButton.anchor(top: nil, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, padding: .init(top: 0, left: 10, bottom: 10, right: 10), size: .init(width: 0, height: 45))
+        editProfileButton.anchor(top: nil, left: containerView.leftAnchor, bottom: updatePasswordButton.topAnchor, right: containerView.rightAnchor, padding: .init(top: 0, left: 10, bottom: 10, right: 10), size: .init(width: 0, height: 45))
     }
 }
