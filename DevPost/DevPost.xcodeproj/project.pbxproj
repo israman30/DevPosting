@@ -12,6 +12,7 @@
 		4D299C102461DFE7005B1CE0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C0F2461DFE7005B1CE0 /* TabBarController.swift */; };
 		4D299C122461E4AA005B1CE0 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C112461E4AA005B1CE0 /* ProfileController.swift */; };
 		4D299C142461E5BD005B1CE0 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C132461E5BD005B1CE0 /* SettingsController.swift */; };
+		4D299C1B246348BC005B1CE0 /* UpdatePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C1A246348BC005B1CE0 /* UpdatePasswordController.swift */; };
 		4D37298F24537BB60022F814 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37298E24537BB60022F814 /* AppDelegate.swift */; };
 		4D37299124537BB60022F814 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37299024537BB60022F814 /* SceneDelegate.swift */; };
 		4D37299324537BB60022F814 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37299224537BB60022F814 /* MainController.swift */; };
@@ -37,6 +38,7 @@
 		4D299C0F2461DFE7005B1CE0 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4D299C112461E4AA005B1CE0 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		4D299C132461E5BD005B1CE0 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		4D299C1A246348BC005B1CE0 /* UpdatePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordController.swift; sourceTree = "<group>"; };
 		4D37298B24537BB60022F814 /* DevPost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevPost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D37298E24537BB60022F814 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D37299024537BB60022F814 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,49 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		4D299C152463137B005B1CE0 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4D37299224537BB60022F814 /* MainController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		4D299C1624631387005B1CE0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				4D299C112461E4AA005B1CE0 /* ProfileController.swift */,
+				4D299C1A246348BC005B1CE0 /* UpdatePasswordController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		4D299C17246313C3005B1CE0 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				4D3729A4245389740022F814 /* PostController.swift */,
+				4D3D8DB62458AE5600B75D72 /* PostDisplayController.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		4D299C182463488F005B1CE0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4D3729AD2453E4870022F814 /* LoginController.swift */,
+				4D299C0C2461153F005B1CE0 /* ResetPasswordController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		4D299C19246348A0005B1CE0 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				4D299C132461E5BD005B1CE0 /* SettingsController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		4D37298224537BB60022F814 = {
 			isa = PBXGroup;
 			children = (
@@ -124,14 +169,12 @@
 		4D3729A62453E1680022F814 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4D299C19246348A0005B1CE0 /* Setting */,
+				4D299C182463488F005B1CE0 /* Login */,
+				4D299C17246313C3005B1CE0 /* Post */,
+				4D299C1624631387005B1CE0 /* Profile */,
+				4D299C152463137B005B1CE0 /* Main */,
 				4D299C0E2461DFC7005B1CE0 /* TabBar */,
-				4D37299224537BB60022F814 /* MainController.swift */,
-				4D3729A4245389740022F814 /* PostController.swift */,
-				4D3729AD2453E4870022F814 /* LoginController.swift */,
-				4D3D8DB62458AE5600B75D72 /* PostDisplayController.swift */,
-				4D299C0C2461153F005B1CE0 /* ResetPasswordController.swift */,
-				4D299C112461E4AA005B1CE0 /* ProfileController.swift */,
-				4D299C132461E5BD005B1CE0 /* SettingsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -319,6 +362,7 @@
 				4D299C122461E4AA005B1CE0 /* ProfileController.swift in Sources */,
 				4D3729B22454C05D0022F814 /* AlertController.swift in Sources */,
 				4D3729A324537FE10022F814 /* AutoLayout.swift in Sources */,
+				4D299C1B246348BC005B1CE0 /* UpdatePasswordController.swift in Sources */,
 				4D299C0D2461153F005B1CE0 /* ResetPasswordController.swift in Sources */,
 				4D3D8DB924592A1E00B75D72 /* Posts.swift in Sources */,
 				4D3D8DB72458AE5600B75D72 /* PostDisplayController.swift in Sources */,

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class ProfileController: UIViewController {
     
@@ -44,13 +46,23 @@ class ProfileController: UIViewController {
         btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
         btn.backgroundColor = UIColor.blueColor()
         btn.customBorder()
+        btn.addTarget(self, action: #selector(handleUpdatePassword), for: .touchUpInside)
         return btn
     }()
+    
+    @objc func handleUpdatePassword() {
+        let updatePasswordController = UpdatePasswordController()
+        present(updatePasswordController, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setProfileView()
     }
+    
+    
+}
+extension ProfileController {
     
     func setProfileView() {
         view.backgroundColor = UIColor.mainColor()
