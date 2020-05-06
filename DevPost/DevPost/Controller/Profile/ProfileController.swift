@@ -50,6 +50,21 @@ class ProfileController: UIViewController {
         return btn
     }()
     
+    let deleteAccountButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("Delete Account", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        btn.backgroundColor = .red
+        btn.customBorder()
+        btn.addTarget(self, action: #selector(handleDeleteAccount), for: .touchUpInside)
+        return btn
+    }()
+    
+    @objc func handleDeleteAccount() {
+        print(123)
+    }
+    
     @objc func handleUpdatePassword() {
         let updatePasswordController = UpdatePasswordController()
         present(updatePasswordController, animated: true, completion: nil)
@@ -94,7 +109,12 @@ extension ProfileController {
         containerView.addSubview(emailLabel)
         emailLabel.anchor(top: usernameBottonLineView.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 250, height: 30))
         
-        let stackView = UIStackView(arrangedSubviews: [editProfileButton, updatePasswordButton])
+        let horizontalStackView = UIStackView(arrangedSubviews: [updatePasswordButton, deleteAccountButton])
+        horizontalStackView.axis = .horizontal
+        horizontalStackView.distribution = .fillEqually
+        horizontalStackView.spacing = 5
+        
+        let stackView = UIStackView(arrangedSubviews: [editProfileButton, horizontalStackView])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 5

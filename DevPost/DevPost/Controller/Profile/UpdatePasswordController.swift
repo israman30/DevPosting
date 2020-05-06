@@ -60,7 +60,7 @@ class UpdatePasswordController: UIViewController {
                 print(error.localizedDescription)
                 return
             }
-            ProgressHUD.showSuccess("Password has been updated")
+            ProgressHUD.showSuccess("Password has been updated. Please logout and login again. Thank you!")
         })
     }
     
