@@ -77,19 +77,17 @@ class ProfileController: UIViewController {
     }
     
     func fetchUserInfo() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
-            if let dict = snapshot.value as? [String:Any] {
-                guard let username = dict["username"] as? String else { return }
-                guard let email = dict["email"] as? String else { return }
-                DispatchQueue.main.async {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            guard let uid = auth.currentUser?.uid else { return }
+            Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
+                if let dict = snapshot.value as? [String:Any] {
+                    guard let username = dict["username"] as? String else { return }
+                    guard let email = dict["email"] as? String else { return }
                     self.usernameLabel.text = username
                     self.emailLabel.text = email
                 }
-                
             }
         }
-        
     }
     
     
