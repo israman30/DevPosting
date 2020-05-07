@@ -81,16 +81,14 @@ class ProfileController: UIViewController {
             guard let uid = auth.currentUser?.uid else { return }
             Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
                 if let dict = snapshot.value as? [String:Any] {
-                    guard let username = dict["username"] as? String else { return }
-                    guard let email = dict["email"] as? String else { return }
-                    self.usernameLabel.text = username
-                    self.emailLabel.text = email
+                    let user = User(dict: dict)
+                    self.usernameLabel.text = user.username
+                    self.emailLabel.text = user.email
                 }
             }
         }
     }
-    
-    
+
 }
 extension ProfileController {
     
