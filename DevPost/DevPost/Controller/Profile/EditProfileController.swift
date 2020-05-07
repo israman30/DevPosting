@@ -18,6 +18,52 @@ import MaterialComponents.MaterialTextControls_OutlinedTextFields
 
 class EditProfileController: UIViewController {
     
+    let usernameTexField: MDCBaseTextField = {
+        let tf = MDCBaseTextField()
+        tf.label.text = "Username"
+        tf.placeholder = "New username"
+        tf.font = .systemFont(ofSize: 20)
+        tf.customBorder()
+        return tf
+    }()
+    
+    let emailTexField: MDCBaseTextField = {
+        let tf = MDCBaseTextField()
+        tf.label.text = "email@mail.com"
+        tf.placeholder = "New email"
+        tf.font = .systemFont(ofSize: 20)
+        tf.customBorder()
+        return tf
+    }()
+    
+    lazy var cancelUpdateProfileLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Cancel"
+        label.textAlignment = .center
+        label.textColor = .gray
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCancelUpdateProfile)))
+        return label
+    }()
+    
+    let editProfileButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("Update Profile", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
+        btn.backgroundColor = UIColor(hex: "#121520")
+        btn.addTarget(self, action: #selector(handleUpdateProfile), for: .touchUpInside)
+        return btn
+    }()
+    
+    @objc func handleUpdateProfile() {
+        print(123)
+    }
+    
+    @objc func handleCancelUpdateProfile() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setEditProfileView()
@@ -31,5 +77,37 @@ class EditProfileController: UIViewController {
         
         view.addSubview(lineView)
         lineView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 15, left: 100, bottom: 0, right: 100), size: .init(width: 0, height: 6))
+        let stackView = UIStackView(arrangedSubviews: [usernameTexField, emailTexField])
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 5
+        
+        view.addSubview(stackView)
+        stackView.anchor(top: lineView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 120, left: 10, bottom: 0, right: 10), size: .init(width: 0, height: 140))
+        usernameTexField.layer.cornerRadius = 2
+        emailTexField.layer.cornerRadius = 2
+        setEditButton(stackView)
+    }
+    func setEditButton(_ stackView: UIStackView) {
+        let buttonStackView = UIStackView(arrangedSubviews: [editProfileButton, cancelUpdateProfileLabel])
+        buttonStackView.axis = .vertical
+        buttonStackView.distribution = .fillEqually
+        buttonStackView.spacing = 5
+        
+        view.addSubview(buttonStackView)
+        buttonStackView.anchor(top: stackView.bottomAnchor, left: stackView.leftAnchor, bottom: nil, right: stackView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 100))
+        editProfileButton.layer.cornerRadius = 2
+        
+    }
+    
+}
+extension EditProfileController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    // MARK: - Keyboard dismiss when user touches any where out of the input textField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
