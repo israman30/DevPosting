@@ -36,6 +36,7 @@ class ProfileController: UIViewController {
         btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
         btn.backgroundColor = UIColor.darkColor()
         btn.customBorder()
+        btn.addTarget(self, action: #selector(handleEditProfile), for: .touchUpInside)
         return btn
     }()
     
@@ -60,6 +61,11 @@ class ProfileController: UIViewController {
         btn.addTarget(self, action: #selector(handleDeleteAccount), for: .touchUpInside)
         return btn
     }()
+    
+    @objc func handleEditProfile() {
+        let editProfileController = EditProfileController()
+        present(editProfileController, animated: true, completion: nil)
+    }
     
     @objc func handleDeleteAccount() {
         print(123)
