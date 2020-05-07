@@ -73,6 +73,23 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setProfileView()
+        fetchUserInfo()
+    }
+    
+    func fetchUserInfo() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
+            if let dict = snapshot.value as? [String:Any] {
+                guard let username = dict["username"] as? String else { return }
+                guard let email = dict["email"] as? String else { return }
+                DispatchQueue.main.async {
+                    self.usernameLabel.text = username
+                    self.emailLabel.text = email
+                }
+                
+            }
+        }
+        
     }
     
     
@@ -103,11 +120,12 @@ extension ProfileController {
         
         containerView.addSubview(usernameLabel)
         usernameLabel.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, padding: .init(top: 30, left: 10, bottom: 0, right: 10), size: .init(width: 0, height: 30))
+        
         containerView.addSubview(usernameBottonLineView)
         usernameBottonLineView.anchor(top: usernameLabel.bottomAnchor, left: usernameLabel.leftAnchor, bottom: nil, right: usernameLabel.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 5))
         
         containerView.addSubview(emailLabel)
-        emailLabel.anchor(top: usernameBottonLineView.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 250, height: 30))
+        emailLabel.anchor(top: usernameBottonLineView.bottomAnchor, left: usernameBottonLineView.leftAnchor, bottom: nil, right: usernameBottonLineView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 30))
         
         let horizontalStackView = UIStackView(arrangedSubviews: [updatePasswordButton, deleteAccountButton])
         horizontalStackView.axis = .horizontal
