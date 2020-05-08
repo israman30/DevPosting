@@ -44,14 +44,10 @@ class FirebaseServices {
     
     static func updatePassword(with newPassword: String) {
         Auth.auth().currentUser?.updatePassword(to: newPassword, completion: { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
+            handleError(error)
             ProgressHUD.showSuccess("Password has been updated. Please logout and login again. Thank you!")
         })
     }
-    
     
     // MARK: - ERROR HANDLING CREATING/LOGIN A USER
     static func handleError(_ error: Error?) {
