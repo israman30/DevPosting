@@ -48,6 +48,8 @@ class ProfileController: UIViewController {
         btn.addTarget(self, action: #selector(handleDeleteAccount), for: .touchUpInside)
         return btn
     }()
+    
+    // MARK: - userInfo holds user info to be passed into the textFields efit controller
     var userInfo: User?
     
     @objc func handleEditProfile() {
@@ -66,6 +68,7 @@ class ProfileController: UIViewController {
         fetchUserInfo()
     }
     
+    // MARK: - Fetch user info from Firebase Database + it's displayed on UI + uses userInfo to pass the object to edit profile fields
     func fetchUserInfo() {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             guard let uid = auth.currentUser?.uid else { return }
@@ -79,6 +82,7 @@ class ProfileController: UIViewController {
         }
     }
     
+    // MARK: - Function helps to display user info in the UI when user is fetched from db
     func setProfileUI(with username: String, email: String) {
         usernameLabel.text = username
         emailLabel.text = email

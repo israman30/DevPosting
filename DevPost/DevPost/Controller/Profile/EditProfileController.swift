@@ -57,6 +57,7 @@ class EditProfileController: UIViewController {
         return btn
     }()
     
+    // MARK: - Update user profile in Firebase db + once data is changed, the user will be updated on profile controlle
     @objc func handleUpdateProfile() {
         guard let username = usernameTexField.text, let email = emailTexField.text else { return }
         
