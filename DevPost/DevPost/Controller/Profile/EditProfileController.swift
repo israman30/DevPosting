@@ -56,8 +56,24 @@ class EditProfileController: UIViewController {
         return btn
     }()
     
+    var databaseRef: DatabaseReference?
+    
     @objc func handleUpdateProfile() {
-        print(123)
+        guard let username = usernameTexField.text, let email = emailTexField.text else { return }
+        if username.isEmpty || email.isEmpty {
+            ProgressHUD.showError("Please ente valid info")
+        }
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let updatedValues = [
+            "username":username,
+            "email":email
+        ]
+        
+        Database.database().reference().child("users").child(uid).setValue(updatedValues)
+        ProgressHUD.showSuccess("User updated")
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func handleCancelUpdateProfile() {
@@ -83,7 +99,7 @@ class EditProfileController: UIViewController {
         stackView.spacing = 5
         
         view.addSubview(stackView)
-        stackView.anchor(top: lineView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 120, left: 10, bottom: 0, right: 10), size: .init(width: 0, height: 140))
+        stackView.anchor(top: lineView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 100, left: 10, bottom: 0, right: 10), size: .init(width: 0, height: 140))
         usernameTexField.layer.cornerRadius = 2
         emailTexField.layer.cornerRadius = 2
         setEditButton(stackView)
