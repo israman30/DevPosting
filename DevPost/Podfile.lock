@@ -80,6 +80,39 @@ PODS:
   - leveldb-library (1.22)
   - MaterialComponents/AnimationTiming (109.0.0)
   - MaterialComponents/Availability (109.0.0)
+  - MaterialComponents/Buttons (109.0.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Shapes
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - MaterialComponents/Dialogs (109.0.0):
+    - MaterialComponents/Buttons
+    - MaterialComponents/Elevation
+    - MaterialComponents/private/KeyboardWatcher
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+    - MDFInternationalization
+  - MaterialComponents/Elevation (109.0.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Ink (109.0.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/private/Application (109.0.0)
+  - MaterialComponents/private/Color (109.0.0):
+    - MaterialComponents/Availability
+  - MaterialComponents/private/KeyboardWatcher (109.0.0):
+    - MaterialComponents/private/Application
   - MaterialComponents/private/Math (109.0.0)
   - "MaterialComponents/private/TextControlsPrivate+BaseStyle (109.0.0)":
     - MaterialComponents/AnimationTiming
@@ -99,6 +132,18 @@ PODS:
     - MaterialComponents/AnimationTiming
     - MaterialComponents/private/Math
     - "MaterialComponents/TextControls+Enums"
+  - MaterialComponents/Ripple (109.0.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/ShadowElevations (109.0.0)
+  - MaterialComponents/ShadowLayer (109.0.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/Shapes (109.0.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
   - "MaterialComponents/TextControls+BaseTextAreas (109.0.0)":
     - "MaterialComponents/private/TextControlsPrivate+BaseStyle"
     - "MaterialComponents/private/TextControlsPrivate+Shared"
@@ -124,7 +169,11 @@ PODS:
     - MaterialComponents/Availability
     - "MaterialComponents/private/TextControlsPrivate+OutlinedStyle"
     - "MaterialComponents/TextControls+BaseTextFields"
+  - MaterialComponents/Typography (109.0.0):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
+  - MDFTextAccessibility (2.0.0)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -137,6 +186,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
+  - MaterialComponents/Dialogs
   - "MaterialComponents/TextControls+FilledTextAreas"
   - "MaterialComponents/TextControls+FilledTextFields"
   - "MaterialComponents/TextControls+OutlinedTextAreas"
@@ -162,6 +212,7 @@ SPEC REPOS:
     - leveldb-library
     - MaterialComponents
     - MDFInternationalization
+    - MDFTextAccessibility
     - nanopb
     - ProgressHUD
     - PromisesObjC
@@ -184,10 +235,11 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MaterialComponents: efea7f96438838624ea3a4fcc881bfd6b3b0bb7b
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
+  MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   ProgressHUD: 54b4c2fa202bf3da7dddc1c698ae4e6376333bd9
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
-PODFILE CHECKSUM: 45b14ee0d1fe703f7d9b4e448a59fc409ad513d0
+PODFILE CHECKSUM: a10090361796f34e093b69f71b3b01db2e02ced0
 
 COCOAPODS: 1.9.1

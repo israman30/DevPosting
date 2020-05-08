@@ -15,6 +15,7 @@ import MaterialComponents.MaterialTextControls_FilledTextAreas
 import MaterialComponents.MaterialTextControls_FilledTextFields
 import MaterialComponents.MaterialTextControls_OutlinedTextAreas
 import MaterialComponents.MaterialTextControls_OutlinedTextFields
+import MaterialComponents.MaterialDialogs
 
 class EditProfileController: UIViewController {
     
@@ -58,20 +59,28 @@ class EditProfileController: UIViewController {
     
     @objc func handleUpdateProfile() {
         guard let username = usernameTexField.text, let email = emailTexField.text else { return }
-        if username.isEmpty || email.isEmpty {
-            ProgressHUD.showError("Please ente valid info")
-        } else {
-            guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let alertController = MDCAlertController(title: "Are you sure you want to change your info?", message: "Press OK to proceed, or CANCEL.")
+        
+        let action = MDCAlertAction(title: "OK") {
+            (action) in
             
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+
             let updatedValues = [
                 "username":username,
                 "email":email
             ]
-            
+
             Database.database().reference().child("users").child(uid).setValue(updatedValues)
             ProgressHUD.showSuccess("User updated")
-            dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
+        let cancel = MDCAlertAction(title:"Cancel", handler: nil)
+        alertController.addAction(action)
+        alertController.addAction(cancel)
+
+        present(alertController, animated:true, completion: nil)
         
     }
     
