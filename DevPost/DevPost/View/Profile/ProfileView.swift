@@ -41,12 +41,7 @@ extension ProfileController {
         containerView.addSubview(emailLabel)
         emailLabel.anchor(top: usernameBottonLineView.bottomAnchor, left: usernameBottonLineView.leftAnchor, bottom: nil, right: usernameBottonLineView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 30))
         
-        let horizontalStackView = UIStackView(arrangedSubviews: [updatePasswordButton, deleteAccountButton])
-        horizontalStackView.axis = .horizontal
-        horizontalStackView.distribution = .fillEqually
-        horizontalStackView.spacing = 5
-        
-        let stackView = UIStackView(arrangedSubviews: [editProfileButton, horizontalStackView])
+        let stackView = UIStackView(arrangedSubviews: [editProfileButton, deleteAccountButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 5
@@ -54,7 +49,6 @@ extension ProfileController {
         containerView.addSubview(stackView)
         stackView.anchor(top: nil, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, padding: .init(top: 0, left: 10, bottom: 10, right: 10), size: .init(width: 0, height: 100))
         editProfileButton.layer.cornerRadius = 2
-        updatePasswordButton.layer.cornerRadius = 2
 
     }
 }

@@ -40,24 +40,11 @@ class ProfileController: UIViewController {
         return btn
     }()
     
-    let updatePasswordButton: UIButton = {
-        let btn = UIButton(type: .system)
-        btn.setTitle("Update Password", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        btn.backgroundColor = UIColor.blueColor()
-        btn.customBorder()
-        btn.addTarget(self, action: #selector(handleUpdatePassword), for: .touchUpInside)
-        return btn
-    }()
-    
     let deleteAccountButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Delete Account", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
+        btn.setTitleColor(.redColor(), for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        btn.backgroundColor = .red
-        btn.customBorder()
         btn.addTarget(self, action: #selector(handleDeleteAccount), for: .touchUpInside)
         return btn
     }()
@@ -71,11 +58,6 @@ class ProfileController: UIViewController {
     
     @objc func handleDeleteAccount() {
         print(123)
-    }
-    
-    @objc func handleUpdatePassword() {
-        let updatePasswordController = UpdatePasswordController()
-        present(updatePasswordController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

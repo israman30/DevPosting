@@ -72,6 +72,9 @@ extension UIColor {
     static func blueColor() -> UIColor? {
         return UIColor(hex: "#4f8c50")
     }
+    static func redColor() -> UIColor? {
+        return UIColor(hex: "#d61122")
+    }
 }
 
 struct AnchoredConstraints {

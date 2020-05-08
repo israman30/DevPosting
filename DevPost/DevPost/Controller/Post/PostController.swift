@@ -51,7 +51,7 @@ class PostController: UIViewController {
     let dismissButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Cancel", for: .normal)
-        btn.setTitleColor(UIColor(hex: "#d61122"), for: .normal)
+        btn.setTitleColor(UIColor.redColor(), for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 18)
         btn.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
         return btn
