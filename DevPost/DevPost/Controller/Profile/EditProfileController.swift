@@ -62,18 +62,8 @@ class EditProfileController: UIViewController {
         
         let alertController = MDCAlertController(title: "Are you sure you want to change your info?", message: "Press OK to proceed, or CANCEL.")
         
-        let action = MDCAlertAction(title: "OK") {
-            (action) in
-            
-            guard let uid = Auth.auth().currentUser?.uid else { return }
-
-            let updatedValues = [
-                "username":username,
-                "email":email
-            ]
-
-            Database.database().reference().child("users").child(uid).setValue(updatedValues)
-            ProgressHUD.showSuccess("User updated")
+        let action = MDCAlertAction(title: "OK") { action in
+            FirebaseServices.updateUserInfo(with: username, email: email)
             self.dismiss(animated: true, completion: nil)
         }
         let cancel = MDCAlertAction(title:"Cancel", handler: nil)

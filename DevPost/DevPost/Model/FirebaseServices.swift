@@ -49,6 +49,18 @@ class FirebaseServices {
         })
     }
     
+    static func updateUserInfo(with username: String, email: String) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        let updatedValues = [
+            "username":username,
+            "email":email
+        ]
+
+        Database.database().reference().child("users").child(uid).setValue(updatedValues)
+        ProgressHUD.showSuccess("User updated")
+    }
+    
     // MARK: - ERROR HANDLING CREATING/LOGIN A USER
     static func handleError(_ error: Error?) {
         if let error = error {
