@@ -86,7 +86,6 @@ class EditProfileController: UIViewController {
         setEditProfileView()
         usernameTexField.text = user?.username
         emailTexField.text = user?.email
-        
     }
     
 }

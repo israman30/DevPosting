@@ -55,13 +55,8 @@ class UpdatePasswordController: UIViewController {
             ProgressHUD.showError("Please enter valid password info")
             return
         }
-        Auth.auth().currentUser?.updatePassword(to: newPassword, completion: { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            ProgressHUD.showSuccess("Password has been updated. Please logout and login again. Thank you!")
-        })
+        FirebaseServices.updatePassword(with: newPassword)
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func handleCancelUpdatePassword() {
