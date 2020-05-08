@@ -20,7 +20,7 @@ class EditProfileController: UIViewController {
     
     let usernameTexField: MDCBaseTextField = {
         let tf = MDCBaseTextField()
-        tf.label.text = "Username"
+        tf.label.text = "username"
         tf.placeholder = "New username"
         tf.font = .systemFont(ofSize: 20)
         tf.customBorder()
@@ -29,7 +29,7 @@ class EditProfileController: UIViewController {
     
     let emailTexField: MDCBaseTextField = {
         let tf = MDCBaseTextField()
-        tf.label.text = "email@mail.com"
+        tf.label.text = "email"
         tf.placeholder = "New email"
         tf.font = .systemFont(ofSize: 20)
         tf.customBorder()
@@ -79,9 +79,14 @@ class EditProfileController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    var user: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setEditProfileView()
+        usernameTexField.text = user?.username
+        emailTexField.text = user?.email
+        
     }
     
 }

@@ -61,9 +61,11 @@ class ProfileController: UIViewController {
         btn.addTarget(self, action: #selector(handleDeleteAccount), for: .touchUpInside)
         return btn
     }()
+    var userInfo: User?
     
     @objc func handleEditProfile() {
         let editProfileController = EditProfileController()
+        editProfileController.user = userInfo
         present(editProfileController, animated: true, completion: nil)
     }
     
@@ -88,11 +90,16 @@ class ProfileController: UIViewController {
             Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
                 if let dict = snapshot.value as? [String:Any] {
                     let user = User(dict: dict)
-                    self.usernameLabel.text = user.username
-                    self.emailLabel.text = user.email
+                    self.setProfileUI(with: user.username, email: user.email)
+                    self.userInfo = user
                 }
             }
         }
+    }
+    
+    func setProfileUI(with username: String, email: String) {
+        usernameLabel.text = username
+        emailLabel.text = email
     }
 
 }
