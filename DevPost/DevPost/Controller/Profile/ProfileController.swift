@@ -10,6 +10,8 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+import MaterialComponents.MaterialDialogs
+
 class ProfileController: UIViewController {
     
     let usernameLabel: UILabel = {
@@ -59,7 +61,15 @@ class ProfileController: UIViewController {
     }
     
     @objc func handleDeleteAccount() {
-        print(123)
+        let alertController = MDCAlertController(title: "Are you sure you want to delete your account?", message: "Press OK to proceed, or CANCEL.")
+        let action = MDCAlertAction(title: "OK") { action in
+            FirebaseServices.deleteUser()
+        }
+        let cancel = MDCAlertAction(title:"Cancel", handler: nil)
+        alertController.addAction(action)
+        alertController.addAction(cancel)
+
+        self.present(alertController, animated:true, completion: nil)
     }
     
     override func viewDidLoad() {

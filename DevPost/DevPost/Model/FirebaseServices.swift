@@ -61,6 +61,14 @@ class FirebaseServices {
         ProgressHUD.showSuccess("User updated")
     }
     
+    static func deleteUser() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Auth.auth().currentUser?.delete(completion: { (error) in
+            handleError(error)
+            Database.database().reference().child("users").child(uid).removeValue()
+        })
+    }
+    
     // MARK: - ERROR HANDLING CREATING/LOGIN A USER
     static func handleError(_ error: Error?) {
         if let error = error {
