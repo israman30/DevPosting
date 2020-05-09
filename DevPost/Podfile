@@ -9,6 +9,7 @@ target 'DevPost' do
 pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
+pod 'FirebaseUI/Google'
 
 # Material design pods
 pod 'MaterialComponents/TextControls+FilledTextAreas'
