@@ -40,7 +40,6 @@ class MainCell: UICollectionViewCell {
         label.text = "by John Doe"
         label.font = .systemFont(ofSize: 14)
         label.numberOfLines = 0
-//        label.textColor = UIColor(hex: "#363535")
         return label
     }()
     
@@ -66,7 +65,6 @@ class MainCell: UICollectionViewCell {
         let containerCell = UIView()
         containerCell.backgroundColor = UIColor.secondaryColor()
         containerCell.layer.cornerRadius = 5
-//        containerCell.customBorder()
         
         addSubview(containerCell)
         containerCell.fillSuperview(padding: .init(top: 5, left: 5, bottom: 5, right: 5))
@@ -80,7 +78,6 @@ class MainCell: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 5
-        
         
         containerCell.addSubview(stackView)
         stackView.anchor(top: containerCell.topAnchor, left: containerCell.leftAnchor, bottom: containerCell.bottomAnchor, right: containerCell.rightAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10))
