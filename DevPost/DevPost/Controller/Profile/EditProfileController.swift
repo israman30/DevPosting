@@ -28,15 +28,6 @@ class EditProfileController: UIViewController {
         return tf
     }()
     
-    let emailTexField: MDCBaseTextField = {
-        let tf = MDCBaseTextField()
-        tf.label.text = "email"
-        tf.placeholder = "New email"
-        tf.font = .systemFont(ofSize: 20)
-        tf.customBorder()
-        return tf
-    }()
-    
     lazy var cancelUpdateProfileLabel: UILabel = {
         let label = UILabel()
         label.text = "Cancel"
@@ -59,12 +50,12 @@ class EditProfileController: UIViewController {
     
     // MARK: - Update user profile in Firebase db + once data is changed, the user will be updated on profile controlle
     @objc func handleUpdateProfile() {
-        guard let username = usernameTexField.text, let email = emailTexField.text else { return }
+        guard let username = usernameTexField.text else { return }
         
         let alertController = MDCAlertController(title: "Are you sure you want to change your info?", message: "Press OK to proceed, or CANCEL.")
         
         let action = MDCAlertAction(title: "OK") { action in
-            FirebaseServices.updateUserInfo(with: username, email: email)
+            FirebaseServices.updateUserInfo(with: username)
             self.dismiss(animated: true, completion: nil)
         }
         let cancel = MDCAlertAction(title:"Cancel", handler: nil)
@@ -85,7 +76,6 @@ class EditProfileController: UIViewController {
         super.viewDidLoad()
         setEditProfileView()
         usernameTexField.text = user?.username
-        emailTexField.text = user?.email
     }
     
 }

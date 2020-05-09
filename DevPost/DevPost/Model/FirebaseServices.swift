@@ -49,14 +49,12 @@ class FirebaseServices {
         })
     }
     
-    static func updateUserInfo(with username: String, email: String) {
+    static func updateUserInfo(with username: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
         let updatedValues = [
-            "username":username,
-            "email":email
+            "username":username
         ]
-
         Database.database().reference().child("users").child(uid).setValue(updatedValues)
         ProgressHUD.showSuccess("User updated")
     }
