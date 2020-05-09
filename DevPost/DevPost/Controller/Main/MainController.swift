@@ -13,7 +13,13 @@ import ProgressHUD
 
 class MainController: UIViewController {
     
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        return cv
+    }()
     
     var posts = [Posts]()
     
@@ -27,6 +33,7 @@ class MainController: UIViewController {
         collectionView.register(MainCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         
         // MARK: - IS USER LOGGED IN?
         if Auth.auth().currentUser?.uid == nil {
@@ -109,5 +116,5 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
 
         return NSString(string: text).boundingRect(with: size, options: options, attributes: attributes, context: nil)
     }
- 
+    
 }
