@@ -17,7 +17,11 @@ import MaterialComponents.MaterialTextControls_FilledTextFields
 import MaterialComponents.MaterialTextControls_OutlinedTextAreas
 import MaterialComponents.MaterialTextControls_OutlinedTextFields
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+    }
+    
     
     let emailTextField: MDCBaseTextField = {
         let tf = MDCBaseTextField()
@@ -113,6 +117,8 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLoginView()
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance()?.presentingViewController = self
     }
     
     func setGoogleButton(_ buttonStackView: UIStackView) {
