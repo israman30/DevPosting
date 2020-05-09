@@ -11,7 +11,9 @@ import FirebaseAuth
 import FirebaseDatabase
 import ProgressHUD
 
-class MainController: UITableViewController {
+class MainController: UIViewController {
+    
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     var posts = [Posts]()
     
@@ -19,11 +21,12 @@ class MainController: UITableViewController {
         super.viewDidLoad()
         setNavigationItems()
         
-        tableView.register(MainCell.self, forCellReuseIdentifier: "cell")
-        tableView.rowHeight = 90
-        tableView.separatorColor = .clear
-        tableView.separatorInset = .init(top: 0, left: 10, bottom: 0, right: 10)
-        tableView.showsVerticalScrollIndicator = false
+        view.addSubview(collectionView)
+        collectionView.fillSuperview()
+        collectionView.backgroundColor = UIColor.mainColor()
+        collectionView.register(MainCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
         // MARK: - IS USER LOGGED IN?
         if Auth.auth().currentUser?.uid == nil {
@@ -43,7 +46,7 @@ class MainController: UITableViewController {
                 self.posts.append(post)
                 
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                    self.collectionView.reloadData()
                 }
             }
             ProgressHUD.dismiss()
@@ -75,37 +78,36 @@ class MainController: UITableViewController {
 
 }
 
-extension MainController {
+extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainCell
         cell.post = posts[indexPath.row]
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let postDisplayController = PostDisplayController()
-        postDisplayController.posts = posts[indexPath.row]
-        navigationController?.pushViewController(postDisplayController, animated: true)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var height: CGFloat = 500
+        let padding: CGFloat = 60
+        let text = posts[indexPath.item].detailPost
+        height = estimateFrameForText(text: text).height + padding
+        
+        return .init(width: view.frame.width, height: height)
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.secondaryColor()
-        view.addSubview(headerView)
-        headerView.frame = .init(x: 0, y: 0, width: view.frame.width, height: 30)
-        let label = UILabel()
-        label.text = "What's new in technology!"
-        label.textColor = UIColor(hex: "#363535")
-        label.font = .systemFont(ofSize: 12)
-        headerView.addSubview(label)
-        label.fillSuperview(padding: .init(top: 5, left: 10, bottom: 5, right: 0))
-        return headerView
+    private func estimateFrameForText(text: String) -> CGRect {
+        //we make the height arbitrarily large so we don't undershoot height in calculation
+        let height: CGFloat = 1000
+
+        let size = CGSize(width: view.frame.width, height: height)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light)]
+
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: attributes, context: nil)
     }
-    
-    
+ 
 }
