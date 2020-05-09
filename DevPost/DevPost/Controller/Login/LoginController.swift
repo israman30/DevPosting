@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import ProgressHUD
+import GoogleSignIn
 
 import MaterialComponents.MaterialTextControls_FilledTextAreas
 import MaterialComponents.MaterialTextControls_FilledTextFields
@@ -112,6 +113,12 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLoginView()
+    }
+    
+    func setGoogleButton(_ buttonStackView: UIStackView) {
+        let googleButton = GIDSignInButton()
+        view.addSubview(googleButton)
+        googleButton.anchor(top: buttonStackView.bottomAnchor, left: buttonStackView.leftAnchor, bottom: nil, right: buttonStackView.rightAnchor, padding: .init(top: 10, left: -5, bottom: 0, right: -5), size: .init(width: 0, height: 70))
     }
     
     
