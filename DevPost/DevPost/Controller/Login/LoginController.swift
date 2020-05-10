@@ -17,7 +17,7 @@ import MaterialComponents.MaterialTextControls_FilledTextFields
 import MaterialComponents.MaterialTextControls_OutlinedTextAreas
 import MaterialComponents.MaterialTextControls_OutlinedTextFields
 
-class LoginController: UIViewController, GIDSignInDelegate {
+class LoginController: UIViewController {
    
     let emailTextField: MDCBaseTextField = {
         let tf = MDCBaseTextField()
@@ -113,39 +113,13 @@ class LoginController: UIViewController, GIDSignInDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLoginView()
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-
-        // Automatically sign in the user.
-        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
-    }
-    
-    // MARK: - Google Signup block
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        guard let idToken = user.authentication.idToken else { return }
-        guard let accessToken = user.authentication.accessToken else { return }
-        let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        Auth.auth().signIn(with: credentials) { (user, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let uid = user?.user.uid else { return }
-            print("User has logged in using Google", uid)
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        print("User has disconetec")
-        ProgressHUD.show("User has disconnected")
+        googlePReseterDelegatesWithUserPResistance()
     }
     
 }
+
+
+
 
 
 extension LoginController: UITextFieldDelegate {

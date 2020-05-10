@@ -17,7 +17,6 @@ extension LoginController {
        let containerView = UIView()
        
        let width = view.frame.width - 50
-//       containerView.backgroundColor = UIColor(hex: "#f0f1f2")
         
        view.addSubview(containerView)
 
@@ -55,17 +54,22 @@ extension LoginController {
         view.addSubview(buttonsStackView)
         buttonsStackView.anchor(top: containerView.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 90))
         
-        view.addSubview(resetPassword)
-        resetPassword.anchor(top: buttonsStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 100, left: 0, bottom: 0, right: 0), size: .init(width: 100, height: 0))
+        
         setGoogleButton()
+        setForgotPassword()
     }
     
     func setGoogleButton() {
         let googleButton = GIDSignInButton()
         googleButton.colorScheme = .dark
         view.addSubview(googleButton)
-        googleButton.anchor(top: loginButton.bottomAnchor, left: loginButton.leftAnchor, bottom: nil, right: loginButton.rightAnchor, padding: .init(top: 10, left: -5, bottom: 0, right: -5), size: .init(width: 0, height: 70))
+        googleButton.anchor(top: loginButton.bottomAnchor, left: loginButton.leftAnchor, bottom: nil, right: loginButton.rightAnchor, padding: .init(top: 10, left: -5, bottom: 0, right: -5), size: .init(width: 0, height: 0))
         dismiss(animated: true, completion: nil)
+    }
+    
+    func setForgotPassword() {
+        view.addSubview(resetPassword)
+        resetPassword.anchor(top: nil, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, padding: .init(top: 0, left: 0, bottom: 100, right: 0), size: .init(width: 0, height: 50))
     }
     
 }
