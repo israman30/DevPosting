@@ -56,7 +56,7 @@ extension LoginController {
         
         view.addSubview(resetPassword)
         resetPassword.anchor(top: buttonsStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 100, left: 0, bottom: 0, right: 0), size: .init(width: 100, height: 0))
-        setGoogleButton(buttonsStackView)
+        setGoogleButton()
     }
     
 }

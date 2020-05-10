@@ -108,22 +108,28 @@ class LoginController: UIViewController {
             return
         }
         FirebaseServices.loginUser(with: email, password: password)
+        setGoogleButton()
         dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLoginView()
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+
+        // Automatically sign in the user.
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
     }
     
-    func setGoogleButton(_ buttonStackView: UIStackView) {
+    func setGoogleButton() {
         let googleButton = GIDSignInButton()
         googleButton.colorScheme = .dark
         view.addSubview(googleButton)
-        googleButton.anchor(top: buttonStackView.bottomAnchor, left: buttonStackView.leftAnchor, bottom: nil, right: buttonStackView.rightAnchor, padding: .init(top: 10, left: -5, bottom: 0, right: -5), size: .init(width: 0, height: 70))
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance()?.signIn()
-        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+        googleButton.anchor(top: loginButton.bottomAnchor, left: loginButton.leftAnchor, bottom: nil, right: loginButton.rightAnchor, padding: .init(top: 10, left: -5, bottom: 0, right: -5), size: .init(width: 0, height: 70))
+        dismiss(animated: true, completion: nil)
+//        GIDSignIn.sharedInstance()?.presentingViewController = self
+//        GIDSignIn.sharedInstance()?.signIn()
+        
     }
     
 }

@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import ProgressHUD
+import GoogleSignIn
 
 class MainController: UIViewController {
     
@@ -62,6 +63,11 @@ class MainController: UIViewController {
     
     // MARK: - LOGOUT
     @objc func handleLogout() {
+        logOutUser()
+        GIDSignIn.sharedInstance().signOut()
+    }
+    
+    func logOutUser() {
         do {
             try Auth.auth().signOut()
             isUserLoggedIn()
