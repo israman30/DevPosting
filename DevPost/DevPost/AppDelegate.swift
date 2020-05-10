@@ -11,7 +11,7 @@ import Firebase
 import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 
@@ -20,28 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         FirebaseApp.configure()
         
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
+        
         
         return true
     }
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-           if let error = error {
-               print(error.localizedDescription)
-               return
-           }
-           guard let idToken = user.authentication.idToken else { return }
-           guard let accessToken = user.authentication.accessToken else { return }
-           let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-           Auth.auth().signIn(with: credentials) { (user, error) in
-               if let error = error {
-                   print(error.localizedDescription)
-                   return
-               }
-               guard let uid = user?.user.uid else { return }
-               print("User has logged in using Google", uid)
-           }
-       }
+    
+    
 //       func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
 //                 withError error: Error!) {
 //         if let error = error {
@@ -63,9 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 //        print(fullName)
 //       }
     
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        print("User has disconetec")
-    }
+    
     
     
     @available(iOS 9.0, *)

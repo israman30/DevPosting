@@ -17,7 +17,7 @@ import MaterialComponents.MaterialTextControls_FilledTextFields
 import MaterialComponents.MaterialTextControls_OutlinedTextAreas
 import MaterialComponents.MaterialTextControls_OutlinedTextFields
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, GIDSignInDelegate{
    
     
     let emailTextField: MDCBaseTextField = {
@@ -108,13 +108,13 @@ class LoginController: UIViewController {
             return
         }
         FirebaseServices.loginUser(with: email, password: password)
-        setGoogleButton()
         dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLoginView()
+        GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
 
         // Automatically sign in the user.
@@ -127,9 +127,29 @@ class LoginController: UIViewController {
         view.addSubview(googleButton)
         googleButton.anchor(top: loginButton.bottomAnchor, left: loginButton.leftAnchor, bottom: nil, right: loginButton.rightAnchor, padding: .init(top: 10, left: -5, bottom: 0, right: -5), size: .init(width: 0, height: 70))
         dismiss(animated: true, completion: nil)
-//        GIDSignIn.sharedInstance()?.presentingViewController = self
-//        GIDSignIn.sharedInstance()?.signIn()
-        
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        guard let idToken = user.authentication.idToken else { return }
+        guard let accessToken = user.authentication.accessToken else { return }
+        let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+        Auth.auth().signIn(with: credentials) { (user, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            guard let uid = user?.user.uid else { return }
+            print("User has logged in using Google", uid)
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        print("User has disconetec")
+        ProgressHUD.show("User has disconnected")
     }
     
 }

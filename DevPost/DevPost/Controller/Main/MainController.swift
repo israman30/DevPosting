@@ -41,6 +41,7 @@ class MainController: UIViewController {
             perform(#selector(isUserLoggedIn), with: nil, afterDelay: 0)
         } else {
             // TODO: Set user info
+            
         }
         observeUser()
     }
@@ -63,8 +64,8 @@ class MainController: UIViewController {
     
     // MARK: - LOGOUT
     @objc func handleLogout() {
-        logOutUser()
         GIDSignIn.sharedInstance().signOut()
+        logOutUser()
     }
     
     func logOutUser() {
