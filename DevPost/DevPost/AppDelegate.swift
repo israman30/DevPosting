@@ -26,22 +26,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        guard let idToken = user.authentication.idToken else { return }
-        guard let accessToken = user.authentication.accessToken else { return }
-        let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        Auth.auth().signIn(with: credentials) { (user, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let uid = user?.user.uid else { return }
-            print("User has logged in using Google", uid)
-        }
-    }
+           if let error = error {
+               print(error.localizedDescription)
+               return
+           }
+           guard let idToken = user.authentication.idToken else { return }
+           guard let accessToken = user.authentication.accessToken else { return }
+           let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+           Auth.auth().signIn(with: credentials) { (user, error) in
+               if let error = error {
+                   print(error.localizedDescription)
+                   return
+               }
+               guard let uid = user?.user.uid else { return }
+               print("User has logged in using Google", uid)
+           }
+       }
+       
+    
     
     @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
