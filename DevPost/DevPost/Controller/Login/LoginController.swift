@@ -118,10 +118,12 @@ class LoginController: UIViewController {
     
     func setGoogleButton(_ buttonStackView: UIStackView) {
         let googleButton = GIDSignInButton()
+        googleButton.colorScheme = .dark
         view.addSubview(googleButton)
         googleButton.anchor(top: buttonStackView.bottomAnchor, left: buttonStackView.leftAnchor, bottom: nil, right: buttonStackView.rightAnchor, padding: .init(top: 10, left: -5, bottom: 0, right: -5), size: .init(width: 0, height: 70))
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.signIn()
+        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
     }
     
 }
