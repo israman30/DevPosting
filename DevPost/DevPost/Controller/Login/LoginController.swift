@@ -17,9 +17,8 @@ import MaterialComponents.MaterialTextControls_FilledTextFields
 import MaterialComponents.MaterialTextControls_OutlinedTextAreas
 import MaterialComponents.MaterialTextControls_OutlinedTextFields
 
-class LoginController: UIViewController, GIDSignInDelegate{
+class LoginController: UIViewController, GIDSignInDelegate {
    
-    
     let emailTextField: MDCBaseTextField = {
         let tf = MDCBaseTextField()
         tf.label.text = "Email"
@@ -121,14 +120,7 @@ class LoginController: UIViewController, GIDSignInDelegate{
         GIDSignIn.sharedInstance()?.restorePreviousSignIn()
     }
     
-    func setGoogleButton() {
-        let googleButton = GIDSignInButton()
-        googleButton.colorScheme = .dark
-        view.addSubview(googleButton)
-        googleButton.anchor(top: loginButton.bottomAnchor, left: loginButton.leftAnchor, bottom: nil, right: loginButton.rightAnchor, padding: .init(top: 10, left: -5, bottom: 0, right: -5), size: .init(width: 0, height: 70))
-        dismiss(animated: true, completion: nil)
-    }
-    
+    // MARK: - Google Signup block
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print(error.localizedDescription)
@@ -147,6 +139,7 @@ class LoginController: UIViewController, GIDSignInDelegate{
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("User has disconetec")
         ProgressHUD.show("User has disconnected")
