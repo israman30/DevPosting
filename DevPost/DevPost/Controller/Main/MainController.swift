@@ -54,6 +54,8 @@ class MainController: UIViewController {
                 let post = Posts(dict: postObject)
                 self.posts.append(post)
                 
+                self.posts.sort(by: { $0.date > $1.date })
+                
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
