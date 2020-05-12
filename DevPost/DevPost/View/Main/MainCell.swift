@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class MainCell: UICollectionViewCell {
     
@@ -25,6 +27,7 @@ class MainCell: UICollectionViewCell {
             } else {
                 dateLabel.text = "no date added"
             }
+            
         }
     }
     

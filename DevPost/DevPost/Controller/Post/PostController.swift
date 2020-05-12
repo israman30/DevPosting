@@ -77,7 +77,10 @@ class PostController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setPostView()
+        postUserInfo()
     }
+    
+    var username: String?
     
     // MARK: - Upload post object to Fireabase
     func uploadPost() {
@@ -94,6 +97,22 @@ class PostController: UIViewController {
         
         posts.setValue(values)
     }
+    
+    func postUserInfo() {
+            Auth.auth().addStateDidChangeListener { (auth, user) in
+                guard let uid = auth.currentUser?.uid else { return }
+                Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
+                    if let dict = snapshot.value as? [String:Any] {
+                        let user = User(dict: dict)
+    //                    self.setProfileUI(with: user.username, email: user.email)
+    //                    self.userInfo = user
+//                        self.usernameLabel.text = user.username
+                        self.username = user.username
+                        print(self.username)
+                    }
+                }
+            }
+        }
     
 }
 
