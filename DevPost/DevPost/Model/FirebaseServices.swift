@@ -67,6 +67,18 @@ class FirebaseServices {
         })
     }
     
+    static func fetchUser(closure:@escaping(User)->()) {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            guard let uid = auth.currentUser?.uid else { return }
+            Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
+                if let dict = snapshot.value as? [String:Any] {
+                    let user = User(dict: dict)
+                    closure(user)
+                }
+            }
+        }
+    }
+    
     // MARK: - ERROR HANDLING CREATING/LOGIN A USER
     static func handleError(_ error: Error?) {
         if let error = error {

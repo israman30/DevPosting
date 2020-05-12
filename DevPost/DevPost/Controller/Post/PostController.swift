@@ -85,7 +85,7 @@ class PostController: UIViewController {
     // MARK: - Upload post object to Fireabase
     func uploadPost() {
         guard let title = titleTextField.text, let detailPost = detailPostTextView.text else { return }
-//        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
         let values = [
             "title": title,
             "detailPost": detailPost,
@@ -98,16 +98,10 @@ class PostController: UIViewController {
         
         posts.setValue(values)
     }
-    
+    // MARK: - Fetch user for username object post
     func postUserInfo() {
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            guard let uid = auth.currentUser?.uid else { return }
-            Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
-                if let dict = snapshot.value as? [String:Any] {
-                    let user = User(dict: dict)
-                    self.username = user.username
-                }
-            }
+        FirebaseServices.fetchUser { (user) in
+            self.username = user.username
         }
     }
     
