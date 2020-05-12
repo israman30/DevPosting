@@ -28,6 +28,14 @@ class MainCell: UICollectionViewCell {
                 dateLabel.text = "no date added"
             }
             
+            guard let username = post?.username else { return }
+            
+            if !username.isEmpty {
+                usernameLabel.text = "by \(username)"
+            } else {
+                usernameLabel.text = "Username"
+            }
+            
         }
     }
     

@@ -89,7 +89,8 @@ class PostController: UIViewController {
         let values = [
             "title": title,
             "detailPost": detailPost,
-            "date": TimeString.setDate()
+            "date": TimeString.setDate(),
+            "username": username
         ]
         let stringId = UUID().uuidString
 
@@ -99,20 +100,16 @@ class PostController: UIViewController {
     }
     
     func postUserInfo() {
-            Auth.auth().addStateDidChangeListener { (auth, user) in
-                guard let uid = auth.currentUser?.uid else { return }
-                Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
-                    if let dict = snapshot.value as? [String:Any] {
-                        let user = User(dict: dict)
-    //                    self.setProfileUI(with: user.username, email: user.email)
-    //                    self.userInfo = user
-//                        self.usernameLabel.text = user.username
-                        self.username = user.username
-                        print(self.username)
-                    }
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            guard let uid = auth.currentUser?.uid else { return }
+            Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
+                if let dict = snapshot.value as? [String:Any] {
+                    let user = User(dict: dict)
+                    self.username = user.username
                 }
             }
         }
+    }
     
 }
 
