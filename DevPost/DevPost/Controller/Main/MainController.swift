@@ -41,7 +41,6 @@ class MainController: UIViewController {
             perform(#selector(isUserLoggedIn), with: nil, afterDelay: 0)
         } else {
             // TODO: Set user info
-            
         }
         observeUser()
     }

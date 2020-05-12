@@ -11,10 +11,24 @@ import FirebaseAuth
 import FirebaseDatabase
 import ProgressHUD
 
+struct UserString {
+    private var _username = "username"
+    private var _email = "email"
+    
+    var username: String? {
+        get {
+            return _username
+        }
+    }
+}
+
 class FirebaseServices {
+    
+    let userString = UserString()
     
     static func createUser(with email: String, password: String, username: String) {
         ProgressHUD.show("Sign up")
+        
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             handleError(error)
             
@@ -67,7 +81,7 @@ class FirebaseServices {
         })
     }
     
-    static func fetchUser(closure:@escaping(User)->()) {
+    static func fetchUser(closure: @escaping(User) -> ()) {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             guard let uid = auth.currentUser?.uid else { return }
             Database.database().reference().child("users").child(uid).observe(.value) { (snapshot) in
