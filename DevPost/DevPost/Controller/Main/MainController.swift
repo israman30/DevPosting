@@ -35,7 +35,6 @@ class MainController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        
         // MARK: - IS USER LOGGED IN?
         if Auth.auth().currentUser?.uid == nil {
             perform(#selector(isUserLoggedIn), with: nil, afterDelay: 0)

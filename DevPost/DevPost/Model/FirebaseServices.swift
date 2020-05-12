@@ -11,20 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import ProgressHUD
 
-struct UserString {
-    private var _username = "username"
-    private var _email = "email"
-    
-    var username: String? {
-        get {
-            return _username
-        }
-    }
-}
-
 class FirebaseServices {
-    
-    let userString = UserString()
     
     static func createUser(with email: String, password: String, username: String) {
         ProgressHUD.show("Sign up")
