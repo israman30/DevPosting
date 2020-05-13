@@ -40,7 +40,6 @@ class MainController: UIViewController {
     
     // MARK: - Observe posts from Firebase
     func observeUser() {
-        ProgressHUD.show()
         FirebaseServices.observeUserPost { (posts) in
             self.posts.append(posts)
             self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })

@@ -81,6 +81,7 @@ class FirebaseServices {
     }
     
     static func observeUserPost(closure: @escaping(Posts) -> ()) {
+        ProgressHUD.show()
         Database.database().reference().child("posts").observe(.childAdded) { (snapshot) in
             if let postObject = snapshot.value as? [String:Any] {
                 let posts = Posts(dict: postObject)
