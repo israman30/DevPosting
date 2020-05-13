@@ -32,8 +32,6 @@ class MainController: UIViewController {
         // MARK: - IS USER LOGGED IN?
         if Auth.auth().currentUser?.uid == nil {
             perform(#selector(isUserLoggedIn), with: nil, afterDelay: 0)
-        } else {
-            // TODO: Set user info
         }
         observeUser()
     }
