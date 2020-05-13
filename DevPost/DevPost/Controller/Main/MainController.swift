@@ -27,13 +27,7 @@ class MainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationItems()
-        
-        view.addSubview(collectionView)
-        collectionView.fillSuperview()
-        collectionView.backgroundColor = UIColor.mainColor()
-        collectionView.register(MainCell.self, forCellWithReuseIdentifier: "cell")
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionViewCellRegiterWithDataSourceAndDelegates()
         
         // MARK: - IS USER LOGGED IN?
         if Auth.auth().currentUser?.uid == nil {
@@ -92,35 +86,4 @@ class MainController: UIViewController {
 
 }
 
-extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainCell
-        cell.post = posts[indexPath.row]
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var height: CGFloat = 500
-        let padding: CGFloat = 60
-        let text = posts[indexPath.item].detailPost
-        height = estimateFrameForText(text: text).height + padding
-        
-        return .init(width: view.frame.width, height: height)
-    }
-    
-    private func estimateFrameForText(text: String) -> CGRect {
-        let height: CGFloat = 1000
-        let size = CGSize(width: view.frame.width, height: height)
-        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light)]
 
-        return NSString(string: text).boundingRect(with: size, options: options, attributes: attributes, context: nil)
-    }
-    
-    
-}

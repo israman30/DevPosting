@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1421CDE4A9C2D26CDB86E92A /* Pods_DevPost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 780609F5208ED5282117FD5E /* Pods_DevPost.framework */; };
+		4D02C445246B8B1100B369A1 /* DataSource+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D02C444246B8B1100B369A1 /* DataSource+Delegates.swift */; };
 		4D299C0D2461153F005B1CE0 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C0C2461153F005B1CE0 /* ResetPasswordController.swift */; };
 		4D299C102461DFE7005B1CE0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C0F2461DFE7005B1CE0 /* TabBarController.swift */; };
 		4D299C122461E4AA005B1CE0 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D299C112461E4AA005B1CE0 /* ProfileController.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		31D33D0F178127AD209AFD1A /* Pods-DevPost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevPost.release.xcconfig"; path = "Target Support Files/Pods-DevPost/Pods-DevPost.release.xcconfig"; sourceTree = "<group>"; };
+		4D02C444246B8B1100B369A1 /* DataSource+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSource+Delegates.swift"; sourceTree = "<group>"; };
 		4D299C0C2461153F005B1CE0 /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		4D299C0F2461DFE7005B1CE0 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4D299C112461E4AA005B1CE0 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				4D37299224537BB60022F814 /* MainController.swift */,
+				4D02C444246B8B1100B369A1 /* DataSource+Delegates.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D299C2B24687C50005B1CE0 /* GoogleServices+Login+Ext.swift in Sources */,
+				4D02C445246B8B1100B369A1 /* DataSource+Delegates.swift in Sources */,
 				4D3729A5245389740022F814 /* PostController.swift in Sources */,
 				4D299C202463B461005B1CE0 /* EditProfileController.swift in Sources */,
 				4D3D8DBB24592B1200B75D72 /* MainView.swift in Sources */,
