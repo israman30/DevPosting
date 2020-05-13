@@ -113,7 +113,7 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLoginView()
-        googlePReseterDelegatesWithUserPResistance()
+        googlePreseterDelegatesWithUserPResistance()
     }
     
 }

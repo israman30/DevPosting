@@ -45,7 +45,7 @@ class MainController: UIViewController {
         }
     }
     
-    // MARK: - LOGOUT
+    // MARK: - LOGOUT 
     @objc func handleLogout() {
         GIDSignIn.sharedInstance().signOut()
         logOutUser()

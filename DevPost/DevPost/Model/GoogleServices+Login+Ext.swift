@@ -42,7 +42,7 @@ extension LoginController: GIDSignInDelegate {
         ProgressHUD.show("User has disconnected")
     }
     
-    func googlePReseterDelegatesWithUserPResistance() {
+    func googlePreseterDelegatesWithUserPResistance() {
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
 
