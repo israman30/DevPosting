@@ -41,18 +41,10 @@ class MainController: UIViewController {
     // MARK: - Observe posts from Firebase
     func observeUser() {
         ProgressHUD.show()
-        Database.database().reference().child("posts").observe(.childAdded) { (snapshot) in
-            if let postObject = snapshot.value as? [String:Any] {
-                let post = Posts(dict: postObject)
-                self.posts.append(post)
-                
-                self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
-                
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }
-            ProgressHUD.dismiss()
+        FirebaseServices.observeUserPost { (posts) in
+            self.posts.append(posts)
+            self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
+            self.collectionView.reloadData()
         }
     }
     

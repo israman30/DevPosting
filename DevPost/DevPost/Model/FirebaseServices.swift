@@ -80,6 +80,19 @@ class FirebaseServices {
         }
     }
     
+    static func observeUserPost(closure: @escaping(Posts) -> ()) {
+        Database.database().reference().child("posts").observe(.childAdded) { (snapshot) in
+            if let postObject = snapshot.value as? [String:Any] {
+                let posts = Posts(dict: postObject)
+                
+                DispatchQueue.main.async {
+                    closure(posts)
+                }
+            }
+            ProgressHUD.dismiss()
+        }
+    }
+    
     // MARK: - ERROR HANDLING CREATING/LOGIN A USER
     static func handleError(_ error: Error?) {
         if let error = error {
