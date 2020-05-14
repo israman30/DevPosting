@@ -106,8 +106,17 @@ class LoginController: UIViewController {
             ProgressHUD.showError("Please enter valid email & password")
             return
         }
-        FirebaseServices.loginUser(with: email, password: password)
-        dismiss(animated: true, completion: nil)
+        // MARK: - Check if user exit before login into Firebase
+        Database.database().reference().child("users").queryOrdered(byChild: "email").queryEqual(toValue: email).observe(.value) { (snapshot) in
+            if snapshot.exists() {
+                FirebaseServices.loginUser(with: email, password: password)
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                ProgressHUD.showError("User does not exist")
+                return
+            }
+        }
+        
     }
     
     override func viewDidLoad() {

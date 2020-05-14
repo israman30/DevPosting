@@ -41,6 +41,7 @@ class FirebaseServices {
             // Login user
             ProgressHUD.dismiss()
         }
+        
     }
     
     static func updatePassword(with newPassword: String) {
