@@ -107,12 +107,13 @@ class LoginController: UIViewController {
             return
         }
         // MARK: - Check if user exit before login into Firebase
-        Database.database().reference().child("users").queryOrdered(byChild: "email").queryEqual(toValue: email).observe(.value) { (snapshot) in
+        Database.database().reference().child("users").queryOrdered(byChild: "email")
+            .queryEqual(toValue: email).observe(.value) { (snapshot) in
             if snapshot.exists() {
                 FirebaseServices.loginUser(with: email, password: password)
                 self.dismiss(animated: true, completion: nil)
             } else {
-                ProgressHUD.showError("User does not exist")
+                ProgressHUD.showError("User does not exist\n Please signup with username and email")
                 return
             }
         }
