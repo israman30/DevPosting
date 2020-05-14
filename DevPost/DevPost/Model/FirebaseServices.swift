@@ -23,7 +23,7 @@ class FirebaseServices {
             guard let uid = user?.user.uid else { return }
             let values = [
                 "username": username,
-                "email":email
+                "email": email
             ]
             let ref = Database.database().reference().child("users")
             ref.child(uid).setValue(values)

@@ -91,7 +91,7 @@ class LoginController: UIViewController {
         guard let email = emailTextField.text,
               let password = passwordTextField.text,
               let username = usernameTextField.text else { return }
-        if email.isEmpty || password.isEmpty {
+        if email.isEmpty || password.isEmpty || username.isEmpty {
             ProgressHUD.showError("To sign up, you must enter all fields please!")
             return
         }
