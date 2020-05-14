@@ -31,17 +31,28 @@ class FirebaseServices {
         }
     }
     
-    static func loginUser(with email: String, password: String) {
+    static func loginUser(with email: String, password: String, vc: UIViewController) {
         ProgressHUD.show("Login up")
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            guard let user = user?.user.uid else { return }
-            if user.isEmpty {
-                handleError(error)
+        // MARK: - Check if user exit before login into Firebase
+        Database.database().reference().child("users").queryOrdered(byChild: "email")
+            .queryEqual(toValue: email).observe(.value) { (snapshot) in
+                // if user exist: login a user
+            if snapshot.exists() {
+                Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                    guard let user = user?.user.uid else { return }
+                    if user.isEmpty {
+                        handleError(error)
+                    }
+                    // Login user and dismiss login constroller
+                    ProgressHUD.dismiss()
+                    vc.dismiss(animated: true, completion: nil)
+                }
+                // else: show error message
+            } else {
+                ProgressHUD.showError("User does not exist\n Please signup with username and email")
+                return
             }
-            // Login user
-            ProgressHUD.dismiss()
         }
-        
     }
     
     static func updatePassword(with newPassword: String) {
