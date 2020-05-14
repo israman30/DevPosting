@@ -95,8 +95,7 @@ class LoginController: UIViewController {
             ProgressHUD.showError("To sign up, you must enter all fields please!")
             return
         }
-        FirebaseServices.createUser(with: email, password: password, username: username)
-        dismiss(animated: true, completion: nil)
+        FirebaseServices.createUser(with: email, password: password, username: username, vc: self)
     }
     
     // MARK: - LOGIN USER with EMAIL & PASSWORD

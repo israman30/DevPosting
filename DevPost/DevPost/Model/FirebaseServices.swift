@@ -13,9 +13,8 @@ import ProgressHUD
 
 class FirebaseServices {
     
-    static func createUser(with email: String, password: String, username: String) {
+    static func createUser(with email: String, password: String, username: String, vc: UIViewController) {
         ProgressHUD.show("Sign up")
-        
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             handleError(error)
             
@@ -28,7 +27,9 @@ class FirebaseServices {
             let ref = Database.database().reference().child("users")
             ref.child(uid).setValue(values)
             ProgressHUD.dismiss()
+            vc.dismiss(animated: true, completion: nil)
         }
+        
     }
     
     static func loginUser(with email: String, password: String, vc: UIViewController) {
@@ -110,7 +111,7 @@ class FirebaseServices {
     static func handleError(_ error: Error?) {
         if let error = error {
             print(error.localizedDescription)
-            ProgressHUD.showError("Wrong user information..!")
+            ProgressHUD.showError(error.localizedDescription)
             return
         }
     }
