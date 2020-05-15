@@ -13,6 +13,7 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionViewCellRegiterWithDataSourceAndDelegates() {
         view.addSubview(collectionView)
         collectionView.fillSuperview()
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = UIColor.mainColor()
         collectionView.register(MainCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.delegate = self
