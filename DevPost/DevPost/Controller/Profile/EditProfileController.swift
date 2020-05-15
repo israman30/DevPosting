@@ -59,13 +59,13 @@ class EditProfileController: UIViewController {
     
     // MARK: - Update user profile in Firebase db + once data is changed, the user will be updated on profile controlle
     @objc func handleUpdateProfile() {
-        guard let username = usernameTexField.text else { return }
+        guard let username = usernameTexField.text, let title = titleNameTexField.text else { return }
         if username.isEmpty { ProgressHUD.showError("Enter valid info "); return }
         
         let alertController = MDCAlertController(title: "Are you sure you want to change your info?", message: "Press OK to proceed, or CANCEL.")
         
         let action = MDCAlertAction(title: "OK") { action in
-            FirebaseServices.updateUserInfo(with: username)
+            FirebaseServices.updateUserInfo(with: username, title: title)
             self.dismiss(animated: true, completion: nil)
         }
         let cancel = MDCAlertAction(title:"Cancel", handler: nil)

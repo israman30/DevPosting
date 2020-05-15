@@ -63,13 +63,14 @@ class FirebaseServices {
         })
     }
     // MARK: - **************** UPDATE USER INFO ****************
-    static func updateUserInfo(with username: String) {
+    static func updateUserInfo(with username: String, title: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
         let updatedValues = [
-            "username":username
+            "username":username,
+            "title":title
         ]
-        Database.database().reference().child("users").child(uid).setValue(updatedValues)
+        Database.database().reference().child("users").child(uid).updateChildValues(updatedValues)
         ProgressHUD.showSuccess("User updated")
     }
     // MARK: - **************** DELETE USER ****************
