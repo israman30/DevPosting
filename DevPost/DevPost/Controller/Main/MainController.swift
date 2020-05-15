@@ -34,6 +34,13 @@ class MainController: UIViewController {
             perform(#selector(isUserLoggedIn), with: nil, afterDelay: 0)
         }
         observeUser()
+        setNavUsername()
+    }
+    
+    func setNavUsername() {
+        let titleView = UIView(frame: .init(x: 0, y: 0, width: 200, height: 20))
+        titleView.backgroundColor = .red
+        navigationItem.titleView = titleView
     }
     
     // MARK: - Observe posts from Firebase

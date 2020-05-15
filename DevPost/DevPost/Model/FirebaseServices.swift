@@ -12,7 +12,7 @@ import FirebaseDatabase
 import ProgressHUD
 
 class FirebaseServices {
-    
+    // MARK: - **************** SIGN UP USER ****************
     static func createUser(with email: String, password: String, username: String, vc: UIViewController) {
         ProgressHUD.show("Sign up")
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
@@ -31,7 +31,7 @@ class FirebaseServices {
         }
         
     }
-    
+    // MARK: - **************** LOGIN UP USER ****************
     static func loginUser(with email: String, password: String, vc: UIViewController) {
         ProgressHUD.show("Login up")
         // MARK: - Check if user exit before login into Firebase
@@ -55,14 +55,14 @@ class FirebaseServices {
             }
         }
     }
-    
+    // MARK: - **************** UPDATE PASSWORD ****************
     static func updatePassword(with newPassword: String) {
         Auth.auth().currentUser?.updatePassword(to: newPassword, completion: { (error) in
             handleError(error)
             ProgressHUD.showSuccess("Password has been updated. Please logout and login again. Thank you!")
         })
     }
-    
+    // MARK: - **************** UPDATE USER INFO ****************
     static func updateUserInfo(with username: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
 
@@ -72,7 +72,7 @@ class FirebaseServices {
         Database.database().reference().child("users").child(uid).setValue(updatedValues)
         ProgressHUD.showSuccess("User updated")
     }
-    
+    // MARK: - **************** DELETE USER ****************
     static func deleteUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Auth.auth().currentUser?.delete(completion: { (error) in
@@ -80,7 +80,7 @@ class FirebaseServices {
             Database.database().reference().child("users").child(uid).removeValue()
         })
     }
-    
+    // MARK: - **************** FETCH USER ****************
     static func fetchUser(closure: @escaping(User) -> ()) {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             guard let uid = auth.currentUser?.uid else { return }
@@ -92,7 +92,7 @@ class FirebaseServices {
             }
         }
     }
-    
+    // MARK: - **************** OBSERVE USER POST ****************
     static func observeUserPost(closure: @escaping(Posts) -> ()) {
         ProgressHUD.show()
         Database.database().reference().child("posts").observe(.childAdded) { (snapshot) in
