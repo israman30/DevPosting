@@ -37,11 +37,11 @@ class MainController: UIViewController {
         setNavUsername()
     }
     
+    // MARK: - Sset nvabar with current username
     func setNavUsername() {
         let titleView = UIView(frame: .init(x: 0, y: 0, width: 200, height: 20))
-//        titleView.backgroundColor = .red
         let usernameLabel = UILabel()
-        usernameLabel.textColor = .gray
+        usernameLabel.textColor = UIColor.darkColor()
         FirebaseServices.fetchUser { (user) in
             usernameLabel.text = user.username
         }
