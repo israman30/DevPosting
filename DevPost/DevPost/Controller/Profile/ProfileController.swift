@@ -91,15 +91,16 @@ class ProfileController: UIViewController {
     // MARK: - Fetch user info from Firebase Database + it's displayed on UI + uses userInfo to pass the object to edit profile fields
     func fetchUserInfo() {
         FirebaseServices.fetchUser { (user) in
-            self.setProfileUI(with: user.username, email: user.email)
+            self.setProfileUI(with: user.username, email: user.email, title: user.title)
             self.userInfo = user
         }
     }
     
     // MARK: - Function helps to display user info in the UI when user is fetched from db
-    func setProfileUI(with username: String, email: String) {
+    func setProfileUI(with username: String, email: String, title: String) {
         usernameLabel.text = username
         emailLabel.text = email
+        titleNameLabel.text = title
     }
 
 }
