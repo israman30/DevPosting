@@ -39,7 +39,15 @@ class MainController: UIViewController {
     
     func setNavUsername() {
         let titleView = UIView(frame: .init(x: 0, y: 0, width: 200, height: 20))
-        titleView.backgroundColor = .red
+//        titleView.backgroundColor = .red
+        let usernameLabel = UILabel()
+        usernameLabel.textColor = .gray
+        FirebaseServices.fetchUser { (user) in
+            usernameLabel.text = user.username
+        }
+        usernameLabel.textAlignment = .center
+        titleView.addSubview(usernameLabel)
+        usernameLabel.frame = titleView.frame
         navigationItem.titleView = titleView
     }
     
