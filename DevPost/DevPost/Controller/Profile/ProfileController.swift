@@ -23,6 +23,16 @@ class ProfileController: UIViewController {
         return label
     }()
     
+    let titleNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Username Title"
+        label.font = .systemFont(ofSize: 14)
+        label.textAlignment = .center
+        label.textColor = UIColor.darkColor()
+        label.isEnabled = true
+        return label
+    }()
+    
     let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "johndoe@mail.com"

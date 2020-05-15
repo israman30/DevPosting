@@ -28,6 +28,15 @@ class EditProfileController: UIViewController {
         return tf
     }()
     
+    let titleNameTexField: MDCBaseTextField = {
+        let tf = MDCBaseTextField()
+        tf.label.text = "title name"
+        tf.placeholder = "New username"
+        tf.font = .systemFont(ofSize: 20)
+        tf.customBorder()
+        return tf
+    }()
+    
     lazy var cancelUpdateProfileLabel: UILabel = {
         let label = UILabel()
         label.text = "Cancel"

@@ -18,13 +18,13 @@ extension EditProfileController {
         
         view.addSubview(lineView)
         lineView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 15, left: 100, bottom: 0, right: 100), size: .init(width: 0, height: 6))
-        let stackView = UIStackView(arrangedSubviews: [usernameTexField])
+        let stackView = UIStackView(arrangedSubviews: [usernameTexField, titleNameTexField])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 5
         
         view.addSubview(stackView)
-        stackView.anchor(top: lineView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 100, left: 10, bottom: 0, right: 10), size: .init(width: 0, height: 65))
+        stackView.anchor(top: lineView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 100, left: 10, bottom: 0, right: 10), size: .init(width: 0, height: 130))
         usernameTexField.layer.cornerRadius = 2
         setEditButton(stackView)
     }

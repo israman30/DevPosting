@@ -35,8 +35,12 @@ extension ProfileController {
         containerView.addSubview(usernameLabel)
         usernameLabel.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, padding: .init(top: 30, left: 10, bottom: 0, right: 10), size: .init(width: 0, height: 30))
         
+        
+        containerView.addSubview(titleNameLabel)
+        titleNameLabel.anchor(top: usernameLabel.bottomAnchor, left: containerView.leftAnchor, bottom: nil, right: containerView.rightAnchor, padding: .zero, size: .init(width: 0, height: 30))
+        
         containerView.addSubview(usernameBottonLineView)
-        usernameBottonLineView.anchor(top: usernameLabel.bottomAnchor, left: usernameLabel.leftAnchor, bottom: nil, right: usernameLabel.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 5))
+        usernameBottonLineView.anchor(top: titleNameLabel.bottomAnchor, left: titleNameLabel.leftAnchor, bottom: nil, right: titleNameLabel.rightAnchor, padding: .init(top: 10, left: 10, bottom: 0, right: 10), size: .init(width: 0, height: 5))
         
         containerView.addSubview(emailLabel)
         emailLabel.anchor(top: usernameBottonLineView.bottomAnchor, left: usernameBottonLineView.leftAnchor, bottom: nil, right: usernameBottonLineView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 30))
