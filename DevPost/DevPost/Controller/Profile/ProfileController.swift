@@ -41,6 +41,14 @@ class ProfileController: UIViewController {
         return label
     }()
     
+    let repoLabel: UILabel = {
+        let label = UILabel()
+        label.text = "GitHub"
+        label.font = .boldSystemFont(ofSize: 16)
+        label.textAlignment = .center
+        return label
+    }()
+    
     let editProfileButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Edit Profile", for: .normal)

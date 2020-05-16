@@ -45,6 +45,9 @@ extension ProfileController {
         containerView.addSubview(emailLabel)
         emailLabel.anchor(top: usernameBottonLineView.bottomAnchor, left: usernameBottonLineView.leftAnchor, bottom: nil, right: usernameBottonLineView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 30))
         
+        setRepoLabel(containerView)
+        
+        
         let stackView = UIStackView(arrangedSubviews: [editProfileButton, deleteAccountButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
@@ -53,6 +56,24 @@ extension ProfileController {
         containerView.addSubview(stackView)
         stackView.anchor(top: nil, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, padding: .init(top: 0, left: 10, bottom: 10, right: 10), size: .init(width: 0, height: 100))
         editProfileButton.layer.cornerRadius = 2
+
+    }
+    
+    func setRepoLabel(_ containerView: UIView) {
+        let repoView = UIView()
+        repoView.backgroundColor = .red
+        
+        containerView.addSubview(repoView)
+        repoView.anchor(top: emailLabel.bottomAnchor, left: emailLabel.leftAnchor, bottom: nil, right: emailLabel.rightAnchor, padding: .init(top: 30, left: 100, bottom: 0, right: 100), size: .init(width: 0, height: 30))
+        
+        let repoIcon = UIImageView(image: UIImage(named: "git"))
+        repoIcon.backgroundColor = .yellow
+        
+        repoView.addSubview(repoIcon)
+        repoIcon.anchor(top: repoView.topAnchor, left: repoView.leftAnchor, bottom: repoView.bottomAnchor, right: nil, padding: .zero, size: .init(width: 30, height: 0))
+        
+        repoView.addSubview(repoLabel)
+        repoLabel.anchor(top: repoView.topAnchor, left: repoIcon.rightAnchor, bottom: repoView.bottomAnchor, right: repoView.rightAnchor, padding: .zero, size: .zero)
 
     }
 }
