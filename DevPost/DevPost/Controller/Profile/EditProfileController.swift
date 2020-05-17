@@ -37,6 +37,16 @@ class EditProfileController: UIViewController {
         return tf
     }()
     
+    let repoTextFiel: MDCBaseTextField = {
+        let tf = MDCBaseTextField()
+        tf.label.text = "GitHub"
+        tf.placeholder = "GitHub"
+        tf.leadingAssistiveLabel.text = "Enter your profile name"
+//        tf.backgroundColor = .red
+        tf.customBorder()
+        return tf
+    }()
+    
     lazy var cancelUpdateProfileLabel: UILabel = {
         let label = UILabel()
         label.text = "Cancel"
