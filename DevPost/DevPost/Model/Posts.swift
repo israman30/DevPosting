@@ -9,12 +9,13 @@
 import Foundation
 
 struct User {
-    let username, email, title: String
+    let username, email, title, repo: String
     let posts: Posts?
     init(dict: [String:Any]) {
         self.username = dict["username"] as? String ?? ""
         self.email = dict["email"] as? String ?? ""
         self.title = dict["title"] as? String ?? ""
+        self.repo = dict["repo"] as? String ?? ""
         self.posts = nil
     }
 }
