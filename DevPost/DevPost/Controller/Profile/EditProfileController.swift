@@ -40,8 +40,9 @@ class EditProfileController: UIViewController {
     let repoTextFiel: MDCBaseTextField = {
         let tf = MDCBaseTextField()
         tf.label.text = "GitHub"
-        tf.placeholder = "GitHub"
         tf.leadingAssistiveLabel.text = "Enter your profile name"
+        tf.placeholder = "GitHub"
+        tf.sizeToFit()
 //        tf.backgroundColor = .red
         tf.customBorder()
         return tf
