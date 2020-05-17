@@ -45,7 +45,6 @@ class ProfileController: UIViewController {
         let label = UILabel()
         label.text = "GitHub"
         label.font = .boldSystemFont(ofSize: 16)
-//        label.textAlignment = .center
         return label
     }()
     
@@ -112,4 +111,22 @@ class ProfileController: UIViewController {
         repoLabel.text = repo
     }
 
+}
+
+import SafariServices
+
+extension ProfileController: SFSafariViewControllerDelegate {
+    
+    @objc func handleOpenSafariController() {
+        print("Open safari")
+        guard let url = URL(string: "https://github.com/israman30") else { return }
+        let safariController = SFSafariViewController(url: url)
+        present(safariController, animated: true, completion: nil)
+        safariController.delegate = self
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
 }

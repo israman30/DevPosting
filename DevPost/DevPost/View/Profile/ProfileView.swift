@@ -66,6 +66,8 @@ extension ProfileController {
         containerView.addSubview(repoView)
         repoView.anchor(top: emailLabel.bottomAnchor, left: emailLabel.leftAnchor, bottom: nil, right: emailLabel.rightAnchor, padding: .init(top: 30, left: 100, bottom: 0, right: 80), size: .init(width: 0, height: 30))
         
+        repoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleOpenSafariController)))
+        
         let repoIcon = UIImageView(image: UIImage(named: "git"))
 //        repoIcon.backgroundColor = .yellow
         
