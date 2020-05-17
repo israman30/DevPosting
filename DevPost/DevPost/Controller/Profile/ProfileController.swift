@@ -45,7 +45,7 @@ class ProfileController: UIViewController {
         let label = UILabel()
         label.text = "GitHub"
         label.font = .boldSystemFont(ofSize: 16)
-        label.textAlignment = .center
+//        label.textAlignment = .center
         return label
     }()
     

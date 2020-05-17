@@ -61,19 +61,19 @@ extension ProfileController {
     
     func setRepoLabel(_ containerView: UIView) {
         let repoView = UIView()
-        repoView.backgroundColor = .red
+//        repoView.backgroundColor = .red
         
         containerView.addSubview(repoView)
         repoView.anchor(top: emailLabel.bottomAnchor, left: emailLabel.leftAnchor, bottom: nil, right: emailLabel.rightAnchor, padding: .init(top: 30, left: 100, bottom: 0, right: 100), size: .init(width: 0, height: 30))
         
         let repoIcon = UIImageView(image: UIImage(named: "git"))
-        repoIcon.backgroundColor = .yellow
+//        repoIcon.backgroundColor = .yellow
         
         repoView.addSubview(repoIcon)
-        repoIcon.anchor(top: repoView.topAnchor, left: repoView.leftAnchor, bottom: repoView.bottomAnchor, right: nil, padding: .zero, size: .init(width: 30, height: 0))
+        repoIcon.anchor(top: repoView.topAnchor, left: repoView.leftAnchor, bottom: repoView.bottomAnchor, right: nil, padding: .init(top: 0, left: 30, bottom: 0, right: 0), size: .init(width: 30, height: 0))
         
         repoView.addSubview(repoLabel)
-        repoLabel.anchor(top: repoView.topAnchor, left: repoIcon.rightAnchor, bottom: repoView.bottomAnchor, right: repoView.rightAnchor, padding: .zero, size: .zero)
+        repoLabel.anchor(top: repoView.topAnchor, left: repoIcon.rightAnchor, bottom: repoView.bottomAnchor, right: repoView.rightAnchor, padding: .init(top: 0, left: 10, bottom: 0, right: 0), size: .zero)
 
     }
 }
