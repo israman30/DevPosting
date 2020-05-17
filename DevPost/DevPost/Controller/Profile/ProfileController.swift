@@ -68,7 +68,7 @@ class ProfileController: UIViewController {
         return btn
     }()
     
-    // MARK: - userInfo holds user info to be passed into the textFields efit controller
+    // MARK: - userInfo holds user info to be passed into the textFields edit controller
     var userInfo: User?
     
     @objc func handleEditProfile() {
@@ -113,13 +113,20 @@ class ProfileController: UIViewController {
 
 }
 
+// MARK: - Safari Controller block
 import SafariServices
 
 extension ProfileController: SFSafariViewControllerDelegate {
     
+    // MARK: - Open safari controller with url+repo-username handler
     @objc func handleOpenSafariController() {
-        print("Open safari")
-        guard let url = URL(string: "https://github.com/israman30") else { return }
+        guard let user = userInfo else { return }
+        openSafari(with: user)
+    }
+    
+    // MARK: - open safari function with user as parameter - url+repo
+    func openSafari(with user: User) {
+        guard let url = URL(string: "https://github.com/\(user.repo)") else { return }
         let safariController = SFSafariViewController(url: url)
         present(safariController, animated: true, completion: nil)
         safariController.delegate = self
