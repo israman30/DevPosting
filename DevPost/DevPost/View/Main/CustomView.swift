@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - ************* Custom View for DZN EmptyDataSet *************
+// ********************************************************************
 class CustomView: UIView {
     
     let nameLabel = UILabel()

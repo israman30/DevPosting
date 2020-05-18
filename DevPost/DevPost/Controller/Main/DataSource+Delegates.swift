@@ -43,7 +43,7 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
         
         return .init(width: view.frame.width, height: height)
     }
-    
+    // MARK: - Dynamic component calculations
     private func estimateFrameForText(text: String) -> CGRect {
         let height: CGFloat = 1000
         let size = CGSize(width: view.frame.width, height: height)
@@ -53,9 +53,8 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
         return NSString(string: text).boundingRect(with: size, options: options, attributes: attributes, context: nil)
     }
     
-    
 }
-
+// MARK: - DZN Empty Data Set Section
 extension MainController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
