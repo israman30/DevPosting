@@ -58,10 +58,8 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
 
 extension MainController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "Dev Post"
-        let attributes = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 30)])
-        return attributes
+    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+        return CustomView()
     }
     
 }
