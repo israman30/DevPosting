@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -18,6 +19,10 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
         collectionView.register(MainCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        collectionView.emptyDataSetSource = self
+        collectionView.emptyDataSetDelegate = self
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -52,4 +57,13 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     
+}
+
+extension MainController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "No post added yet!"
+        let attributes = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 30)])
+        return attributes
+    }
 }

@@ -96,14 +96,18 @@ class FirebaseServices {
     }
     // MARK: - **************** OBSERVE USER POST ****************
     static func observeUserPost(closure: @escaping(Posts) -> ()) {
-        ProgressHUD.show()
         Database.database().reference().child("posts").observe(.childAdded) { (snapshot) in
-            if let postObject = snapshot.value as? [String:Any] {
-                let posts = Posts(dict: postObject)
-                
-                DispatchQueue.main.async {
-                    closure(posts)
+            ProgressHUD.show()
+            if snapshot.exists() {
+                if let postObject = snapshot.value as? [String:Any] {
+                    let posts = Posts(dict: postObject)
+                    
+                    DispatchQueue.main.async {
+                        closure(posts)
+                    }
                 }
+            } else {
+                ProgressHUD.dismiss()
             }
             ProgressHUD.dismiss()
         }
