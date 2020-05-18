@@ -26,9 +26,6 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if posts.count == 0 {
-            return 0
-        }
         return posts.count
     }
     
@@ -62,8 +59,9 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
 extension MainController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = "No post added yet!"
+        let text = "Dev Post"
         let attributes = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 30)])
         return attributes
     }
+    
 }
