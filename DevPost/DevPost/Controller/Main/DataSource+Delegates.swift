@@ -21,6 +21,9 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if posts.count == 0 {
+            return 0
+        }
         return posts.count
     }
     

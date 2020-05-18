@@ -20,4 +20,7 @@ pod 'MaterialComponents/Dialogs'
 pod 'MaterialComponents/List'
 
 pod 'ProgressHUD'
+
+# empty table view message handler
+pod 'DZNEmptyDataSet'
 end

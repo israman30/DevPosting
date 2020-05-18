@@ -4,6 +4,7 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.3.0)
   - AppAuth/Core (1.3.0)
   - AppAuth/ExternalUserAgent (1.3.0)
+  - DZNEmptyDataSet (1.8.1)
   - Firebase/Analytics (6.18.0):
     - Firebase/Core
   - Firebase/Auth (6.18.0):
@@ -214,6 +215,7 @@ PODS:
   - PromisesObjC (1.2.8)
 
 DEPENDENCIES:
+  - DZNEmptyDataSet
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
@@ -229,6 +231,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppAuth
+    - DZNEmptyDataSet
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -256,6 +259,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Firebase: 0490eca762a72e4f1582319539153897f1508dee
   FirebaseAnalytics: 058d71e714a1a6804d9e0f25e3bb18e377a51579
   FirebaseAuth: 5ce2b03a3d7fe56b7a6e4c5ec7ff1522890b1d6f
@@ -281,6 +285,6 @@ SPEC CHECKSUMS:
   ProgressHUD: 54b4c2fa202bf3da7dddc1c698ae4e6376333bd9
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
-PODFILE CHECKSUM: 2231e086dcb1b0bd0877e7b136218410212ee26f
+PODFILE CHECKSUM: c49d3abb294dcf2fd8fb2812025771376ef8c7ad
 
 COCOAPODS: 1.9.1
