@@ -7,7 +7,7 @@ Let post some code
 </p>
 
 <p align="center">
-<img src="/img/game.png" width="100">
+<img src="/img/game.png" width="70">
 </p>
 
 ### <p align="center"> In progress... </p>
