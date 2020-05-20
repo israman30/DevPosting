@@ -10,6 +10,10 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+protocol CommentDelegate {
+    func didtapIcoCell(_ post: Posts)
+}
+
 class MainCell: UICollectionViewCell {
     
     var post: Posts? {
@@ -42,7 +46,7 @@ class MainCell: UICollectionViewCell {
     let titlePostLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
-        label.textColor = UIColor(hex: "#578dde")
+        label.textColor = UIColor.blueColor()
         return label
     }()
     
@@ -71,6 +75,21 @@ class MainCell: UICollectionViewCell {
         return label
     }()
     
+    lazy var commentButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(UIImage(named: "comment"), for: .normal)
+        btn.addTarget(self, action: #selector(goToCommentSection), for: .touchUpInside)
+        return btn
+    }()
+    
+    var commentDelegate: CommentDelegate?
+    
+    @objc func goToCommentSection() {
+        print(123)
+        guard let post = post else { return }
+        commentDelegate?.didtapIcoCell(post)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         let containerCell = UIView()
@@ -92,6 +111,13 @@ class MainCell: UICollectionViewCell {
         
         containerCell.addSubview(stackView)
         stackView.anchor(top: containerCell.topAnchor, left: containerCell.leftAnchor, bottom: containerCell.bottomAnchor, right: containerCell.rightAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10))
+        
+        setCommentButton(stackView)
+    }
+    
+    func setCommentButton(_ stackView: UIStackView) {
+        stackView.addSubview(commentButton)
+        commentButton.anchor(top: stackView.topAnchor, left: nil, bottom: nil, right: stackView.rightAnchor, padding: .zero, size: .init(width: 15, height: 15))
     }
     
     required init?(coder: NSCoder) {

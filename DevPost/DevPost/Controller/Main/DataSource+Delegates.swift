@@ -32,6 +32,7 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainCell
         cell.post = posts[indexPath.row]
+        cell.commentDelegate = self
         return cell
     }
     
@@ -53,6 +54,10 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
         return NSString(string: text).boundingRect(with: size, options: options, attributes: attributes, context: nil)
     }
     
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        print("This works")
+//    }
+    
 }
 // MARK: - DZN Empty Data Set Section
 extension MainController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
@@ -61,4 +66,10 @@ extension MainController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
         return CustomView()
     }
     
+}
+extension MainController: CommentDelegate {
+    
+    func didtapIcoCell(_ post: Posts) {
+        print(post)
+    }
 }

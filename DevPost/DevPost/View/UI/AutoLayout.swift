@@ -69,11 +69,14 @@ extension UIColor {
     static func darkColor() -> UIColor? {
         return UIColor(hex: "#484848")
     }
-    static func blueColor() -> UIColor? {
+    static func greenColor() -> UIColor? {
         return UIColor(hex: "#4f8c50")
     }
     static func redColor() -> UIColor? {
         return UIColor(hex: "#d61122")
+    }
+    static func blueColor() -> UIColor? {
+        return UIColor(hex: "#578dde")
     }
 }
 
