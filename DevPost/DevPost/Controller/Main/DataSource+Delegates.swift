@@ -54,10 +54,6 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
         return NSString(string: text).boundingRect(with: size, options: options, attributes: attributes, context: nil)
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print("This works")
-//    }
-    
 }
 // MARK: - DZN Empty Data Set Section
 extension MainController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {

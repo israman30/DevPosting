@@ -12,6 +12,12 @@ class CommentsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.mainColor()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleDismissComment))
+    }
+    
+    @objc func handleDismissComment() {
+        dismiss(animated: true, completion: nil)
     }
 }
