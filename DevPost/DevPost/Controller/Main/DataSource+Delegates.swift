@@ -66,8 +66,9 @@ extension MainController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 extension MainController: CommentDelegate {
     
     func didtapCommentIconCell(_ post: Posts) {
-        print(post)
+//        print(post)
         let commentsController = CommentsController()
+        commentsController.post = post
         let nav = UINavigationController(rootViewController: commentsController)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
