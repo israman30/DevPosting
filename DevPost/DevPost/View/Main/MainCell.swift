@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 
 protocol CommentDelegate {
-    func didtapIcoCell(_ post: Posts)
+    func didtapCommentIconCell(_ post: Posts)
 }
 
 class MainCell: UICollectionViewCell {
@@ -87,7 +87,7 @@ class MainCell: UICollectionViewCell {
     @objc func goToCommentSection() {
         print(123)
         guard let post = post else { return }
-        commentDelegate?.didtapIcoCell(post)
+        commentDelegate?.didtapCommentIconCell(post)
     }
     
     override init(frame: CGRect) {
