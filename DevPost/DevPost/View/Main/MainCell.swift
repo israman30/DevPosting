@@ -75,7 +75,7 @@ class MainCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var commentButton: UIButton = {
+    lazy var commentButtonIcon: UIButton = {
         let btn = UIButton(type: .system)
         btn.setImage(UIImage(named: "comment"), for: .normal)
         btn.addTarget(self, action: #selector(goToCommentSection), for: .touchUpInside)
@@ -116,8 +116,8 @@ class MainCell: UICollectionViewCell {
     }
     
     func setCommentButton(_ stackView: UIStackView) {
-        stackView.addSubview(commentButton)
-        commentButton.anchor(top: stackView.topAnchor, left: nil, bottom: nil, right: stackView.rightAnchor, padding: .zero, size: .init(width: 15, height: 15))
+        stackView.addSubview(commentButtonIcon)
+        commentButtonIcon.anchor(top: stackView.topAnchor, left: nil, bottom: nil, right: stackView.rightAnchor, padding: .zero, size: .init(width: 15, height: 15))
     }
     
     required init?(coder: NSCoder) {
