@@ -38,6 +38,7 @@
 		4D3D8DBB24592B1200B75D72 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3D8DBA24592B1200B75D72 /* MainView.swift */; };
 		4DADF59824730BED0075D5CF /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DADF59724730BED0075D5CF /* CustomView.swift */; };
 		4DADF59B2475A1B70075D5CF /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DADF59A2475A1B70075D5CF /* CommentsController.swift */; };
+		4DADF59E24760C2F0075D5CF /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DADF59D24760C2F0075D5CF /* CommentsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		4D3D8DBA24592B1200B75D72 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		4DADF59724730BED0075D5CF /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		4DADF59A2475A1B70075D5CF /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
+		4DADF59D24760C2F0075D5CF /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		620D8B127B8CCEAED70BC258 /* Pods-DevPost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevPost.debug.xcconfig"; path = "Target Support Files/Pods-DevPost/Pods-DevPost.debug.xcconfig"; sourceTree = "<group>"; };
 		780609F5208ED5282117FD5E /* Pods_DevPost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevPost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -231,6 +233,7 @@
 		4D3729A82453E1740022F814 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4DADF59C24760C1F0075D5CF /* Comments */,
 				4D299C212464F6E7005B1CE0 /* Profile */,
 				4D299C1C24635393005B1CE0 /* UI */,
 				4D3729B32454C5570022F814 /* Login */,
@@ -271,6 +274,14 @@
 			isa = PBXGroup;
 			children = (
 				4DADF59A2475A1B70075D5CF /* CommentsController.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		4DADF59C24760C1F0075D5CF /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				4DADF59D24760C2F0075D5CF /* CommentsView.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -419,6 +430,7 @@
 			files = (
 				4D299C2B24687C50005B1CE0 /* GoogleServices+Login+Ext.swift in Sources */,
 				4D02C445246B8B1100B369A1 /* DataSource+Delegates.swift in Sources */,
+				4DADF59E24760C2F0075D5CF /* CommentsView.swift in Sources */,
 				4D3729A5245389740022F814 /* PostController.swift in Sources */,
 				4D299C202463B461005B1CE0 /* EditProfileController.swift in Sources */,
 				4D3D8DBB24592B1200B75D72 /* MainView.swift in Sources */,
