@@ -85,7 +85,6 @@ class MainCell: UICollectionViewCell {
     var commentDelegate: CommentDelegate?
     
     @objc func goToCommentSection() {
-        print(123)
         guard let post = post else { return }
         commentDelegate?.didtapCommentIconCell(post)
     }
