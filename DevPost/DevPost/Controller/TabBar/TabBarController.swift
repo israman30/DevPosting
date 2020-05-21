@@ -21,9 +21,11 @@ class TabBarController: UITabBarController {
         
         let profileController = setTabBarController(viewController: ProfileController(), itemImage: "profile", title: "Profile")
         
+        let myCommentsController = setTabBarController(viewController: MyCommentsController(), itemImage: "com", title: "My Comments")
+        
         let settingController = setTabBarController(viewController: SettingsController(), itemImage: "setting", title: "Settings")
         
-        viewControllers = [nav, profileController, settingController]
+        viewControllers = [nav, profileController, myCommentsController,settingController]
         
         tabBar.isTranslucent = false
         
