@@ -36,6 +36,9 @@
 		4D3D8DB72458AE5600B75D72 /* PostDisplayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3D8DB62458AE5600B75D72 /* PostDisplayController.swift */; };
 		4D3D8DB924592A1E00B75D72 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3D8DB824592A1E00B75D72 /* Posts.swift */; };
 		4D3D8DBB24592B1200B75D72 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3D8DBA24592B1200B75D72 /* MainView.swift */; };
+		4D91C00F2479C186003CC9B2 /* MyCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D91C00E2479C186003CC9B2 /* MyCommentsView.swift */; };
+		4D91C0112479C242003CC9B2 /* MyCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D91C0102479C242003CC9B2 /* MyCommentsCell.swift */; };
+		4D91C0132479C5C7003CC9B2 /* MyComments+DelegateAndDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D91C0122479C5C7003CC9B2 /* MyComments+DelegateAndDatasource.swift */; };
 		4DADF59824730BED0075D5CF /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DADF59724730BED0075D5CF /* CustomView.swift */; };
 		4DADF59B2475A1B70075D5CF /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DADF59A2475A1B70075D5CF /* CommentsController.swift */; };
 		4DADF59E24760C2F0075D5CF /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DADF59D24760C2F0075D5CF /* CommentsView.swift */; };
@@ -74,6 +77,9 @@
 		4D3D8DB62458AE5600B75D72 /* PostDisplayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDisplayController.swift; sourceTree = "<group>"; };
 		4D3D8DB824592A1E00B75D72 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		4D3D8DBA24592B1200B75D72 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		4D91C00E2479C186003CC9B2 /* MyCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommentsView.swift; sourceTree = "<group>"; };
+		4D91C0102479C242003CC9B2 /* MyCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommentsCell.swift; sourceTree = "<group>"; };
+		4D91C0122479C5C7003CC9B2 /* MyComments+DelegateAndDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyComments+DelegateAndDatasource.swift"; sourceTree = "<group>"; };
 		4DADF59724730BED0075D5CF /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		4DADF59A2475A1B70075D5CF /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
 		4DADF59D24760C2F0075D5CF /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
@@ -236,6 +242,7 @@
 		4D3729A82453E1740022F814 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4D91C00D2479C167003CC9B2 /* My-Comments */,
 				4DADF59C24760C1F0075D5CF /* Comments */,
 				4D299C212464F6E7005B1CE0 /* Profile */,
 				4D299C1C24635393005B1CE0 /* UI */,
@@ -273,6 +280,15 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		4D91C00D2479C167003CC9B2 /* My-Comments */ = {
+			isa = PBXGroup;
+			children = (
+				4D91C00E2479C186003CC9B2 /* MyCommentsView.swift */,
+				4D91C0102479C242003CC9B2 /* MyCommentsCell.swift */,
+			);
+			path = "My-Comments";
+			sourceTree = "<group>";
+		};
 		4DADF5992475A19F0075D5CF /* Comments */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				4DADF5A024760FCD0075D5CF /* MyCommentsController.swift */,
+				4D91C0122479C5C7003CC9B2 /* MyComments+DelegateAndDatasource.swift */,
 			);
 			path = "my-comments";
 			sourceTree = "<group>";
@@ -440,12 +457,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D299C2B24687C50005B1CE0 /* GoogleServices+Login+Ext.swift in Sources */,
+				4D91C0112479C242003CC9B2 /* MyCommentsCell.swift in Sources */,
 				4D02C445246B8B1100B369A1 /* DataSource+Delegates.swift in Sources */,
 				4DADF59E24760C2F0075D5CF /* CommentsView.swift in Sources */,
 				4D3729A5245389740022F814 /* PostController.swift in Sources */,
 				4D299C202463B461005B1CE0 /* EditProfileController.swift in Sources */,
 				4D3D8DBB24592B1200B75D72 /* MainView.swift in Sources */,
 				4DADF59B2475A1B70075D5CF /* CommentsController.swift in Sources */,
+				4D91C0132479C5C7003CC9B2 /* MyComments+DelegateAndDatasource.swift in Sources */,
 				4D299C292465E307005B1CE0 /* ResetPasswordView.swift in Sources */,
 				4D37299324537BB60022F814 /* MainController.swift in Sources */,
 				4D299C142461E5BD005B1CE0 /* SettingsController.swift in Sources */,
@@ -458,6 +477,7 @@
 				4D3729B22454C05D0022F814 /* AlertController.swift in Sources */,
 				4DADF5A124760FCD0075D5CF /* MyCommentsController.swift in Sources */,
 				4D3729A324537FE10022F814 /* AutoLayout.swift in Sources */,
+				4D91C00F2479C186003CC9B2 /* MyCommentsView.swift in Sources */,
 				4D299C0D2461153F005B1CE0 /* ResetPasswordController.swift in Sources */,
 				4D3D8DB924592A1E00B75D72 /* Posts.swift in Sources */,
 				4D3D8DB72458AE5600B75D72 /* PostDisplayController.swift in Sources */,
