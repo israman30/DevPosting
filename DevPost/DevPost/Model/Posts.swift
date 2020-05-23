@@ -25,10 +25,12 @@ struct Posts {
     let detailPost: String
     let date: String
     let username: String
+    let userId: String
     init(dict: [String:Any]) {
         self.title = dict["title"] as? String ?? ""
         self.detailPost = dict["detailPost"] as? String ?? ""
         self.date = dict["date"] as? String ?? ""
         self.username = dict["username"] as? String ?? ""
+        self.userId = dict["userId"] as? String ?? ""
     }
 }

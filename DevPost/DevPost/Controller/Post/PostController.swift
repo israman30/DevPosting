@@ -85,18 +85,22 @@ class PostController: UIViewController {
     // MARK: - Upload post object to Fireabase
     func uploadPost() {
         guard let title = titleTextField.text, let detailPost = detailPostTextView.text else { return }
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        let stringId = UUID().uuidString
         
         let values = [
             "title": title,
             "detailPost": detailPost,
             "date": TimeString.setDate(),
-            "username": username
+            "username": username,
+            "userId": userId
         ]
-        let stringId = UUID().uuidString
 
         let posts = Database.database().reference().child("posts").child(stringId)
         
         posts.setValue(values)
+        
+        
     }
     // MARK: - Fetch user for username object post
     func postUserInfo() {

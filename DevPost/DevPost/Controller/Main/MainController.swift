@@ -12,6 +12,11 @@ import FirebaseDatabase
 import ProgressHUD
 import GoogleSignIn
 
+protocol PostDelegate {
+//    func getPost(_ post: Posts)
+    var post: Posts { get set }
+}
+
 class MainController: UIViewController {
     
     let collectionView: UICollectionView = {
@@ -23,6 +28,8 @@ class MainController: UIViewController {
     }()
     
     var posts = [Posts]()
+    
+    var postDelegate: PostDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +64,7 @@ class MainController: UIViewController {
             self.posts.append(posts)
             self.posts.sort(by: { $0.date.compare($1.date) == .orderedDescending })
             self.collectionView.reloadData()
+            self.postDelegate?.post = posts
         }
     }
     
