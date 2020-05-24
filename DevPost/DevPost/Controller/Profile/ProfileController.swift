@@ -108,7 +108,11 @@ class ProfileController: UIViewController {
         usernameLabel.text = username
         emailLabel.text = email
         titleNameLabel.text = title
-        repoLabel.text = repo
+        if !repo.isEmpty {
+            repoLabel.text = repo
+        } else {
+            repoLabel.text = "GitHub"
+        }
     }
 
 }
@@ -125,8 +129,10 @@ extension ProfileController: SFSafariViewControllerDelegate {
     }
     
     // MARK: - open safari function with user as parameter - url+repo
-    func openSafari(with user: User) {
-        guard let url = URL(string: "https://github.com/\(user.repo)") else { return }
+    func openSafari(with user: User?) {
+        if user == nil || user?.repo == nil { return }
+        guard let user = userInfo?.repo else { return }
+        guard let url = URL(string: "https://github.com/\(user)") else { return }
         let safariController = SFSafariViewController(url: url)
         present(safariController, animated: true, completion: nil)
         safariController.delegate = self
