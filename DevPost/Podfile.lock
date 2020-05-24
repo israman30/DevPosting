@@ -131,15 +131,6 @@ PODS:
     - MaterialComponents/Availability
     - MaterialComponents/private/Color
     - MaterialComponents/private/Math
-  - MaterialComponents/List (109.0.0):
-    - MaterialComponents/Elevation
-    - MaterialComponents/Ink
-    - MaterialComponents/private/Math
-    - MaterialComponents/Ripple
-    - MaterialComponents/ShadowElevations
-    - MaterialComponents/ShadowLayer
-    - MaterialComponents/Typography
-    - MDFInternationalization
   - MaterialComponents/private/Application (109.0.0)
   - MaterialComponents/private/Color (109.0.0):
     - MaterialComponents/Availability
@@ -221,7 +212,6 @@ DEPENDENCIES:
   - Firebase/Database
   - FirebaseUI/Google
   - MaterialComponents/Dialogs
-  - MaterialComponents/List
   - "MaterialComponents/TextControls+FilledTextAreas"
   - "MaterialComponents/TextControls+FilledTextFields"
   - "MaterialComponents/TextControls+OutlinedTextAreas"
@@ -285,6 +275,6 @@ SPEC CHECKSUMS:
   ProgressHUD: 54b4c2fa202bf3da7dddc1c698ae4e6376333bd9
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
-PODFILE CHECKSUM: c49d3abb294dcf2fd8fb2812025771376ef8c7ad
+PODFILE CHECKSUM: e909e3ba594130664aaaca392793123cbefa8a81
 
 COCOAPODS: 1.9.1

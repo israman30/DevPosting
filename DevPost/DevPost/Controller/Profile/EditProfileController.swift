@@ -43,7 +43,6 @@ class EditProfileController: UIViewController {
         tf.leadingAssistiveLabel.text = "Enter your repo profile name"
         tf.placeholder = "GitHub"
         tf.sizeToFit()
-//        tf.backgroundColor = .red
         tf.customBorder()
         return tf
     }()
@@ -54,6 +53,8 @@ class EditProfileController: UIViewController {
         label.textAlignment = .center
         label.textColor = .gray
         label.isUserInteractionEnabled = true
+        label.textColor = UIColor.redColor()
+        label.font = .boldSystemFont(ofSize: 18)
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCancelUpdateProfile)))
         return label
     }()
@@ -64,6 +65,7 @@ class EditProfileController: UIViewController {
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
         btn.backgroundColor = UIColor(hex: "#121520")
+        btn.customShadow()
         btn.addTarget(self, action: #selector(handleUpdateProfile), for: .touchUpInside)
         return btn
     }()

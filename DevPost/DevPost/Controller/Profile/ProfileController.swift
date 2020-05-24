@@ -55,6 +55,7 @@ class ProfileController: UIViewController {
         btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
         btn.backgroundColor = UIColor.darkColor()
         btn.customBorder()
+        btn.customShadow()
         btn.addTarget(self, action: #selector(handleEditProfile), for: .touchUpInside)
         return btn
     }()

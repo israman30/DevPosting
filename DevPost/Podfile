@@ -17,7 +17,6 @@ pod 'MaterialComponents/TextControls+FilledTextFields'
 pod 'MaterialComponents/TextControls+OutlinedTextAreas'
 pod 'MaterialComponents/TextControls+OutlinedTextFields'
 pod 'MaterialComponents/Dialogs'
-pod 'MaterialComponents/List'
 
 pod 'ProgressHUD'
 

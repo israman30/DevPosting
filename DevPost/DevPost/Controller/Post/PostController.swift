@@ -44,6 +44,7 @@ class PostController: UIViewController {
         btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
         btn.layer.cornerRadius = 2
         btn.backgroundColor = UIColor(hex: "#578dde")
+        btn.customShadow()
         btn.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
         return btn
     }()
