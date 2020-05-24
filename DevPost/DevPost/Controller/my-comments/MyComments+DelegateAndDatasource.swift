@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 extension MyCommentsController: UITableViewDelegate, UITableViewDataSource {
     
@@ -14,6 +15,9 @@ extension MyCommentsController: UITableViewDelegate, UITableViewDataSource {
         tableView.register(MyCommentsCell.self, forCellReuseIdentifier: "MyCommentsCell")
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,5 +46,11 @@ extension MyCommentsController: UITableViewDelegate, UITableViewDataSource {
         let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light)]
 
         return NSString(string: text).boundingRect(with: size, options: options, attributes: attributes, context: nil)
+    }
+}
+
+extension MyCommentsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+        return MyCommentsCustomView()
     }
 }
