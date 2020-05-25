@@ -46,8 +46,8 @@ class MyCommentsCustomView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        nameLabel.text = "No post yet"
-        nameLabel.font = .boldSystemFont(ofSize: 30)
+        nameLabel.text = "No post"
+        nameLabel.font = .boldSystemFont(ofSize: 20)
         nameLabel.textAlignment = .center
         nameLabel.textColor = UIColor.darkColor()
         
@@ -55,7 +55,7 @@ class MyCommentsCustomView: UIView {
         stackView.axis = .vertical
         
         addSubview(stackView)
-        stackView.centerInSuperview(size: .init(width: 200, height: 230))
+        stackView.centerInSuperview(size: .init(width: 100, height: 130))
         
     }
     

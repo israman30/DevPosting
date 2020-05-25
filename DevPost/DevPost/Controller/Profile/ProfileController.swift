@@ -82,12 +82,19 @@ class ProfileController: UIViewController {
         let alertController = MDCAlertController(title: "Are you sure you want to delete your account?", message: "Press OK to proceed, or CANCEL.")
         let action = MDCAlertAction(title: "OK") { action in
             FirebaseServices.deleteUser()
+            self.deleteAfterLogOut()
         }
         let cancel = MDCAlertAction(title:"Cancel", handler: nil)
         alertController.addAction(action)
         alertController.addAction(cancel)
 
         self.present(alertController, animated:true, completion: nil)
+    }
+    
+    func deleteAfterLogOut() {
+        let loginController = LoginController()
+        loginController.modalPresentationStyle = .fullScreen
+        present(loginController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
