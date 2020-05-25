@@ -44,6 +44,14 @@ class MyCommentsCell: UITableViewCell {
         return label
     }()
     
+    lazy var deleteIconButton: UIButton = {
+        let iv = UIButton(type: .system)
+        iv.setImage(UIImage(named: "trash"), for: .normal)
+//        iv.backgroundColor = .red
+        iv.addTarget(self, action: #selector(handleDeleteUserPost), for: .touchUpInside)
+        return iv
+    }()
+    
     let descriptionPostLabel: UILabel = {
         let label = UILabel()
         label.text = "by John Doe"
@@ -83,6 +91,10 @@ class MyCommentsCell: UITableViewCell {
         commentDelegate?.didtapCommentIconCell(post)
     }
     
+    @objc func handleDeleteUserPost() {
+        print("Delete post")
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let containerCell = UIView()
@@ -94,10 +106,14 @@ class MyCommentsCell: UITableViewCell {
         
         backgroundColor = UIColor.mainColor()
         
+        let titleHeaderStackView = UIStackView(arrangedSubviews: [titlePostLabel, deleteIconButton])
+        titleHeaderStackView.axis = .horizontal
+        titleHeaderStackView.distribution = .fillProportionally
+        
         let horizontalStackView = UIStackView(arrangedSubviews: [usernameLabel, dateLabel])
         horizontalStackView.axis = .horizontal
         
-        let stackView = UIStackView(arrangedSubviews: [titlePostLabel, descriptionPostLabel, horizontalStackView])
+        let stackView = UIStackView(arrangedSubviews: [titleHeaderStackView, descriptionPostLabel, horizontalStackView])
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 5
