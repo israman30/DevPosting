@@ -32,7 +32,6 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainCell
         cell.post = posts[indexPath.row]
-        cell.commentDelegate = self
         return cell
     }
     
@@ -62,14 +61,4 @@ extension MainController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
         return CustomView()
     }
     
-}
-extension MainController: CommentDelegate {
-    
-    func didtapCommentIconCell(_ post: Posts) {
-        let commentsController = CommentsController()
-        commentsController.post = post
-        let nav = UINavigationController(rootViewController: commentsController)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
-    }
 }

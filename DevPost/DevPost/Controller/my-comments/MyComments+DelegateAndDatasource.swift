@@ -27,6 +27,7 @@ extension MyCommentsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCommentsCell") as! MyCommentsCell
         cell.post = myPost[indexPath.row]
+        cell.deletePostDelegate = self
         return cell
     }
     
@@ -52,5 +53,16 @@ extension MyCommentsController: UITableViewDelegate, UITableViewDataSource {
 extension MyCommentsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
         return MyCommentsCustomView()
+    }
+}
+
+extension MyCommentsController: DeletePostDelegate {
+    
+    func didtapCommentIconCell(_ post: Posts) {
+        let commentsController = CommentsController()
+        commentsController.post = post
+        let nav = UINavigationController(rootViewController: commentsController)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }

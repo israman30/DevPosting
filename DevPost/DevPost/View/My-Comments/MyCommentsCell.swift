@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DeletePostDelegate {
+    func didtapCommentIconCell(_ post: Posts)
+}
+
 class MyCommentsCell: UITableViewCell {
     
     var post: Posts? {
@@ -84,11 +88,12 @@ class MyCommentsCell: UITableViewCell {
         return btn
     }()
     
-    var commentDelegate: CommentDelegate?
+    var deletePostDelegate: DeletePostDelegate?
     
     @objc func goToCommentSection() {
-        guard let post = post else { return }
-        commentDelegate?.didtapCommentIconCell(post)
+//        guard let post = post else { return }
+//        commentDelegate?.didtapCommentIconCell(post)
+        print("Delegate for cell")
     }
     
     @objc func handleDeleteUserPost() {
