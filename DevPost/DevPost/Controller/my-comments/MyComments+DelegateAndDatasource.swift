@@ -59,10 +59,11 @@ extension MyCommentsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 extension MyCommentsController: DeletePostDelegate {
     
     func didtapCommentIconCell(_ post: Posts) {
-        let commentsController = CommentsController()
-        commentsController.post = post
-        let nav = UINavigationController(rootViewController: commentsController)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
+        print(post.title)
+//        let commentsController = CommentsController()
+//        commentsController.post = post
+//        let nav = UINavigationController(rootViewController: commentsController)
+//        nav.modalPresentationStyle = .fullScreen
+//        present(nav, animated: true, completion: nil)
     }
 }
