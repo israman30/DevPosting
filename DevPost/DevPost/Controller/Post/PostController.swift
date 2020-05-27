@@ -87,17 +87,18 @@ class PostController: UIViewController {
     func uploadPost() {
         guard let title = titleTextField.text, let detailPost = detailPostTextView.text else { return }
         guard let userId = Auth.auth().currentUser?.uid else { return }
-        let stringId = UUID().uuidString
+        let postId = UUID().uuidString
         
         let values = [
             "title": title,
             "detailPost": detailPost,
             "date": TimeString.setDate(),
             "username": username,
-            "userId": userId
+            "userId": userId,
+            "postId": postId
         ]
 
-        let posts = Database.database().reference().child("posts").child(stringId)
+        let posts = Database.database().reference().child("posts").child(postId)
         
         posts.setValue(values)
         

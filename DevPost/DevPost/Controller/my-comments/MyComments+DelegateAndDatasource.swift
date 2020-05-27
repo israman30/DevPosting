@@ -60,6 +60,12 @@ extension MyCommentsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 extension MyCommentsController: DeletePostDelegate {
     
     func didtapCommentIconCell(_ post: Posts) {
+        print(post.postId)
+        Database.database().reference().child("posts").child(post.postId).removeValue { (error, _) in
+            guard let error = error?.localizedDescription else { return }
+            print("Something when wrong", error)
+        }
+        print("Post deleyted")
         
     }
 }
