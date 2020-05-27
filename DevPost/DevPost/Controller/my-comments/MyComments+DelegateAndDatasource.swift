@@ -49,6 +49,10 @@ extension MyCommentsController: UITableViewDelegate, UITableViewDataSource {
 
         return NSString(string: text).boundingRect(with: size, options: options, attributes: attributes, context: nil)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // TODO
+    }
 }
 
 extension MyCommentsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
@@ -58,14 +62,14 @@ extension MyCommentsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 }
 
 extension MyCommentsController: DeletePostDelegate {
-    
-    func didtapCommentIconCell(_ post: Posts) {
-        print(post.postId)
-        Database.database().reference().child("posts").child(post.postId).removeValue { (error, _) in
-            guard let error = error?.localizedDescription else { return }
-            print("Something when wrong", error)
-        }
-        print("Post deleyted")
+    func iconTapped(_ cell: MyCommentsCell) {
         
+        guard let postId = cell.post?.postId else { return }
+        Database.database().reference().child("posts").child(postId).removeValue()
+        
+        guard let indexPath = tableView.indexPath(for: cell)?.row else { return }
+        myPost.remove(at: indexPath)
+        tableView.reloadData()
     }
+    
 }

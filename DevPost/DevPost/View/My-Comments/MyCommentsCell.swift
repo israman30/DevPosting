@@ -9,7 +9,8 @@
 import UIKit
 
 protocol DeletePostDelegate {
-    func didtapCommentIconCell(_ post: Posts)
+//    func didtapCommentIconCell(_ post: Posts)
+    func iconTapped(_ cell: MyCommentsCell)
 }
 
 class MyCommentsCell: UITableViewCell {
@@ -83,17 +84,10 @@ class MyCommentsCell: UITableViewCell {
     
     var deletePostDelegate: DeletePostDelegate?
     
-//    @objc func goToCommentSection() {
-//        guard let post = post else { return }
-//        deletePostDelegate?.didtapCommentIconCell(post)
-//        print("Delegate for cell")
-//    }
-    
     @objc func handleDeleteUserPost() {
-        print("Delete post")
         guard let post = post else { return }
-        deletePostDelegate?.didtapCommentIconCell(post)
-//        print("Delegate for cell")
+//        deletePostDelegate?.didtapCommentIconCell(post)
+        deletePostDelegate?.iconTapped(self)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -128,3 +122,14 @@ class MyCommentsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+//extension UITableViewCell {
+//
+//    var tableView: UITableView? {
+//        return superview as? UITableView
+//    }
+//
+//    var indexPath: IndexPath? {
+//        return tableView?.indexPath(for: self)
+//    }
+//
+//}
