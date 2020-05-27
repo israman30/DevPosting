@@ -83,14 +83,17 @@ class MyCommentsCell: UITableViewCell {
     
     var deletePostDelegate: DeletePostDelegate?
     
-    @objc func goToCommentSection() {
-        guard let post = post else { return }
-        deletePostDelegate?.didtapCommentIconCell(post)
-        print("Delegate for cell")
-    }
+//    @objc func goToCommentSection() {
+//        guard let post = post else { return }
+//        deletePostDelegate?.didtapCommentIconCell(post)
+//        print("Delegate for cell")
+//    }
     
     @objc func handleDeleteUserPost() {
         print("Delete post")
+        guard let post = post else { return }
+        deletePostDelegate?.didtapCommentIconCell(post)
+//        print("Delegate for cell")
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

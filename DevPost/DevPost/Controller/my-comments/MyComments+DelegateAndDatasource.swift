@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 import DZNEmptyDataSet
 
 extension MyCommentsController: UITableViewDelegate, UITableViewDataSource {
@@ -59,11 +60,6 @@ extension MyCommentsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 extension MyCommentsController: DeletePostDelegate {
     
     func didtapCommentIconCell(_ post: Posts) {
-        print(post.title)
-//        let commentsController = CommentsController()
-//        commentsController.post = post
-//        let nav = UINavigationController(rootViewController: commentsController)
-//        nav.modalPresentationStyle = .fullScreen
-//        present(nav, animated: true, completion: nil)
+        
     }
 }
