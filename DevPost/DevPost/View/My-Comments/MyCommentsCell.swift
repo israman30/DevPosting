@@ -9,7 +9,6 @@
 import UIKit
 
 protocol DeletePostDelegate {
-//    func didtapCommentIconCell(_ post: Posts)
     func iconTapped(_ cell: MyCommentsCell)
 }
 
@@ -101,7 +100,6 @@ class MyCommentsCell: UITableViewCell {
         
         setHeaderCell(containerCell)
         
-        
     }
     
     func setHeaderCell(_ containerCell: UIView) {
@@ -115,31 +113,20 @@ class MyCommentsCell: UITableViewCell {
         titleHeaderView.addSubview(deleteIconButton)
         deleteIconButton.anchor(top: titleHeaderView.topAnchor, left: titlePostLabel.rightAnchor, bottom: titleHeaderView.bottomAnchor, right: titleHeaderView.rightAnchor, padding: .init(top: 5, left: 5, bottom: 5, right: 5), size: .init(width: 20, height: 20))
         
-        
-        let horizontalStackView = UIStackView(arrangedSubviews: [usernameLabel, dateLabel])
-        horizontalStackView.axis = .horizontal
-        
-        let stackView = UIStackView(arrangedSubviews: [descriptionPostLabel, horizontalStackView])
-        stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 5
-        
-        containerCell.addSubview(stackView)
-        stackView.anchor(top: titleHeaderView.bottomAnchor, left: containerCell.leftAnchor, bottom: containerCell.bottomAnchor, right: containerCell.rightAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10))
+        setBodyCell(containerCell, titleHeaderView: titleHeaderView)
     }
     
     func setBodyCell(_ containerCell: UIView, titleHeaderView: UIView) {
-        let horizontalStackView = UIStackView(arrangedSubviews: [usernameLabel, dateLabel])
-        horizontalStackView.axis = .horizontal
+        let footerCellHorizontalStackView = UIStackView(arrangedSubviews: [usernameLabel, dateLabel])
+        footerCellHorizontalStackView.axis = .horizontal
         
-        let stackView = UIStackView(arrangedSubviews: [descriptionPostLabel, horizontalStackView])
+        let stackView = UIStackView(arrangedSubviews: [descriptionPostLabel, footerCellHorizontalStackView])
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 5
         
         containerCell.addSubview(stackView)
         stackView.anchor(top: titleHeaderView.bottomAnchor, left: containerCell.leftAnchor, bottom: containerCell.bottomAnchor, right: containerCell.rightAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10))
-        
     }
     
     required init?(coder: NSCoder) {
