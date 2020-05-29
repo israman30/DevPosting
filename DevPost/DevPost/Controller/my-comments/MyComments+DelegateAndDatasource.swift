@@ -61,15 +61,17 @@ extension MyCommentsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     }
 }
 
+// MARK: - Delete post delegate implementation extention
 extension MyCommentsController: DeletePostDelegate {
     
-    func iconTapped(_ cell: MyCommentsCell) {
+    func deleteIconTapped(_ cell: MyCommentsCell) {
         
         guard let postId = cell.post?.postId else { return }
         Database.database().reference().child("posts").child(postId).removeValue()
         
-        guard let indexPath = tableView.indexPath(for: cell)?.row else { return }
-        myPost.remove(at: indexPath)
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        myPost.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .left)
         tableView.reloadData()
     }
     

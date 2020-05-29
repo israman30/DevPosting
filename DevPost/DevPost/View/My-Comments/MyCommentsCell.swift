@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DeletePostDelegate {
-    func iconTapped(_ cell: MyCommentsCell)
+    func deleteIconTapped(_ cell: MyCommentsCell)
 }
 
 class MyCommentsCell: UITableViewCell {
@@ -84,7 +84,7 @@ class MyCommentsCell: UITableViewCell {
     var deletePostDelegate: DeletePostDelegate?
     
     @objc func handleDeleteUserPost() {
-        deletePostDelegate?.iconTapped(self)
+        deletePostDelegate?.deleteIconTapped(self)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
