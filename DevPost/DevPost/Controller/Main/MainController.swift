@@ -42,17 +42,33 @@ class MainController: UIViewController {
         }
         observeUser()
         setNavUsername()
-        collectionView.refreshControl = refreshController
+        
+        if #available(iOS 10.0, *) {
+            collectionView.refreshControl = refreshController
+        } else {
+            
+            collectionView.addSubview(refreshController)
+        }
     }
     
     @objc func refreshData() {
-        
-        let deadline = DispatchTime.now() + .milliseconds(500)
-//        self.observeUser()
-        DispatchQueue.main.asyncAfter(deadline: deadline) {
-            self.collectionView.reloadData()
-            self.refreshController.endRefreshing()
+        collectionView.refreshControl?.beginRefreshing()
+        var newPosts = [Posts]()
+        DispatchQueue.main.async {
+            FirebaseServices.observeUserPost { (post) in
+                newPosts.append(post)
+                self.posts = newPosts
+                self.collectionView.reloadData()
+            }
         }
+        
+        collectionView.refreshControl?.endRefreshing()
+//        let deadline = DispatchTime.now() + .milliseconds(500)
+//        self.observeUser()
+//        DispatchQueue.main.asyncAfter(deadline: deadline) {
+//            self.collectionView.reloadData()
+//            self.refreshController.endRefreshing()
+//        }
     }
     
     // MARK: - Sset nvabar with current username
