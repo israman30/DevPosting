@@ -85,8 +85,6 @@ class MyCommentsCell: UITableViewCell {
     var deletePostDelegate: DeletePostDelegate?
     
     @objc func handleDeleteUserPost() {
-        guard let post = post else { return }
-//        deletePostDelegate?.didtapCommentIconCell(post)
         deletePostDelegate?.iconTapped(self)
     }
     
@@ -101,20 +99,46 @@ class MyCommentsCell: UITableViewCell {
         
         backgroundColor = UIColor.mainColor()
         
-        let titleHeaderStackView = UIStackView(arrangedSubviews: [titlePostLabel, deleteIconButton])
-        titleHeaderStackView.axis = .horizontal
-        titleHeaderStackView.distribution = .fillProportionally
+        setHeaderCell(containerCell)
+        
+        
+    }
+    
+    func setHeaderCell(_ containerCell: UIView) {
+        let titleHeaderView = UIView()
+        
+        containerCell.addSubview(titleHeaderView)
+        titleHeaderView.anchor(top: containerCell.topAnchor, left: containerCell.leftAnchor, bottom: nil, right: containerCell.rightAnchor, padding: .zero, size: .zero)
+        
+        titleHeaderView.addSubview(titlePostLabel)
+        titlePostLabel.anchor(top: titleHeaderView.topAnchor, left: titleHeaderView.leftAnchor, bottom: titleHeaderView.bottomAnchor, right: nil, padding: .init(top: 0, left: 10, bottom: 0, right: 0))
+        titleHeaderView.addSubview(deleteIconButton)
+        deleteIconButton.anchor(top: titleHeaderView.topAnchor, left: titlePostLabel.rightAnchor, bottom: titleHeaderView.bottomAnchor, right: titleHeaderView.rightAnchor, padding: .init(top: 5, left: 5, bottom: 5, right: 5), size: .init(width: 20, height: 20))
+        
         
         let horizontalStackView = UIStackView(arrangedSubviews: [usernameLabel, dateLabel])
         horizontalStackView.axis = .horizontal
         
-        let stackView = UIStackView(arrangedSubviews: [titleHeaderStackView, descriptionPostLabel, horizontalStackView])
+        let stackView = UIStackView(arrangedSubviews: [descriptionPostLabel, horizontalStackView])
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 5
         
         containerCell.addSubview(stackView)
-        stackView.anchor(top: containerCell.topAnchor, left: containerCell.leftAnchor, bottom: containerCell.bottomAnchor, right: containerCell.rightAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10))
+        stackView.anchor(top: titleHeaderView.bottomAnchor, left: containerCell.leftAnchor, bottom: containerCell.bottomAnchor, right: containerCell.rightAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10))
+    }
+    
+    func setBodyCell(_ containerCell: UIView, titleHeaderView: UIView) {
+        let horizontalStackView = UIStackView(arrangedSubviews: [usernameLabel, dateLabel])
+        horizontalStackView.axis = .horizontal
+        
+        let stackView = UIStackView(arrangedSubviews: [descriptionPostLabel, horizontalStackView])
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 5
+        
+        containerCell.addSubview(stackView)
+        stackView.anchor(top: titleHeaderView.bottomAnchor, left: containerCell.leftAnchor, bottom: containerCell.bottomAnchor, right: containerCell.rightAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10))
         
     }
     
@@ -122,14 +146,3 @@ class MyCommentsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
-//extension UITableViewCell {
-//
-//    var tableView: UITableView? {
-//        return superview as? UITableView
-//    }
-//
-//    var indexPath: IndexPath? {
-//        return tableView?.indexPath(for: self)
-//    }
-//
-//}

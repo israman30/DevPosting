@@ -62,6 +62,7 @@ extension MyCommentsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 }
 
 extension MyCommentsController: DeletePostDelegate {
+    
     func iconTapped(_ cell: MyCommentsCell) {
         
         guard let postId = cell.post?.postId else { return }
