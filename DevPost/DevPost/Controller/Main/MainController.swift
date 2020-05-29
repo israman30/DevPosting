@@ -43,14 +43,14 @@ class MainController: UIViewController {
         observeUser()
         setNavUsername()
         
+        // MARK: RefresControl for iOS versions
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshController
         } else {
-            
             collectionView.addSubview(refreshController)
         }
     }
-    
+    // MARK: - Refresh controller + refreshing collection view after user has deleted a post
     @objc func refreshData() {
         collectionView.refreshControl?.beginRefreshing()
         var newPosts = [Posts]()
@@ -61,14 +61,7 @@ class MainController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
-        
         collectionView.refreshControl?.endRefreshing()
-//        let deadline = DispatchTime.now() + .milliseconds(500)
-//        self.observeUser()
-//        DispatchQueue.main.asyncAfter(deadline: deadline) {
-//            self.collectionView.reloadData()
-//            self.refreshController.endRefreshing()
-//        }
     }
     
     // MARK: - Sset nvabar with current username
@@ -85,7 +78,7 @@ class MainController: UIViewController {
         navigationItem.titleView = titleView
     }
     
-    // MARK: - Observe posts from Firebase
+    // MARK: - Observe posts from Firebase + render collection view
     func observeUser() {
         FirebaseServices.observeUserPost { (posts) in
             self.posts.append(posts)
