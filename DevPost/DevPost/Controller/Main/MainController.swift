@@ -14,11 +14,18 @@ import GoogleSignIn
 
 class MainController: UIViewController {
     
+    lazy var refreshController: UIRefreshControl = {
+        let rc = UIRefreshControl()
+        rc.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        return rc
+    }()
+    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
+        cv.alwaysBounceVertical = true
         return cv
     }()
     
@@ -35,6 +42,17 @@ class MainController: UIViewController {
         }
         observeUser()
         setNavUsername()
+        collectionView.refreshControl = refreshController
+    }
+    
+    @objc func refreshData() {
+        
+        let deadline = DispatchTime.now() + .milliseconds(500)
+//        self.observeUser()
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
+            self.collectionView.reloadData()
+            self.refreshController.endRefreshing()
+        }
     }
     
     // MARK: - Sset nvabar with current username
