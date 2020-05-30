@@ -44,6 +44,7 @@
 		4DADF59E24760C2F0075D5CF /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DADF59D24760C2F0075D5CF /* CommentsView.swift */; };
 		4DADF5A124760FCD0075D5CF /* MyCommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DADF5A024760FCD0075D5CF /* MyCommentsController.swift */; };
 		4DDF9748248209CE00454E22 /* Cell+enum+Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF9747248209CE00454E22 /* Cell+enum+Identifiers.swift */; };
+		4DDF974B2482E2C300454E22 /* EditUserPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF974A2482E2C300454E22 /* EditUserPostController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		4DADF59D24760C2F0075D5CF /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		4DADF5A024760FCD0075D5CF /* MyCommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommentsController.swift; sourceTree = "<group>"; };
 		4DDF9747248209CE00454E22 /* Cell+enum+Identifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cell+enum+Identifiers.swift"; sourceTree = "<group>"; };
+		4DDF974A2482E2C300454E22 /* EditUserPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserPostController.swift; sourceTree = "<group>"; };
 		620D8B127B8CCEAED70BC258 /* Pods-DevPost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevPost.debug.xcconfig"; path = "Target Support Files/Pods-DevPost/Pods-DevPost.debug.xcconfig"; sourceTree = "<group>"; };
 		780609F5208ED5282117FD5E /* Pods_DevPost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevPost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -219,6 +221,7 @@
 		4D3729A62453E1680022F814 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4DDF97492482E28400454E22 /* Edit-user-post */,
 				4DADF59F24760FB10075D5CF /* my-comments */,
 				4DADF5992475A19F0075D5CF /* Comments */,
 				4D299C182463488F005B1CE0 /* Login */,
@@ -315,6 +318,14 @@
 				4D91C0122479C5C7003CC9B2 /* MyComments+DelegateAndDatasource.swift */,
 			);
 			path = "my-comments";
+			sourceTree = "<group>";
+		};
+		4DDF97492482E28400454E22 /* Edit-user-post */ = {
+			isa = PBXGroup;
+			children = (
+				4DDF974A2482E2C300454E22 /* EditUserPostController.swift */,
+			);
+			path = "Edit-user-post";
 			sourceTree = "<group>";
 		};
 		6B8E1012E62DADB04641289E /* Frameworks */ = {
@@ -490,6 +501,7 @@
 				4D37299124537BB60022F814 /* SceneDelegate.swift in Sources */,
 				4D3729B72454C5B50022F814 /* PostView.swift in Sources */,
 				4D299C252464F7C6005B1CE0 /* ProfileView.swift in Sources */,
+				4DDF974B2482E2C300454E22 /* EditUserPostController.swift in Sources */,
 				4D3729AE2453E4870022F814 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

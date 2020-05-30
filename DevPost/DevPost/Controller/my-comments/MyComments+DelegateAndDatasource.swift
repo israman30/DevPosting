@@ -65,6 +65,11 @@ extension MyCommentsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 // MARK: - Delete post delegate implementation extention
 extension MyCommentsController: DeletePostDelegate {
     
+    func editIconTapped() {
+        let editUserPostController = EditUserPostController()
+        present(editUserPostController, animated: true, completion: nil)
+    }
+    
     func deleteIconTapped(_ cell: MyCommentsCell) {
         // Alert controller to warn the user when about to delete the post
         let alertController = MDCAlertController(title: "Are you sure you want to delete this post?", message: "Press OK to proceed, or CANCEL.")

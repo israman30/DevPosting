@@ -10,6 +10,10 @@ import UIKit
 
 protocol DeletePostDelegate {
     func deleteIconTapped(_ cell: MyCommentsCell)
+    func editIconTapped()
+}
+protocol EditPostDelegate {
+    func editIconTapped()
 }
 
 class MyCommentsCell: UITableViewCell {
@@ -90,7 +94,7 @@ class MyCommentsCell: UITableViewCell {
     var deletePostDelegate: DeletePostDelegate?
     
     @objc func handleEditUserPost() {
-        print(123)
+        deletePostDelegate?.editIconTapped()
     }
     
     @objc func handleDeleteUserPost() {
@@ -119,17 +123,23 @@ class MyCommentsCell: UITableViewCell {
         let titleHeaderView = UIView()
         
         containerCell.addSubview(titleHeaderView)
+        // MARK: - TitleHeaderView contains header cell components
+        /*
+            - title post
+            - edit icon button
+            - delete icon button
+         **/
         titleHeaderView.anchor(top: containerCell.topAnchor, left: containerCell.leftAnchor, bottom: nil, right: containerCell.rightAnchor, padding: .zero, size: .zero)
-        
         titleHeaderView.addSubview(titlePostLabel)
         titlePostLabel.anchor(top: titleHeaderView.topAnchor, left: titleHeaderView.leftAnchor, bottom: titleHeaderView.bottomAnchor, right: nil, padding: .init(top: 0, left: 10, bottom: 0, right: 0))
         titleHeaderView.addSubview(deleteIconButton)
-//        deleteIconButton.backgroundColor = .red
+
         deleteIconButton.anchor(top: titleHeaderView.topAnchor, left: titlePostLabel.rightAnchor, bottom: titleHeaderView.bottomAnchor, right: titleHeaderView.rightAnchor, padding: .init(top: 5, left: 5, bottom: 5, right: 5), size: .init(width: 20, height: 20))
         titleHeaderView.addSubview(editIconButton)
-//        editIconButton.backgroundColor = .yellow
-        editIconButton.anchor(top: titleHeaderView.topAnchor, left: nil, bottom: titleHeaderView.bottomAnchor, right: deleteIconButton.leftAnchor, padding: .init(top: 5, left: 5, bottom: 5, right: 5), size: .init(width: 20, height: 20))
+
+        editIconButton.anchor(top: titleHeaderView.topAnchor, left: nil, bottom: titleHeaderView.bottomAnchor, right: deleteIconButton.leftAnchor, padding: .init(top: 5, left: 5, bottom: 5, right: 15), size: .init(width: 20, height: 20))
         
+        // Setting body for cell when bellow method is called
         setBodyCell(containerCell, titleHeaderView: titleHeaderView)
     }
     
