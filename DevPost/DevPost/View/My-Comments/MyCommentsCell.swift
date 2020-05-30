@@ -55,6 +55,13 @@ class MyCommentsCell: UITableViewCell {
         return iv
     }()
     
+    lazy var editIconButton: UIButton = {
+        let iv = UIButton(type: .system)
+        iv.setImage(UIImage(named: "edit"), for: .normal)
+        iv.addTarget(self, action: #selector(handleEditUserPost), for: .touchUpInside)
+        return iv
+    }()
+    
     let descriptionPostLabel: UILabel = {
         let label = UILabel()
         label.text = "by John Doe"
@@ -81,6 +88,10 @@ class MyCommentsCell: UITableViewCell {
     }()
     
     var deletePostDelegate: DeletePostDelegate?
+    
+    @objc func handleEditUserPost() {
+        print(123)
+    }
     
     @objc func handleDeleteUserPost() {
         deletePostDelegate?.deleteIconTapped(self)
@@ -113,7 +124,11 @@ class MyCommentsCell: UITableViewCell {
         titleHeaderView.addSubview(titlePostLabel)
         titlePostLabel.anchor(top: titleHeaderView.topAnchor, left: titleHeaderView.leftAnchor, bottom: titleHeaderView.bottomAnchor, right: nil, padding: .init(top: 0, left: 10, bottom: 0, right: 0))
         titleHeaderView.addSubview(deleteIconButton)
+//        deleteIconButton.backgroundColor = .red
         deleteIconButton.anchor(top: titleHeaderView.topAnchor, left: titlePostLabel.rightAnchor, bottom: titleHeaderView.bottomAnchor, right: titleHeaderView.rightAnchor, padding: .init(top: 5, left: 5, bottom: 5, right: 5), size: .init(width: 20, height: 20))
+        titleHeaderView.addSubview(editIconButton)
+//        editIconButton.backgroundColor = .yellow
+        editIconButton.anchor(top: titleHeaderView.topAnchor, left: nil, bottom: titleHeaderView.bottomAnchor, right: deleteIconButton.leftAnchor, padding: .init(top: 5, left: 5, bottom: 5, right: 5), size: .init(width: 20, height: 20))
         
         setBodyCell(containerCell, titleHeaderView: titleHeaderView)
     }
