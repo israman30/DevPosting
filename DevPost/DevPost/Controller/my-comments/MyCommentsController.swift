@@ -31,7 +31,6 @@ class MyCommentsController: UIViewController {
         setMyCommentView()
 
         fetchPostForCurrentUser()
-        
     }
     
     // MARK: - Fetch post by user id for current user

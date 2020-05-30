@@ -14,7 +14,7 @@ import MaterialComponents.MaterialDialogs
 extension MyCommentsController: UITableViewDelegate, UITableViewDataSource {
     
     func myCommentsRegisteringCellWithDelegateAndDataSource() {
-        tableView.register(MyCommentsCell.self, forCellReuseIdentifier: "MyCommentsCell")
+        tableView.register(MyCommentsCell.self, forCellReuseIdentifier: CellId.myComments.rawValue)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -27,7 +27,7 @@ extension MyCommentsController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCommentsCell") as! MyCommentsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellId.myComments.rawValue) as! MyCommentsCell
         cell.post = myPost[indexPath.row]
         cell.deletePostDelegate = self
         return cell

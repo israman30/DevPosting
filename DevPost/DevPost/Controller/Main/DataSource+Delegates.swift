@@ -16,7 +16,7 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
         collectionView.fillSuperview()
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = UIColor.mainColor()
-        collectionView.register(MainCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(MainCell.self, forCellWithReuseIdentifier: CellId.main.rawValue)
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -30,7 +30,7 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.main.rawValue, for: indexPath) as! MainCell
         cell.post = posts[indexPath.row]
         return cell
     }
