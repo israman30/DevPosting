@@ -10,7 +10,7 @@ import UIKit
 
 protocol DeletePostDelegate {
     func deleteIconTapped(_ cell: MyCommentsCell)
-    func editIconTapped()
+    func editIconTapped(_ cell: MyCommentsCell)
 }
 protocol EditPostDelegate {
     func editIconTapped()
@@ -94,7 +94,7 @@ class MyCommentsCell: UITableViewCell {
     var deletePostDelegate: DeletePostDelegate?
     
     @objc func handleEditUserPost() {
-        deletePostDelegate?.editIconTapped()
+        deletePostDelegate?.editIconTapped(self)
     }
     
     @objc func handleDeleteUserPost() {

@@ -94,6 +94,9 @@ extension UIColor {
     static func dateColor() -> UIColor? {
         return UIColor(hex: "#777777")
     }
+    static func inputBackgroundColor() -> UIColor? {
+        return UIColor(hex: "#f0f1f2")
+    }
 }
 
 struct AnchoredConstraints {

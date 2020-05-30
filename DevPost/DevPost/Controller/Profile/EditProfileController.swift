@@ -24,6 +24,7 @@ class EditProfileController: UIViewController {
         tf.label.text = "username"
         tf.placeholder = "New username"
         tf.font = .systemFont(ofSize: 20)
+        tf.backgroundColor = UIColor.inputBackgroundColor()
         tf.customBorder()
         return tf
     }()
@@ -33,6 +34,7 @@ class EditProfileController: UIViewController {
         tf.label.text = "title name"
         tf.placeholder = "New username"
         tf.font = .systemFont(ofSize: 20)
+        tf.backgroundColor = UIColor.inputBackgroundColor()
         tf.customBorder()
         return tf
     }()
@@ -44,6 +46,7 @@ class EditProfileController: UIViewController {
         tf.placeholder = "GitHub"
         tf.sizeToFit()
         tf.customBorder()
+        tf.backgroundColor = UIColor.inputBackgroundColor()
         return tf
     }()
     
