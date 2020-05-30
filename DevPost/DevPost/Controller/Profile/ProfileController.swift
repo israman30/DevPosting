@@ -88,7 +88,7 @@ class ProfileController: UIViewController {
         alertController.addAction(action)
         alertController.addAction(cancel)
 
-        self.present(alertController, animated:true, completion: nil)
+        present(alertController, animated:true, completion: nil)
     }
     
     func deleteAfterLogOut() {

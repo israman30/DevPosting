@@ -16,6 +16,7 @@ class MainController: UIViewController {
     
     lazy var refreshController: UIRefreshControl = {
         let rc = UIRefreshControl()
+        rc.tintColor = UIColor.greenColor()
         rc.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         return rc
     }()

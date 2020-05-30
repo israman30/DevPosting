@@ -88,6 +88,12 @@ extension UIColor {
     static func blueColor() -> UIColor? {
         return UIColor(hex: "#578dde")
     }
+    static func usernameColor() -> UIColor? {
+        return UIColor(hex: "#363535")
+    }
+    static func dateColor() -> UIColor? {
+        return UIColor(hex: "#777777")
+    }
 }
 
 struct AnchoredConstraints {

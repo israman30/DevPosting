@@ -51,7 +51,6 @@ class MyCommentsCell: UITableViewCell {
     lazy var deleteIconButton: UIButton = {
         let iv = UIButton(type: .system)
         iv.setImage(UIImage(named: "trash"), for: .normal)
-//        iv.backgroundColor = .red
         iv.addTarget(self, action: #selector(handleDeleteUserPost), for: .touchUpInside)
         return iv
     }()
@@ -68,7 +67,7 @@ class MyCommentsCell: UITableViewCell {
         let label = UILabel()
         label.text = "by John Doe"
         label.font = .systemFont(ofSize: 13)
-        label.textColor = UIColor(hex: "#363535")
+        label.textColor = UIColor.usernameColor()
         return label
     }()
     
@@ -76,7 +75,7 @@ class MyCommentsCell: UITableViewCell {
         let label = UILabel()
         label.text = "10/12/2019"
         label.font = .systemFont(ofSize: 10)
-        label.textColor = UIColor(hex: "#777777")
+        label.textColor = UIColor.dateColor()
         label.textAlignment = .right
         return label
     }()
@@ -89,6 +88,9 @@ class MyCommentsCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .none
+        
         let containerCell = UIView()
         containerCell.backgroundColor = UIColor.secondaryColor()
         containerCell.layer.cornerRadius = 5

@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import DZNEmptyDataSet
+import MaterialComponents.MaterialDialogs
 
 extension MyCommentsController: UITableViewDelegate, UITableViewDataSource {
     
@@ -65,7 +66,21 @@ extension MyCommentsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 extension MyCommentsController: DeletePostDelegate {
     
     func deleteIconTapped(_ cell: MyCommentsCell) {
-        
+        // Alert controller to warn the user when about to delete the post
+        let alertController = MDCAlertController(title: "Are you sure you want to delete this post?", message: "Press OK to proceed, or CANCEL.")
+        let action = MDCAlertAction(title: "OK") { action in
+            self.deletePost(cell)
+        }
+        let cancel = MDCAlertAction(title: "Cancel", handler: nil)
+        alertController.addAction(action)
+        alertController.addAction(cancel)
+
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    // Delete post from firebase + remove index from tableView list + reloadData
+    func deletePost(_ cell: MyCommentsCell) {
+        // User postId to locate post to delete
         guard let postId = cell.post?.postId else { return }
         Database.database().reference().child("posts").child(postId).removeValue()
         

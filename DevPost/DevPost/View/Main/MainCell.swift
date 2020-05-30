@@ -58,7 +58,7 @@ class MainCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "by John Doe"
         label.font = .systemFont(ofSize: 13)
-        label.textColor = UIColor(hex: "#363535")
+        label.textColor = UIColor.usernameColor()
         return label
     }()
     
@@ -66,7 +66,7 @@ class MainCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "10/12/2019"
         label.font = .systemFont(ofSize: 10)
-        label.textColor = UIColor(hex: "#777777")
+        label.textColor = UIColor.dateColor()
         label.textAlignment = .right
         return label
     }()
