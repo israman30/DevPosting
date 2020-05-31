@@ -69,14 +69,15 @@ class EditUserPostController: UIViewController {
     
     @objc func handleEditUserPost() {
         print(123)
-        
-        Database.database().reference().child("posts").observeSingleEvent(of: .value) { (snapshot) in
-            guard let values = snapshot.value as? [String:Any] else { return }
-            
-            for (key, val) in values {
-                print(key)
-            }
-        }
+        guard let title = titleTextField.text, let detailPost = detailPostTextView.text else { return }
+        guard let postId = userPost?.postId else { return }
+        let updatedValues = [
+            "title":title,
+            "detailPost":detailPost,
+            "date": "Updated on \(TimeString.setDate())"
+        ]
+        Database.database().reference().child("posts").child(postId).updateChildValues(updatedValues)
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func handleDismissEdit() {
