@@ -14,6 +14,10 @@ import MaterialComponents.MaterialTextControls_FilledTextFields
 import MaterialComponents.MaterialTextControls_OutlinedTextAreas
 import MaterialComponents.MaterialTextControls_OutlinedTextFields
 
+protocol SetEditedUserPostDelegate {
+    func editedUpdateValues(_ post: [String:Any])
+}
+
 class EditUserPostController: UIViewController {
     
     let titleTextField: MDCBaseTextField = {
