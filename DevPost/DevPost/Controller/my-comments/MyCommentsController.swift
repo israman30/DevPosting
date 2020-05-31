@@ -13,6 +13,13 @@ import ProgressHUD
 
 class MyCommentsController: UIViewController {
     
+    lazy var refreshController: UIRefreshControl = {
+        let rc = UIRefreshControl()
+        rc.tintColor = UIColor.greenColor()
+        rc.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        return rc
+    }()
+    
     let tableView: UITableView = {
         let tv = UITableView()
         tv.rowHeight = 60
@@ -32,6 +39,31 @@ class MyCommentsController: UIViewController {
         setMyCommentView()
 
         fetchPostForCurrentUser()
+        
+        // MARK: RefresControl for iOS versions
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshController
+        } else {
+            tableView.addSubview(refreshController)
+        }
+    }
+    
+    // TODO: RELOAD ONLY CURRENT USER POSTS
+    // MARK: - Refresh controller + refreshing collection view after user has deleted a post
+    @objc func refreshData() {
+        tableView.refreshControl?.beginRefreshing()
+        var newPosts = [Posts]()
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            guard let user = user?.uid else { return }
+            FirebaseServices.observeUserPost { (post) in
+                if user == post.userId {
+                    newPosts.append(post)
+                    self.myPost = newPosts
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        tableView.refreshControl?.endRefreshing()
     }
     
     // MARK: - Fetch post by user id for current user
