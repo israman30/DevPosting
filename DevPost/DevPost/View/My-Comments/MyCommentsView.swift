@@ -21,6 +21,7 @@ extension MyCommentsController {
         titleView.addSubview(titleLabel)
         titleLabel.frame = titleView.frame
         navigationItem.titleView = titleView
+        setNavbarRefreshButton()
     }
     
     func setMyCommentView() {
@@ -28,5 +29,9 @@ extension MyCommentsController {
         
         view.addSubview(tableView)
         tableView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, padding: .zero, size: .zero)
+    }
+    
+    func setNavbarRefreshButton() {
+        navigationItem.na
     }
 }
