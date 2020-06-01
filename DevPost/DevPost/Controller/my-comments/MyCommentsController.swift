@@ -76,7 +76,9 @@ class MyCommentsController: UIViewController {
         }
     }
     
-    
+    @objc func handleRefresTapped() {
+        refreshData()
+    }
 }
 
 

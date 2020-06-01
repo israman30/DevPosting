@@ -32,6 +32,7 @@ extension MyCommentsController {
     }
     
     func setNavbarRefreshButton() {
-        navigationItem.na
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(handleRefresTapped))
     }
+    
 }
