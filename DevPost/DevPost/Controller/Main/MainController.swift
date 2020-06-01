@@ -65,6 +65,11 @@ class MainController: UIViewController {
         collectionView.refreshControl?.endRefreshing()
     }
     
+    // MARK: - Refresh data with navbar button tap using refredData()
+    @objc func handleRefresh() {
+        refreshData()
+    }
+    
     // MARK: - Sset nvabar with current username
     func setNavUsername() {
         let titleView = UIView(frame: .init(x: 0, y: 0, width: 200, height: 20))

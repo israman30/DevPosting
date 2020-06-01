@@ -72,7 +72,7 @@ class EditUserPostController: UIViewController {
         guard let title = titleTextField.text, let detailPost = detailPostTextView.text else { return }
         guard let postId = userPost?.postId else { return }
         // Alert controller to warn the user when about to delete the post
-        let alertController = MDCAlertController(title: "Are you sure you want to change this post?", message: "Press OK to proceed and refresh your post after accepting, or CANCEL.")
+        let alertController = MDCAlertController(title: "Are you sure you want to change this post?", message: "Press OK to proceed and refresh your post  after accepting, or CANCEL.")
         let action = MDCAlertAction(title: "OK") { action in
             FirebaseServices.editUserPost(with: postId, title: title, detailPost: detailPost, vc: self)
         }
