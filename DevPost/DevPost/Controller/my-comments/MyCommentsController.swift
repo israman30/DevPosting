@@ -49,7 +49,7 @@ class MyCommentsController: UIViewController {
     }
     
     // TODO: RELOAD ONLY CURRENT USER POSTS
-    // MARK: - Refresh controller + refreshing collection view after user has deleted a post
+    // MARK: - Refresh controller + refresh table view data after user post is edited
     @objc func refreshData() {
         tableView.refreshControl?.beginRefreshing()
         var newPosts = [Posts]()
