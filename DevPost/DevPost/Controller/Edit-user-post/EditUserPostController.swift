@@ -9,14 +9,12 @@
 import UIKit
 import FirebaseDatabase
 
+import MaterialComponents.MaterialDialogs
+
 import MaterialComponents.MaterialTextControls_FilledTextAreas
 import MaterialComponents.MaterialTextControls_FilledTextFields
 import MaterialComponents.MaterialTextControls_OutlinedTextAreas
 import MaterialComponents.MaterialTextControls_OutlinedTextFields
-
-protocol SetEditedUserPostDelegate {
-    func editedUpdateValues(_ post: [String:Any])
-}
 
 class EditUserPostController: UIViewController {
     
@@ -64,7 +62,6 @@ class EditUserPostController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setEditUserPostView()
-        print(userPost?.postId)
         
         guard let title = userPost?.title, let detailPost = userPost?.detailPost else { return }
         titleTextField.text = title
@@ -72,16 +69,18 @@ class EditUserPostController: UIViewController {
     }
     
     @objc func handleEditUserPost() {
-        print(123)
         guard let title = titleTextField.text, let detailPost = detailPostTextView.text else { return }
         guard let postId = userPost?.postId else { return }
-        let updatedValues = [
-            "title":title,
-            "detailPost":detailPost,
-            "date": "Updated on \(TimeString.setDate())"
-        ]
-        Database.database().reference().child("posts").child(postId).updateChildValues(updatedValues)
-        dismiss(animated: true, completion: nil)
+        // Alert controller to warn the user when about to delete the post
+        let alertController = MDCAlertController(title: "Are you sure you want to change this post?", message: "Press OK to proceed and refresh your post pulling down the list after accepting, or CANCEL.")
+        let action = MDCAlertAction(title: "OK") { action in
+            FirebaseServices.editUserPost(with: postId, title: title, detailPost: detailPost, vc: self)
+        }
+        let cancel = MDCAlertAction(title: "Cancel", handler: nil)
+        alertController.addAction(action)
+        alertController.addAction(cancel)
+
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc func handleDismissEdit() {

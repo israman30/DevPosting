@@ -68,23 +68,14 @@ class MyCommentsController: UIViewController {
     
     // MARK: - Fetch post by user id for current user
     func fetchPostForCurrentUser() {
-        // Get current user
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            guard let user = user?.uid else { return }
-            // Observe post for current user
-            FirebaseServices.observeUserPost { (post) in
-                // Check if user id match with post user id then append to the array
-                if user == post.userId {
-                    self.myPost.append(post)
-                    self.myPost.sort(by: { $0.date.compare($1.date) == .orderedDescending })
-                    self.tableView.reloadData()
-                } else {
-                    self.tableView.reloadData()
-                }
-            }
-            self.myPost = []
+        FirebaseServices.fetchCurrentUserPost { (post) in
+            guard let post = post else { return }
+            self.myPost.append(post)
+            self.myPost.sort(by: { $0.date.compare($1.date) == .orderedDescending })
+            self.tableView.reloadData()
         }
     }
+    
     
 }
 

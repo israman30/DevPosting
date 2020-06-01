@@ -113,6 +113,33 @@ class FirebaseServices {
             ProgressHUD.dismiss()
         }
     }
+    // MARK: - **************** FETCH CURRENT USER POST ****************
+    static func fetchCurrentUserPost(closure: @escaping(Posts?) -> ()) {
+        // Get current user
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            guard let user = user?.uid else { return }
+            // Observe post for current user
+            FirebaseServices.observeUserPost { (post) in
+                // Check if user id match with post user id then append to the array
+                if user == post.userId {
+                    closure(post)
+                } else {
+                    closure(nil)
+                }
+            }
+        }
+    }
+    
+    static func editUserPost(with postId: String, title: String, detailPost: String, vc: UIViewController) {
+
+        let updatedValues = [
+            "title":title,
+            "detailPost":detailPost,
+            "date": "Updated on \(TimeString.setDate())"
+        ]
+        Database.database().reference().child("posts").child(postId).updateChildValues(updatedValues)
+        vc.dismiss(animated: true, completion: nil)
+    }
     
     // MARK: - ERROR HANDLING CREATING/LOGIN A USER
     static func handleError(_ error: Error?) {
