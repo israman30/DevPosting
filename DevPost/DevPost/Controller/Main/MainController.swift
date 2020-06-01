@@ -44,7 +44,7 @@ class MainController: UIViewController {
         observeUser()
         setNavUsername()
         
-        // MARK: RefresControl for iOS versions
+        // MARK: RefresControl for iOS version types
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshController
         } else {
@@ -70,10 +70,11 @@ class MainController: UIViewController {
         refreshData()
     }
     
-    // MARK: - Sset nvabar with current username
+    // MARK: - Sset navbar with current username { using custo view + fetch username }
     func setNavUsername() {
         let titleView = UIView(frame: .init(x: 0, y: 0, width: 200, height: 20))
         let usernameLabel = UILabel()
+        usernameLabel.font = .boldSystemFont(ofSize: 17)
         usernameLabel.textColor = UIColor.darkColor()
         FirebaseServices.fetchUser { (user) in
             usernameLabel.text = user.username
@@ -93,7 +94,7 @@ class MainController: UIViewController {
         }
     }
     
-    // MARK: - LOGOUT 
+    // MARK: - LOGOUT { Google signout + custom signout }
     @objc func handleLogout() {
         GIDSignIn.sharedInstance().signOut()
         logOutUser()
@@ -115,7 +116,7 @@ class MainController: UIViewController {
         present(loginController, animated: true, completion: nil)
     }
     
-    // MARK: - Present PostController
+    // MARK: - Present PostController handler { presents controller that holds the logic for adding a post }
     @objc func handleAdd() {
         let postController = PostController()
         present(postController, animated: true, completion: nil)

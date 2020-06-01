@@ -11,6 +11,14 @@ import DZNEmptyDataSet
 
 extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    // MARK: - Set collectionView on parent view
+    /*
+     - hidding vertical indicator
+     - setbakcgroundColor using mainColor()
+     - registering cell class for current collectionView
+     - delegates & dataSource for current collectionView
+     - delegates & dataSource for DZN empty data set
+     */
     func collectionViewCellRegiterWithDataSourceAndDelegates() {
         view.addSubview(collectionView)
         collectionView.fillSuperview()
@@ -24,7 +32,7 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
         collectionView.emptyDataSetDelegate = self
         
     }
-    
+    // MARK: - Data source & delegates flowLayout methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
     }

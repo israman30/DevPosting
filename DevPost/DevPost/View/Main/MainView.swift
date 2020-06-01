@@ -10,11 +10,18 @@ import UIKit
 
 extension MainController {
     
+    // MARK: - ****************** Navbar settgins ******************
+    /*
+     - mainColor view
+     - navbar app title
+     - right bar button items for refresh & add handler post
+     - left bar button item for logout handler
+     **/
+    
     func setNavigationItems() {
         view.backgroundColor = UIColor.mainColor()
         navigationItem.title = "Dev Post"
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAdd))
         
         let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAdd))
         

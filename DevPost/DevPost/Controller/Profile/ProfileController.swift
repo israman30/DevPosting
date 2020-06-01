@@ -72,17 +72,19 @@ class ProfileController: UIViewController {
     // MARK: - userInfo holds user info to be passed into the textFields edit controller
     var userInfo: User?
     
+    // MARK: - Edit profile handler { presents edit profile passing user info }
     @objc func handleEditProfile() {
         let editProfileController = EditProfileController()
         editProfileController.user = userInfo
         present(editProfileController, animated: true, completion: nil)
     }
     
+    // MARK: - Delete account handler { uses a dialog to confirm or cancel the deletion }
     @objc func handleDeleteAccount() {
         let alertController = MDCAlertController(title: "Are you sure you want to delete your account?", message: "Press OK to proceed, or CANCEL.")
         let action = MDCAlertAction(title: "OK") { action in
             FirebaseServices.deleteUser()
-            self.deleteAfterLogOut()
+            self.logoutAfterDeleteAccount()
         }
         let cancel = MDCAlertAction(title:"Cancel", handler: nil)
         alertController.addAction(action)
@@ -90,8 +92,8 @@ class ProfileController: UIViewController {
 
         present(alertController, animated:true, completion: nil)
     }
-    
-    func deleteAfterLogOut() {
+    // MARK: - Logout after delete handler { after account is deleted, go to login }
+    private func logoutAfterDeleteAccount() {
         let loginController = LoginController()
         loginController.modalPresentationStyle = .fullScreen
         present(loginController, animated: true, completion: nil)
@@ -145,7 +147,7 @@ extension ProfileController: SFSafariViewControllerDelegate {
         present(safariController, animated: true, completion: nil)
         safariController.delegate = self
     }
-    
+    // MARK: - Dismiss after button tapped
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
