@@ -61,6 +61,16 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
         return NSString(string: text).boundingRect(with: size, options: options, attributes: attributes, context: nil)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let commentsController = CommentsController()
+//        let nav = UINavigationController(rootViewController: commentsController)
+//        navigationController?.present(nav, animated: true, completion: nil)
+        let nav = UINavigationController(rootViewController: commentsController)
+//        commentsController.modalPresentationStyle = .fullScreen
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
+    }
+    
 }
 // MARK: - DZN Empty Data Set Section
 extension MainController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
