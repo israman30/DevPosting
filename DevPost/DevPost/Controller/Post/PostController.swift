@@ -72,7 +72,7 @@ class PostController: UIViewController {
     
     // MARK: - Cancel post with dismiss controller
     @objc func handleDismiss() {
-        dismiss(animated: true, completion: nil)
+        dismissView()
     }
     
     override func viewDidLoad() {
