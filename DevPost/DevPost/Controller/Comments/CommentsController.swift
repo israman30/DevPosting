@@ -52,6 +52,8 @@ class CommentsController: UIViewController {
     
     var post: Posts?
     
+    var comments = [String]()
+    
     @objc func handlerPostComment() {
         let postCommentController = PostCommentController()
         postCommentController.username = post?.username
@@ -71,10 +73,15 @@ class CommentsController: UIViewController {
         guard let title = post?.title, let detailPost = post?.detailPost else { return }
         titleLabel.text = title
         mainCommentTextView.text = detailPost
-        
+        fetchPosts()
     }
     
     func fetchPosts() {
+        Database.database().reference().child("comments").observe(.childAdded) { (snaphost) in
+            guard let dict = snaphost.value as? [String:Any] else { return }
+            let comment = dict["comment"] as? String
+            print(comment)
+        }
         
     }
     

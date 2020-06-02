@@ -53,25 +53,17 @@ class PostCommentController: UIViewController {
     }
     
     @objc func handleSubmitComment() {
-        print(123)
         postComment()
     }
     
     var username: String?
-    // MARK: - Fetch user for username object post
-//    func getUser() {
-//        FirebaseServices.fetchUser { (user) in
-//            self.username = user.username
-//        }
-//    }
     
+    // MARK: - Create user comment object post
     func postComment() {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         guard let comment = postCommentTextView.text else { return }
         guard let username = username else { return }
-//        print(username)
-        
-//        getUser()
+
         let postId = UUID().uuidString
         let values = [
             "username":username,
@@ -82,8 +74,8 @@ class PostCommentController: UIViewController {
             ]
         print(values)
         Database.database().reference().child("comments").child(postId).setValue(values)
+        dismissView()
     }
-    
     
     @objc func handleDismiss() {
         dismissView()
@@ -125,5 +117,16 @@ extension PostCommentController {
 extension UIViewController {
     func dismissView() {
         dismiss(animated: true, completion: nil)
+    }
+}
+// MARK: - UITextField Delegate handler extension
+extension PostCommentController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    // MARK: - Keyboard dismiss when user touches any where out of the input textField
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
