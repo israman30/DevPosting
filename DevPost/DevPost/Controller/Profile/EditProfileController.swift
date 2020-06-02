@@ -73,7 +73,7 @@ class EditProfileController: UIViewController {
         return btn
     }()
     
-    // MARK: - Update user profile in Firebase db + once data is changed, the user will be updated on profile controlle
+    // MARK: - Update user profile in Firebase db + once data is changed, the user will be updated on profile controller
     @objc func handleUpdateProfile() {
         guard let username = usernameTexField.text, let title = titleNameTexField.text, let repo = repoTextFiel.text else { return }
         if username.isEmpty { ProgressHUD.showError("Enter valid info "); return }
@@ -101,9 +101,13 @@ class EditProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setEditProfileView()
-        usernameTexField.text = user?.username
-        titleNameTexField.text = user?.title
-        repoTextFiel.text = user?.repo
+        
+        guard let username = user?.username,
+              let title = user?.title,
+              let repo = user?.repo else { return }
+        usernameTexField.text = username
+        titleNameTexField.text = title
+        repoTextFiel.text = repo
     }
     
 }

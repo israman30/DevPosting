@@ -95,6 +95,21 @@ class FirebaseServices {
             }
         }
     }
+    
+    static func uploadPost(with title: String, detailPost: String, username: String, userId: String, postId: String) {
+        let values = [
+            "title": title,
+            "detailPost": detailPost,
+            "date": TimeString.setDate(),
+            "username": username,
+            "userId": userId,
+            "postId": postId
+        ]
+
+        let posts = Database.database().reference().child("posts").child(postId)
+        
+        posts.setValue(values)
+    }
     // MARK: - **************** OBSERVE USER POST ****************
     static func observeUserPost(closure: @escaping(Posts) -> ()) {
         Database.database().reference().child("posts").observe(.childAdded) { (snapshot) in

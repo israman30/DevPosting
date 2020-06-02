@@ -46,6 +46,7 @@
 		4DDF9748248209CE00454E22 /* Cell+enum+Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF9747248209CE00454E22 /* Cell+enum+Identifiers.swift */; };
 		4DDF974B2482E2C300454E22 /* EditUserPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF974A2482E2C300454E22 /* EditUserPostController.swift */; };
 		4DDF974E2484A76600454E22 /* EditUserPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF974D2484A76600454E22 /* EditUserPostView.swift */; };
+		4DF2B2AB2485843E001512E8 /* TimeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2B2AA2485843E001512E8 /* TimeString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		4DDF9747248209CE00454E22 /* Cell+enum+Identifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cell+enum+Identifiers.swift"; sourceTree = "<group>"; };
 		4DDF974A2482E2C300454E22 /* EditUserPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserPostController.swift; sourceTree = "<group>"; };
 		4DDF974D2484A76600454E22 /* EditUserPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserPostView.swift; sourceTree = "<group>"; };
+		4DF2B2AA2485843E001512E8 /* TimeString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeString.swift; sourceTree = "<group>"; };
 		620D8B127B8CCEAED70BC258 /* Pods-DevPost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevPost.debug.xcconfig"; path = "Target Support Files/Pods-DevPost/Pods-DevPost.debug.xcconfig"; sourceTree = "<group>"; };
 		780609F5208ED5282117FD5E /* Pods_DevPost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevPost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -243,6 +245,7 @@
 				4D299C1D2463548B005B1CE0 /* FirebaseServices.swift */,
 				4D299C2A24687C50005B1CE0 /* GoogleServices+Login+Ext.swift */,
 				4DDF9747248209CE00454E22 /* Cell+enum+Identifiers.swift */,
+				4DF2B2AA2485843E001512E8 /* TimeString.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				4D299C0D2461153F005B1CE0 /* ResetPasswordController.swift in Sources */,
 				4DDF9748248209CE00454E22 /* Cell+enum+Identifiers.swift in Sources */,
 				4D3D8DB924592A1E00B75D72 /* Posts.swift in Sources */,
+				4DF2B2AB2485843E001512E8 /* TimeString.swift in Sources */,
 				4D3D8DB72458AE5600B75D72 /* PostDisplayController.swift in Sources */,
 				4D299C272464F83C005B1CE0 /* EditProfileView.swift in Sources */,
 				4DADF59824730BED0075D5CF /* CustomView.swift in Sources */,

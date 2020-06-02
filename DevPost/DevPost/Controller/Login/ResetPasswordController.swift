@@ -24,8 +24,9 @@ class ResetPasswordController: UIViewController {
         tf.sizeToFit()
         tf.placeholder = "email@mail.com"
         tf.textColor = .green
+        tf.textContentType = .emailAddress
         tf.font = .systemFont(ofSize: 18)
-        tf.backgroundColor = UIColor(hex: "#f0f1f2")
+        tf.backgroundColor = UIColor.inputBackgroundColor()
         return tf
     }()
     
@@ -34,7 +35,7 @@ class ResetPasswordController: UIViewController {
         btn.setTitle("Reset Password", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
-        btn.backgroundColor = UIColor(hex: "#121520")
+        btn.backgroundColor = UIColor.darkColor()
         btn.addTarget(self, action: #selector(handleResetPassword), for: .touchUpInside)
         return btn
     }()
@@ -43,7 +44,8 @@ class ResetPasswordController: UIViewController {
         let label = UILabel()
         label.text = "Cancel"
         label.textAlignment = .center
-        label.textColor = .gray
+        label.textColor = UIColor.redColor()
+        label.font = .boldSystemFont(ofSize: 20)
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleCancelResetPassword)))
         return label
@@ -53,6 +55,7 @@ class ResetPasswordController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - Reset password handler { Reset password on db using email address }
     @objc func handleResetPassword() {
         guard let email = emailTextField.text else { return }
         if email.isEmpty {
@@ -72,7 +75,6 @@ class ResetPasswordController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         resetPasswordView()
-        
     }
 }
 extension ResetPasswordController: UITextFieldDelegate {

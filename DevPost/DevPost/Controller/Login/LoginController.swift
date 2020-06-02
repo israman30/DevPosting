@@ -24,6 +24,7 @@ class LoginController: UIViewController {
         tf.label.text = "Email"
         tf.sizeToFit()
         tf.placeholder = "email@mail.com"
+        tf.textContentType = .emailAddress
         tf.textColor = .green
         tf.font = .systemFont(ofSize: 16)
         tf.backgroundColor = UIColor(hex: "#f0f1f2")
@@ -35,6 +36,7 @@ class LoginController: UIViewController {
         tf.label.text = "Password"
         tf.sizeToFit()
         tf.placeholder = "********"
+        tf.isSecureTextEntry = true
         tf.font = .systemFont(ofSize: 16)
         tf.backgroundColor = UIColor(hex: "#f0f1f2")
         return tf
@@ -45,6 +47,7 @@ class LoginController: UIViewController {
         tf.label.text = "Username"
         tf.sizeToFit()
         tf.placeholder = "Mr/Mrs"
+        tf.textContentType = .nickname
         tf.font = .systemFont(ofSize: 16)
         tf.backgroundColor = UIColor(hex: "#f0f1f2")
         return tf
@@ -80,6 +83,7 @@ class LoginController: UIViewController {
         return label
     }()
     
+    // MARK: - Reset password handler { Present reset controller that contains the logic for reset password on db }
     @objc func handleResetPassword() {
         let resetPasswordController = ResetPasswordController()
         resetPasswordController.modalPresentationStyle = .automatic

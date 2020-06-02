@@ -85,24 +85,15 @@ class PostController: UIViewController {
     
     // MARK: - Upload post object to Fireabase
     func uploadPost() {
-        guard let title = titleTextField.text, let detailPost = detailPostTextView.text else { return }
+        guard let title = titleTextField.text,
+              let detailPost = detailPostTextView.text else { return }
+        
         guard let userId = Auth.auth().currentUser?.uid else { return }
+        guard let username = username else { return }
+        
         let postId = UUID().uuidString
         
-        let values = [
-            "title": title,
-            "detailPost": detailPost,
-            "date": TimeString.setDate(),
-            "username": username,
-            "userId": userId,
-            "postId": postId
-        ]
-
-        let posts = Database.database().reference().child("posts").child(postId)
-        
-        posts.setValue(values)
-        
-        
+        FirebaseServices.uploadPost(with: title, detailPost: detailPost, username: username, userId: userId, postId: postId)
     }
     // MARK: - Fetch user for username object post
     func postUserInfo() {
@@ -124,13 +115,4 @@ extension PostController: UITextFieldDelegate {
         self.view.endEditing(true)
     }
 }
-class TimeString {
-    // MARK: - setDate function returns a Date of type String that is assigned to the date object created by the context
-    static func setDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        dateFormatter.locale = Locale(identifier: "en_US")
-        return dateFormatter.string(from: Date())
-    }
-}
+
