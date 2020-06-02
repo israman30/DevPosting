@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 import FirebaseDatabase
 
 class PostCommentController: UIViewController {
@@ -33,7 +34,7 @@ class PostCommentController: UIViewController {
         btn.layer.cornerRadius = 2
         btn.backgroundColor = UIColor(hex: "#578dde")
         btn.customShadow()
-//        btn.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(handleSubmitComment), for: .touchUpInside)
         return btn
     }()
     
@@ -51,9 +52,38 @@ class PostCommentController: UIViewController {
         setPostCommentsView()
     }
     
-    func postComment() {
-        Database.database().reference().child("comments").setValue(["message":"Hello there"])
+    @objc func handleSubmitComment() {
+        print(123)
+        postComment()
     }
+    
+    var username: String?
+    // MARK: - Fetch user for username object post
+//    func getUser() {
+//        FirebaseServices.fetchUser { (user) in
+//            self.username = user.username
+//        }
+//    }
+    
+    func postComment() {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        guard let comment = postCommentTextView.text else { return }
+        guard let username = username else { return }
+//        print(username)
+        
+//        getUser()
+        let postId = UUID().uuidString
+        let values = [
+            "username":username,
+            "userId":userId,
+            "comment":comment,
+            "postId":postId,
+            "date":TimeString.setDate()
+            ]
+        print(values)
+        Database.database().reference().child("comments").child(postId).setValue(values)
+    }
+    
     
     @objc func handleDismiss() {
         dismissView()

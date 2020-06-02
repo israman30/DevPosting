@@ -54,6 +54,7 @@ class CommentsController: UIViewController {
     
     @objc func handlerPostComment() {
         let postCommentController = PostCommentController()
+        postCommentController.username = post?.username
         present(postCommentController, animated: true, completion: nil)
     }
     
