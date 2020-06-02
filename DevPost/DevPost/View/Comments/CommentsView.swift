@@ -12,7 +12,8 @@ extension CommentsController {
     
     func setCommentsNavItems() {
         view.backgroundColor = UIColor.mainColor()
-        
+        navigationItem.title = "Comments"
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(handleDismissComment))
     }
     
@@ -30,8 +31,14 @@ extension CommentsController {
         mainCommentTextView.anchor(top: viewLabel.bottomAnchor, left: viewLabel.leftAnchor, bottom: nil, right: viewLabel.rightAnchor, padding: .zero, size: .init(width: 0, height: 0))
         mainCommentTextView.layer.cornerRadius = 3
         
+        let footerView = UIView()
+        footerView.backgroundColor = .red
+        
+        view.addSubview(footerView)
+        footerView.anchor(top: mainCommentTextView.bottomAnchor, left: mainCommentTextView.leftAnchor, bottom: nil, right: mainCommentTextView.rightAnchor, padding: .zero, size: .init(width: 0, height: 20))
+        
         view.addSubview(commentButton)
-        commentButton.anchor(top: mainCommentTextView.bottomAnchor, left: mainCommentTextView.leftAnchor, bottom: nil, right: mainCommentTextView.rightAnchor, padding: .zero, size: .init(width: 0, height: 30))
+        commentButton.anchor(top: footerView.bottomAnchor, left: footerView.leftAnchor, bottom: nil, right: footerView.rightAnchor, padding: .zero, size: .init(width: 0, height: 30))
         setCommentsTableView(commentButton)
     }
     

@@ -63,10 +63,8 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let commentsController = CommentsController()
-//        let nav = UINavigationController(rootViewController: commentsController)
-//        navigationController?.present(nav, animated: true, completion: nil)
+        commentsController.post = posts[indexPath.item]
         let nav = UINavigationController(rootViewController: commentsController)
-//        commentsController.modalPresentationStyle = .fullScreen
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
     }

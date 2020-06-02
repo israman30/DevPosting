@@ -38,7 +38,7 @@ class CommentsController: UIViewController {
         let btn = UIButton(type: .system)
         btn.setTitle("Comment", for: .normal)
         btn.setTitleColor(UIColor.blueColor(), for: .normal)
-        btn.titleLabel?.font = .boldSystemFont(ofSize: 12)
+        btn.titleLabel?.font = .boldSystemFont(ofSize: 14)
         return btn
     }()
     
@@ -59,6 +59,7 @@ class CommentsController: UIViewController {
         setCommentsNavItems()
         setCommentView()
         
+        print(post?.title)
         titleLabel.text = post?.title
         mainCommentTextView.text = post?.detailPost
         
