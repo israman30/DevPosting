@@ -47,6 +47,7 @@
 		4DDF974B2482E2C300454E22 /* EditUserPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF974A2482E2C300454E22 /* EditUserPostController.swift */; };
 		4DDF974E2484A76600454E22 /* EditUserPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF974D2484A76600454E22 /* EditUserPostView.swift */; };
 		4DF2B2AB2485843E001512E8 /* TimeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2B2AA2485843E001512E8 /* TimeString.swift */; };
+		4DF2B2AD2485F754001512E8 /* PostComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF2B2AC2485F754001512E8 /* PostComment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		4DDF974A2482E2C300454E22 /* EditUserPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserPostController.swift; sourceTree = "<group>"; };
 		4DDF974D2484A76600454E22 /* EditUserPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserPostView.swift; sourceTree = "<group>"; };
 		4DF2B2AA2485843E001512E8 /* TimeString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeString.swift; sourceTree = "<group>"; };
+		4DF2B2AC2485F754001512E8 /* PostComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostComment.swift; sourceTree = "<group>"; };
 		620D8B127B8CCEAED70BC258 /* Pods-DevPost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevPost.debug.xcconfig"; path = "Target Support Files/Pods-DevPost/Pods-DevPost.debug.xcconfig"; sourceTree = "<group>"; };
 		780609F5208ED5282117FD5E /* Pods_DevPost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevPost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -305,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				4DADF59A2475A1B70075D5CF /* CommentsController.swift */,
+				4DF2B2AC2485F754001512E8 /* PostComment.swift */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				4D299C1E2463548B005B1CE0 /* FirebaseServices.swift in Sources */,
 				4D3729AC2453E1F40022F814 /* MainCell.swift in Sources */,
 				4D3729B52454C5660022F814 /* LoginView.swift in Sources */,
+				4DF2B2AD2485F754001512E8 /* PostComment.swift in Sources */,
 				4D37298F24537BB60022F814 /* AppDelegate.swift in Sources */,
 				4D299C122461E4AA005B1CE0 /* ProfileController.swift in Sources */,
 				4D3729B22454C05D0022F814 /* AlertController.swift in Sources */,

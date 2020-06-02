@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 import MaterialComponents.MaterialTextControls_FilledTextAreas
 import MaterialComponents.MaterialTextControls_FilledTextFields
@@ -39,6 +40,7 @@ class CommentsController: UIViewController {
         btn.setTitle("Comment", for: .normal)
         btn.setTitleColor(UIColor.blueColor(), for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        btn.addTarget(self, action: #selector(handlerPostComment), for: .touchUpInside)
         return btn
     }()
     
@@ -50,6 +52,11 @@ class CommentsController: UIViewController {
     
     var post: Posts?
     
+    @objc func handlerPostComment() {
+        let postCommentController = PostCommentController()
+        present(postCommentController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,8 +67,13 @@ class CommentsController: UIViewController {
         setCommentView()
         
         print(post?.title)
-        titleLabel.text = post?.title
-        mainCommentTextView.text = post?.detailPost
+        guard let title = post?.title, let detailPost = post?.detailPost else { return }
+        titleLabel.text = title
+        mainCommentTextView.text = detailPost
+        
+    }
+    
+    func fetchPosts() {
         
     }
     
