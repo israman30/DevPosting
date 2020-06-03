@@ -74,16 +74,11 @@ class CommentsController: UIViewController {
     
     // MARK: - Fetching post by postId and render tableView
     func fetchPosts() {
-        Database.database().reference().child("comments").observe(.childAdded) { (snaphost) in
-            guard let dict = snaphost.value as? [String:Any] else { return }
-            let comment = Comments(dict: dict)
-            // Check for postId, has to match
-            if self.post?.postId == comment.postId {
-                self.comments.append(comment)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
+        FirebaseServices.fetchComments(post) { (comment) in
+            guard let comment = comment else { return }
+            self.comments.append(comment)
+            self.comments.sort(by: { $0.date.compare($1.date) == .orderedAscending })
+            self.tableView.reloadData()
         }
     }
     
@@ -94,6 +89,8 @@ class CommentsController: UIViewController {
     
 }
 
+import DZNEmptyDataSet
+
 extension CommentsController: UITableViewDataSource, UITableViewDelegate {
     
     func setTableViewResgiterCellWithDelegateDataSource() {
@@ -103,6 +100,9 @@ extension CommentsController: UITableViewDataSource, UITableViewDelegate {
         tableView.backgroundColor = UIColor.mainColor()
         tableView.separatorStyle = .none
         tableView.bounces = false
+        
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -114,8 +114,37 @@ extension CommentsController: UITableViewDataSource, UITableViewDelegate {
         cell.comments = comments[indexPath.row]
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height: CGFloat = 500
+        let padding: CGFloat = 30
+        let text = comments[indexPath.row].comment
+        height = estimateFrameForText(text: text).height + padding
+        return height
+    }
+    
+    // MARK: - Dynamic component calculations
+    private func estimateFrameForText(text: String) -> CGRect {
+        let height: CGFloat = 1000
+        let size = CGSize(width: view.frame.width, height: height)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light)]
+
+        return NSString(string: text).boundingRect(with: size, options: options, attributes: attributes, context: nil)
+    }
+    
 }
 
+extension CommentsController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+//    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+//        let attributedString = NSAttributedString(string: "No comments yet", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)])
+//        return attributedString
+//    }
+    
+    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+        return CommentsCustomView()
+    }
+}
 
 
 // MARK: - UITextField Delegate handler extension

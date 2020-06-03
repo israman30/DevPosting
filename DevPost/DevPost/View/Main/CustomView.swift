@@ -63,3 +63,30 @@ class MyCommentsCustomView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+class CommentsCustomView: UIView {
+    
+    let nameLabel = UILabel()
+    
+    let robotImageView = UIImageView(image: UIImage(named: "comment"))
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        nameLabel.text = "No comments"
+        nameLabel.font = .boldSystemFont(ofSize: 20)
+        nameLabel.textAlignment = .center
+        nameLabel.textColor = UIColor.darkColor()
+        
+        let stackView = UIStackView(arrangedSubviews: [robotImageView, nameLabel])
+        stackView.axis = .vertical
+        
+        addSubview(stackView)
+        stackView.centerInSuperview(size: .init(width: 130, height: 160))
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

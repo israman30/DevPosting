@@ -61,7 +61,7 @@ class PostCommentController: UIViewController {
     var post: Posts?
     var user: String?
     
-    // MARK: - Create user comment object post
+    // MARK: - Post controller, to create comment object with user information into db
     func postComment() {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         guard let comment = postCommentTextView.text else { return }

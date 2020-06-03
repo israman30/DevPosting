@@ -12,6 +12,10 @@ import FirebaseDatabase
 import ProgressHUD
 
 class FirebaseServices {
+    /*
+    *************************** USER CRUD BLOCK *****************************
+    *************************************************************************
+    **/
     // MARK: - **************** SIGN UP USER ****************
     static func createUser(with email: String, password: String, username: String, vc: UIViewController) {
         ProgressHUD.show("Sign up")
@@ -96,6 +100,11 @@ class FirebaseServices {
         }
     }
     
+    /*
+    *************************** POST CRUD BLOCK *****************************
+    *************************************************************************
+    **/
+    // MARK: - **************** UPLOAD POST TO DB ****************
     static func uploadPost(with title: String, detailPost: String, username: String, userId: String, postId: String) {
         let values = [
             "title": title,
@@ -144,7 +153,7 @@ class FirebaseServices {
             }
         }
     }
-    
+    // MARK: - **************** EDIT CURRENT USER POST ****************
     static func editUserPost(with postId: String, title: String, detailPost: String, vc: UIViewController) {
 
         let updatedValues = [
@@ -155,7 +164,10 @@ class FirebaseServices {
         Database.database().reference().child("posts").child(postId).updateChildValues(updatedValues)
         vc.dismiss(animated: true, completion: nil)
     }
-    
+    /*
+     ************************* COMMENTS CRUD BLOCK ***************************
+     *************************************************************************
+     **/
     // MARK: - **************** POST COMMENT ****************
     static func postComment(user: String, userId: String, comment: String, postId: String, vc: UIViewController) {
         
@@ -173,6 +185,19 @@ class FirebaseServices {
         print(values)
         Database.database().reference().child("comments").child(commentId).setValue(values)
         vc.dismissView()
+    }
+    // MARK: - **************** FETCH POST FROM DB ****************
+    static func fetchComments(_ post: Posts?, closure: @escaping(Comments?) -> ()) {
+        Database.database().reference().child("comments").observe(.childAdded) { (snaphost) in
+            guard let dict = snaphost.value as? [String:Any] else { return }
+            let comment = Comments(dict: dict)
+            // Check for postId, has to match
+            if post?.postId == comment.postId {
+                closure(comment)
+            } else {
+                closure(nil)
+            }
+        }
     }
     
     // MARK: - ERROR HANDLING CREATING/LOGIN A USER
