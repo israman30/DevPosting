@@ -11,4 +11,5 @@ import Foundation
 enum CellId: String {
     case main = "mainCell"
     case myComments = "MyCommentsCell"
+    case commentsCell = "commentsCell"
 }

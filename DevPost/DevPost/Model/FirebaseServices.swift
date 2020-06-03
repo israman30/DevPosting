@@ -156,6 +156,25 @@ class FirebaseServices {
         vc.dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - **************** POST COMMENT ****************
+    static func postComment(user: String, userId: String, comment: String, postId: String, vc: UIViewController) {
+        
+        if comment.isEmpty { ProgressHUD.showError("Please enter a comment"); return }
+
+        let commentId = UUID().uuidString
+        let values = [
+            "by":user,
+            "userId":userId,
+            "comment":comment,
+            "postId":postId,
+            "commentId":commentId,
+            "date":TimeString.setDate()
+        ]
+        print(values)
+        Database.database().reference().child("comments").child(commentId).setValue(values)
+        vc.dismissView()
+    }
+    
     // MARK: - ERROR HANDLING CREATING/LOGIN A USER
     static func handleError(_ error: Error?) {
         if let error = error {

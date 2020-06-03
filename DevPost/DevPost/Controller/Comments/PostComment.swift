@@ -68,20 +68,7 @@ class PostCommentController: UIViewController {
         guard let user = user else { return }
         guard let postId = post?.postId else { return }
         
-        if comment.isEmpty { ProgressHUD.showError("Please enter a comment"); return }
-
-        let commentId = UUID().uuidString
-        let values = [
-            "by":user,
-            "userId":userId,
-            "comment":comment,
-            "postId":postId,
-            "commentId":commentId,
-            "date":TimeString.setDate()
-        ]
-        print(values)
-        Database.database().reference().child("comments").child(commentId).setValue(values)
-        dismissView()
+        FirebaseServices.postComment(user: user, userId: userId, comment: comment, postId: postId, vc: self)
     }
     // MARK: - Get current user from db to build comment object
     func getCurrentUser() {
@@ -96,11 +83,6 @@ class PostCommentController: UIViewController {
 }
 
 
-extension UIViewController {
-    func dismissView() {
-        dismiss(animated: true, completion: nil)
-    }
-}
 // MARK: - UITextField Delegate handler extension
 extension PostCommentController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -62,18 +62,10 @@ class CommentsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.register(CommentsCell.self, forCellReuseIdentifier: "commentsCell")
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.backgroundColor = UIColor.mainColor()
-        tableView.separatorStyle = .none
-        tableView.bounces = false
-        
+        setTableViewResgiterCellWithDelegateDataSource()
         setCommentsNavItems()
         setCommentView()
         
-//        print(post?.postId)
         guard let title = post?.title, let detailPost = post?.detailPost else { return }
         titleLabel.text = title
         mainCommentTextView.text = detailPost
@@ -85,17 +77,14 @@ class CommentsController: UIViewController {
         Database.database().reference().child("comments").observe(.childAdded) { (snaphost) in
             guard let dict = snaphost.value as? [String:Any] else { return }
             let comment = Comments(dict: dict)
-
+            // Check for postId, has to match
             if self.post?.postId == comment.postId {
-                
                 self.comments.append(comment)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
-            
         }
-        
     }
     
     @objc func handleDismissComment() {
@@ -107,13 +96,21 @@ class CommentsController: UIViewController {
 
 extension CommentsController: UITableViewDataSource, UITableViewDelegate {
     
+    func setTableViewResgiterCellWithDelegateDataSource() {
+        tableView.register(CommentsCell.self, forCellReuseIdentifier: CellId.commentsCell.rawValue)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = UIColor.mainColor()
+        tableView.separatorStyle = .none
+        tableView.bounces = false
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "commentsCell") as! CommentsCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellId.commentsCell.rawValue) as! CommentsCell
         cell.comments = comments[indexPath.row]
         return cell
     }
