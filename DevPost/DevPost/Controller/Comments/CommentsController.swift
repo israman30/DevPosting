@@ -52,24 +52,25 @@ class CommentsController: UIViewController {
     
     var post: Posts?
     
-    var comments = [String]()
+    var comments = [Comments]()
     
     @objc func handlerPostComment() {
         let postCommentController = PostCommentController()
-        postCommentController.username = post?.username
+        postCommentController.post = post
         present(postCommentController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(CommentsCell.self, forCellReuseIdentifier: "commentsCell")
         tableView.dataSource = self
         tableView.delegate = self
         
         setCommentsNavItems()
         setCommentView()
         
-        print(post?.title)
+//        print(post?.postId)
         guard let title = post?.title, let detailPost = post?.detailPost else { return }
         titleLabel.text = title
         mainCommentTextView.text = detailPost
@@ -79,8 +80,16 @@ class CommentsController: UIViewController {
     func fetchPosts() {
         Database.database().reference().child("comments").observe(.childAdded) { (snaphost) in
             guard let dict = snaphost.value as? [String:Any] else { return }
-            let comment = dict["comment"] as? String
-            print(comment)
+            let comment = Comments(dict: dict)
+
+            if self.post?.postId == comment.postId {
+                
+                self.comments.append(comment)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            
         }
         
     }
@@ -95,16 +104,18 @@ class CommentsController: UIViewController {
 extension CommentsController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-        cell.textLabel?.text = "Title post"
-        cell.detailTextLabel?.text = "detail post"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentsCell") as! CommentsCell
+        
+        cell.comments = comments[indexPath.row]
         return cell
     }
 }
+
+
 
 // MARK: - UITextField Delegate handler extension
 extension CommentsController: UITextFieldDelegate {

@@ -37,12 +37,13 @@ struct Posts {
 }
 
 struct Comments {
-    let username, comment, date, postId, userId: String
+    let user, comment, date, postId, userId, commentId: String
     init(dict: [String:Any]) {
-        self.username = dict["username"] as? String ?? ""
+        self.user = dict["by"] as? String ?? ""
         self.comment = dict["comment"] as? String ?? ""
         self.date = dict["date"] as? String ?? ""
         self.postId = dict["postId"] as? String ?? ""
         self.userId = dict["userId"] as? String ?? ""
+        self.commentId = dict["commentId"] as? String ?? ""
     }
 }

@@ -50,31 +50,41 @@ class PostCommentController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setPostCommentsView()
+        getCurrentUser()
     }
     
     @objc func handleSubmitComment() {
         postComment()
     }
     
-    var username: String?
+    var post: Posts?
+    var user: String?
     
     // MARK: - Create user comment object post
     func postComment() {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         guard let comment = postCommentTextView.text else { return }
-        guard let username = username else { return }
+        guard let username = post?.username else { return }
+        guard let postId = post?.postId else { return }
 
-        let postId = UUID().uuidString
+        let commentId = UUID().uuidString
         let values = [
-            "username":username,
+            "by":user,
             "userId":userId,
             "comment":comment,
             "postId":postId,
+            "commentId":commentId,
             "date":TimeString.setDate()
             ]
         print(values)
-        Database.database().reference().child("comments").child(postId).setValue(values)
+        Database.database().reference().child("comments").child(commentId).setValue(values)
         dismissView()
+    }
+    
+    func getCurrentUser() {
+        FirebaseServices.fetchUser { (user) in
+            self.user = user.username
+        }
     }
     
     @objc func handleDismiss() {
