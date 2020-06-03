@@ -38,7 +38,7 @@ class CommentsCell: UITableViewCell {
     let commentLabel: UILabel = {
         let label = UILabel()
         label.text = "by John Doe"
-        label.font = .systemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 13)
         label.numberOfLines = 0
         return label
     }()
@@ -62,6 +62,9 @@ class CommentsCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .none
+        
         let containerCell = UIView()
         containerCell.backgroundColor = UIColor.secondaryColor()
         containerCell.layer.cornerRadius = 5
@@ -80,7 +83,9 @@ class CommentsCell: UITableViewCell {
         stackView.spacing = 5
         
         containerCell.addSubview(stackView)
-        stackView.anchor(top: containerCell.topAnchor, left: containerCell.leftAnchor, bottom: containerCell.bottomAnchor, right: containerCell.rightAnchor, padding: .init(top: 5, left: 10, bottom: 5, right: 10))
+        stackView.anchor(top: containerCell.topAnchor, left: containerCell.leftAnchor, bottom: containerCell.bottomAnchor, right: containerCell.rightAnchor, padding: .init(top: 5, left: 20, bottom: 5, right: 20))
+        containerCell.layer.cornerRadius = 20
+        containerCell.clipsToBounds = true
     }
    
     

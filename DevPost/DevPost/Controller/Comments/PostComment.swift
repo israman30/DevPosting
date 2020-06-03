@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import ProgressHUD
 
 class PostCommentController: UIViewController {
     
@@ -32,7 +33,7 @@ class PostCommentController: UIViewController {
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 20)
         btn.layer.cornerRadius = 2
-        btn.backgroundColor = UIColor(hex: "#578dde")
+        btn.backgroundColor = UIColor.blueColor()
         btn.customShadow()
         btn.addTarget(self, action: #selector(handleSubmitComment), for: .touchUpInside)
         return btn
@@ -64,8 +65,10 @@ class PostCommentController: UIViewController {
     func postComment() {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         guard let comment = postCommentTextView.text else { return }
-        guard let username = post?.username else { return }
+        guard let user = user else { return }
         guard let postId = post?.postId else { return }
+        
+        if comment.isEmpty { ProgressHUD.showError("Please enter a comment"); return }
 
         let commentId = UUID().uuidString
         let values = [
@@ -75,12 +78,12 @@ class PostCommentController: UIViewController {
             "postId":postId,
             "commentId":commentId,
             "date":TimeString.setDate()
-            ]
+        ]
         print(values)
         Database.database().reference().child("comments").child(commentId).setValue(values)
         dismissView()
     }
-    
+    // MARK: - Get current user from db to build comment object
     func getCurrentUser() {
         FirebaseServices.fetchUser { (user) in
             self.user = user.username
@@ -92,38 +95,7 @@ class PostCommentController: UIViewController {
     }
 }
 
-extension PostCommentController {
-    
-    func setPostCommentsView() {
-        view.backgroundColor = UIColor.mainColor()
-        
-        let lineView = UIView()
-        lineView.backgroundColor = UIColor.darkColor()
-        lineView.layer.cornerRadius = 5
-        
-        view.addSubview(lineView)
-        lineView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 15, left: 100, bottom: 0, right: 100), size: .init(width: 0, height: 6))
-        
-        view.addSubview(titleLabel)
-        titleLabel.anchor(top: lineView.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, padding: .init(top: 40, left: 20, bottom: 0, right: 20), size: .init(width: 0, height: 0))
-        
-        view.addSubview(postCommentTextView)
-        postCommentTextView.anchor(top: titleLabel.bottomAnchor, left: titleLabel.leftAnchor, bottom: nil, right: titleLabel.rightAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 300))
-        postCommentTextView.layer.cornerRadius = 2
 
-        let stackView = UIStackView(arrangedSubviews: [submitButton, dismissButton])
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 5
-        
-        submitButton.customBorder()
-
-        view.addSubview(stackView)
-        stackView.anchor(top: postCommentTextView.bottomAnchor, left: postCommentTextView.leftAnchor, bottom: nil, right: postCommentTextView.rightAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 100))
-        
-        postCommentTextView.customBorder()
-    }
-}
 extension UIViewController {
     func dismissView() {
         dismiss(animated: true, completion: nil)

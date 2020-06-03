@@ -66,6 +66,9 @@ class CommentsController: UIViewController {
         tableView.register(CommentsCell.self, forCellReuseIdentifier: "commentsCell")
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.backgroundColor = UIColor.mainColor()
+        tableView.separatorStyle = .none
+        tableView.bounces = false
         
         setCommentsNavItems()
         setCommentView()
@@ -77,6 +80,7 @@ class CommentsController: UIViewController {
         fetchPosts()
     }
     
+    // MARK: - Fetching post by postId and render tableView
     func fetchPosts() {
         Database.database().reference().child("comments").observe(.childAdded) { (snaphost) in
             guard let dict = snaphost.value as? [String:Any] else { return }
@@ -95,7 +99,7 @@ class CommentsController: UIViewController {
     }
     
     @objc func handleDismissComment() {
-        dismiss(animated: true, completion: nil)
+        dismissView()
     }
     
     

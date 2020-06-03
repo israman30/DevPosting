@@ -31,8 +31,9 @@ extension CommentsController {
         mainCommentTextView.anchor(top: viewLabel.bottomAnchor, left: viewLabel.leftAnchor, bottom: nil, right: viewLabel.rightAnchor, padding: .zero, size: .init(width: 0, height: 0))
         mainCommentTextView.layer.cornerRadius = 3
         
+        // Footer view
         let footerView = UIView()
-        footerView.backgroundColor = .red
+        footerView.backgroundColor = UIColor.secondaryColor()
         
         view.addSubview(footerView)
         footerView.anchor(top: mainCommentTextView.bottomAnchor, left: mainCommentTextView.leftAnchor, bottom: nil, right: mainCommentTextView.rightAnchor, padding: .zero, size: .init(width: 0, height: 20))
