@@ -10,6 +10,18 @@ import UIKit
 
 extension MainController {
     
+    // MARK: - Set searchBar + referencing constraint for hidding animation
+    func setSearchBar() {
+        view.addSubview(searchBar)
+        searchBar.placeholder = "Search..."
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        searchBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        searchBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        heightConstraint = searchBar.heightAnchor.constraint(equalToConstant: 0)
+        heightConstraint?.isActive = true
+    }
+    
     // MARK: - ****************** Navbar settgins ******************
     /*
      - mainColor view
