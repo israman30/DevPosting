@@ -14,6 +14,8 @@ import GoogleSignIn
 
 class MainController: UIViewController {
     
+    let searchBar = UISearchBar()
+    
     lazy var refreshController: UIRefreshControl = {
         let rc = UIRefreshControl()
         rc.tintColor = UIColor.greenColor()
@@ -32,8 +34,21 @@ class MainController: UIViewController {
     
     var posts = [Posts]()
     
+    var heightConstraint: NSLayoutConstraint?
+    var heigh: CGFloat = 40
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        searchBar.tintColor = .red
+        view.addSubview(searchBar)
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        searchBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        searchBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        heightConstraint = searchBar.heightAnchor.constraint(equalToConstant: 0)
+        heightConstraint?.isActive = true
+        
         setNavigationItems()
         collectionViewCellRegiterWithDataSourceAndDelegates()
         
@@ -51,6 +66,18 @@ class MainController: UIViewController {
             collectionView.addSubview(refreshController)
         }
     }
+    
+    @objc func handleShowSearchIcon() {
+        if heightConstraint?.constant == 0 {
+            heightConstraint?.constant = 40
+        } else {
+            heightConstraint?.constant = 0
+        }
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
     // MARK: - Refresh controller + refreshing collection view after user has deleted a post
     @objc func refreshData() {
         collectionView.refreshControl?.beginRefreshing()

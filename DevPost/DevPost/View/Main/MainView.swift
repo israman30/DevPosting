@@ -27,7 +27,9 @@ extension MainController {
         
         let refreshButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(handleRefresh))
         
-        navigationItem.rightBarButtonItems = [addButtonItem, refreshButtonItem]
+        let searchButonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(handleShowSearchIcon))
+        
+        navigationItem.rightBarButtonItems = [addButtonItem, refreshButtonItem,searchButonItem]
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
     }

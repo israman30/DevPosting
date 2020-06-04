@@ -19,9 +19,11 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
      - delegates & dataSource for current collectionView
      - delegates & dataSource for DZN empty data set
      */
+    
     func collectionViewCellRegiterWithDataSourceAndDelegates() {
         view.addSubview(collectionView)
-        collectionView.fillSuperview()
+//        collectionView.fillSuperview()
+        collectionView.anchor(top: searchBar.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = UIColor.mainColor()
         collectionView.register(MainCell.self, forCellWithReuseIdentifier: CellId.main.rawValue)
@@ -30,8 +32,9 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
         
         collectionView.emptyDataSetSource = self
         collectionView.emptyDataSetDelegate = self
-        
+//        setSearchBar()
     }
+    
     // MARK: - Data source & delegates flowLayout methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
