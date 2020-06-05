@@ -33,6 +33,8 @@ class MainController: UIViewController {
     }()
     
     var posts = [Posts]()
+    var filteredPosts = [Posts]()
+    var showResult = false
     
     var heightConstraint: NSLayoutConstraint?
     
@@ -143,4 +145,25 @@ class MainController: UIViewController {
 
 }
 
-
+// MARK: - SEARCH BAR DELEGATE EXTENSION
+extension MainController: UISearchBarDelegate {
+    
+    // MARK: - Search filtered text method for search post title
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredPosts = posts.filter {
+            $0.title.lowercased().range(of: searchText.lowercased()) != nil
+        }
+        if !searchText.isEmpty {
+            showResult = true
+            collectionView.reloadData()
+        } else {
+            showResult = false
+            collectionView.reloadData()
+        }
+    }
+    
+    // MARK: - Keyboard hides when scroll down
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.endEditing(true)
+    }
+}

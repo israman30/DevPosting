@@ -22,7 +22,6 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionViewCellRegiterWithDataSourceAndDelegates() {
         view.addSubview(collectionView)
-//        collectionView.fillSuperview()
         collectionView.anchor(top: searchBar.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = UIColor.mainColor()
@@ -32,16 +31,23 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
         
         collectionView.emptyDataSetSource = self
         collectionView.emptyDataSetDelegate = self
-//        setSearchBar()
+
     }
     
     // MARK: - Data source & delegates flowLayout methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if showResult {
+            return filteredPosts.count
+        }
         return posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellId.main.rawValue, for: indexPath) as! MainCell
+        if showResult {
+            cell.post = filteredPosts[indexPath.item]
+            return cell
+        }
         cell.post = posts[indexPath.row]
         return cell
     }
@@ -49,11 +55,17 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var height: CGFloat = 500
         let padding: CGFloat = 60
+        if showResult {
+            let filteredText = filteredPosts[indexPath.item].detailPost
+            height = estimateFrameForText(text: filteredText).height + padding
+            return .init(width: view.frame.width, height: height)
+        }
         let text = posts[indexPath.item].detailPost
         height = estimateFrameForText(text: text).height + padding
         
         return .init(width: view.frame.width, height: height)
     }
+    
     // MARK: - Dynamic component calculations
     private func estimateFrameForText(text: String) -> CGRect {
         let height: CGFloat = 1000
@@ -66,7 +78,11 @@ extension MainController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let commentsController = CommentsController()
-        commentsController.post = posts[indexPath.item]
+        if showResult {
+            commentsController.post = filteredPosts[indexPath.item]
+        } else {
+            commentsController.post = posts[indexPath.item]
+        }
         let nav = UINavigationController(rootViewController: commentsController)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)

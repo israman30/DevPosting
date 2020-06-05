@@ -13,6 +13,7 @@ extension MainController {
     // MARK: - Set searchBar + referencing constraint for hidding animation
     func setSearchBar() {
         view.addSubview(searchBar)
+        searchBar.delegate = self
 //        searchBar.barStyle = .blackOpaque
         searchBar.placeholder = "Search..."
         searchBar.translatesAutoresizingMaskIntoConstraints = false
