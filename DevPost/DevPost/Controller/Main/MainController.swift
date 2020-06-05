@@ -12,6 +12,8 @@ import FirebaseDatabase
 import ProgressHUD
 import GoogleSignIn
 
+import MaterialComponents.MaterialDialogs
+
 class MainController: UIViewController {
     
     let searchBar = UISearchBar()
@@ -117,8 +119,15 @@ class MainController: UIViewController {
     
     // MARK: - LOGOUT { Google signout + custom signout }
     @objc func handleLogout() {
-        GIDSignIn.sharedInstance().signOut()
-        logOutUser()
+        let alertController = MDCAlertController(title: "Logout, are you sure?", message: "Press OK to proceed, or CANCEL.")
+        let action = MDCAlertAction(title: "OK") { action in
+            GIDSignIn.sharedInstance().signOut()
+            self.logOutUser()
+        }
+        let cancel = MDCAlertAction(title:"Cancel", handler: nil)
+        alertController.addAction(action)
+        alertController.addAction(cancel)
+        present(alertController, animated: true, completion: nil)
     }
     
     func logOutUser() {
